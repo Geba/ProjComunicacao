@@ -14,4 +14,13 @@ public class Contato {
     private long id;
     private String nome;
     private String photo;
+    private String apelido;
+
+    public Contato(long id, String nome, String photo, String apelido) {
+        this.id = id;
+        this.nome = nome;
+        this.photo = photo;
+        this.apelido = apelido;
+    }
+    
 }

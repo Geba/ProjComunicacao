@@ -15,8 +15,10 @@ public class Mensagem {
     private String usuario;
     private String hora;
 
-    public Mensagem() {
-
+    public Mensagem(String menssagem, String usuario, String hora) {
+        this.menssagem = menssagem;
+        this.usuario = usuario;
+        this.hora = hora;
     }
-
+    
 }

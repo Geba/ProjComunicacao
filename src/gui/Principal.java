@@ -38,6 +38,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(programName);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
