@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package comunicacao;
-import gui.Principal;
+import gui.PrincipalApp;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Comunicacao {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Principal app = new Principal();
+        PrincipalApp app = new PrincipalApp();
         app.setVisible(true);
     }
 }
