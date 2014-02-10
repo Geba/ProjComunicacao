@@ -3,16 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package atomics;
+
+import java.util.Vector;
+import atomics.Contato;
 
 /**
  *
  * @author Geeo
  */
-public class Usuario {
-    private long id;
+public class Conversa {
+
+    private int id;
     private String nome;
-    private String photo;
-    private String apelido;
+    private Vector<Mensagem> mensagens;
+    private Vector <Contato> contatos;
+    
 }

@@ -10,7 +10,9 @@ import atomics.Mensagem;
 import erros.LoginNaoEncontradoException;
 import erros.ConexaoNaoEncontradaException;
 import atomics.Usuario;
+import atomics.Conversa;
 import java.util.Vector;
+
 
 /**
  *
@@ -18,7 +20,7 @@ import java.util.Vector;
  */
 public interface InterfaceCore {
     Usuario login(String Nome, String Senha)throws LoginNaoEncontradoException, ConexaoNaoEncontradaException;
-    Vector<Mensagem> AtualizarMensagens();
-    
+    Vector<Mensagem> AtualizarMensagens() throws ConexaoNaoEncontradaException;
+    Vector<Conversa> AtualizarConversas() throws ConexaoNaoEncontradaException;
     
 }

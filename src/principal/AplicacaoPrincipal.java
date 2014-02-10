@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-package atomics;
+package principal;
 
 /**
  *
  * @author Geeo
  */
-public class Usuario {
-    private long id;
-    private String nome;
-    private String photo;
-    private String apelido;
+public class AplicacaoPrincipal {
+    public static void main(String[] args){
+        Core core  = new Core();
+        GuiPrincipal gui = new GuiPrincipal(core);
+    }
 }

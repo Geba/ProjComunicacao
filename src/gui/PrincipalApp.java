@@ -6,6 +6,9 @@
 
 package gui;
 
+import interfaces.InterfaceCore;
+import javax.swing.*;
+
 /**
  *
  * @author Geeo
@@ -15,8 +18,10 @@ public class PrincipalApp extends javax.swing.JFrame {
     /**
      * Creates new form PrincipalApp
      */
-    public PrincipalApp() {
+    private InterfaceCore core;
+    public PrincipalApp(InterfaceCore core) {
         initComponents();
+        this.core = core;
     }
 
     /**
@@ -44,6 +49,9 @@ public class PrincipalApp extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusableWindowState(false);
+        setMinimumSize(new java.awt.Dimension(300, 300));
+        setPreferredSize(new java.awt.Dimension(300, 600));
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -112,11 +120,11 @@ public class PrincipalApp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 305, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 476, Short.MAX_VALUE)
         );
 
         pack();
