@@ -20,7 +20,7 @@ import java.util.Vector;
  */
 public interface InterfaceCore {
     Usuario login(String Nome, String Senha)throws LoginNaoEncontradoException, ConexaoNaoEncontradaException;
-    Vector<Mensagem> AtualizarMensagens() throws ConexaoNaoEncontradaException;
-    Vector<Conversa> AtualizarConversas() throws ConexaoNaoEncontradaException;
-    
+    Vector<Mensagem> atualizarMensagens() throws ConexaoNaoEncontradaException;
+    Vector<Conversa> atualizarConversas() throws ConexaoNaoEncontradaException;
+        
 }

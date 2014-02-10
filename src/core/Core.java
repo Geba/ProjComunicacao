@@ -22,11 +22,11 @@ public class Core implements InterfaceCore{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Vector<Mensagem> AtualizarMensagens() throws ConexaoNaoEncontradaException {
+    public Vector<Mensagem> atualizarMensagens() throws ConexaoNaoEncontradaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Vector<Conversa> AtualizarConversas() throws ConexaoNaoEncontradaException {
+    public Vector<Conversa> atualizarConversas() throws ConexaoNaoEncontradaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
