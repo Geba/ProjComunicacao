@@ -18,9 +18,10 @@ import java.util.Vector;
  *
  * @author Geeo
  */
-public interface InterfaceCore {
+public interface CoreInterface {
     Usuario login(String Nome, String Senha)throws LoginNaoEncontradoException, ConexaoNaoEncontradaException;
     Vector<Mensagem> atualizarMensagens() throws ConexaoNaoEncontradaException;
     Vector<Conversa> atualizarConversas() throws ConexaoNaoEncontradaException;
+    void connectConversa(String ConversaId)throws ConexaoNaoEncontradaException;
         
 }

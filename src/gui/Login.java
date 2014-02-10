@@ -38,9 +38,10 @@ public class Login extends javax.swing.JPanel {
         cBEspiar1 = new javax.swing.JCheckBox();
 
         setMaximumSize(new java.awt.Dimension(400, 400));
-        setMinimumSize(new java.awt.Dimension(255, 150));
+        setMinimumSize(new java.awt.Dimension(255, 240));
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(255, 150));
+        setNextFocusableComponent(tFLogin);
+        setPreferredSize(new java.awt.Dimension(255, 245));
 
         lbLogin.setText("Login");
 
@@ -106,8 +107,8 @@ public class Login extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btEntrar))
-                    .addComponent(cBEspiar1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addComponent(cBEspiar, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+                    .addComponent(cBEspiar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cBEspiar, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,7 +130,7 @@ public class Login extends javax.swing.JPanel {
                 .addComponent(btEntrar)
                 .addGap(7, 7, 7)
                 .addComponent(lbFirstTime)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

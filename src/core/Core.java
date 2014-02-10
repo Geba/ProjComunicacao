@@ -10,14 +10,25 @@ import atomics.Mensagem;
 import atomics.Usuario;
 import erros.ConexaoNaoEncontradaException;
 import erros.LoginNaoEncontradoException;
-import interfaces.InterfaceCore;
+import interfaces.CoreInterface;
 import java.util.Vector;
 /**
  *
  * @author Geeo
  */
-public class Core implements InterfaceCore{
+public class Core implements CoreInterface{
 
+	public Core(){
+		
+	}
+	public static void main (String[] args){
+		//System.out.println("heey"); //works!!
+	}
+	
+	
+	
+	
+	
     public Usuario login(String Nome, String Senha) throws LoginNaoEncontradoException, ConexaoNaoEncontradaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -27,6 +38,10 @@ public class Core implements InterfaceCore{
     }
 
     public Vector<Conversa> atualizarConversas() throws ConexaoNaoEncontradaException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void connectConversa(String ConversaId) throws ConexaoNaoEncontradaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -11,14 +11,26 @@ package atomics;
  */
 public class Mensagem {
 
-    private String menssagem;
+    private String mensagem;
     private String usuario;
     private String hora;
 
-    public Mensagem(String menssagem, String usuario, String hora) {
-        this.menssagem = menssagem;
+    public Mensagem(String mensagem, String usuario, String hora) {
+        this.mensagem = mensagem;
         this.usuario = usuario;
         this.hora = hora;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getHora() {
+        return hora;
     }
     
 }
