@@ -18,8 +18,13 @@ public class ConversaFrame extends javax.swing.JFrame {
     /**
      * Creates new form Conversa
      */
-    public ConversaFrame() {
+    private static String nomeDaConversa;
+    private static long conversaId;
+
+    public ConversaFrame(String nomeDaConversa, long conversaId) {
         initComponents();
+        this.nomeDaConversa = nomeDaConversa;
+        this.conversaId = conversaId;
     }
 
     /**
@@ -37,6 +42,7 @@ public class ConversaFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tATexto = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         sPConversa = new javax.swing.JScrollPane();
@@ -75,17 +81,26 @@ public class ConversaFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(205, 234, 63));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
+
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setText(nomeDaConversa);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 56, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(244, 193, 58));
@@ -108,7 +123,7 @@ public class ConversaFrame extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,7 +145,7 @@ public class ConversaFrame extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -168,7 +183,7 @@ public class ConversaFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConversaFrame().setVisible(true);
+                new ConversaFrame(nomeDaConversa, conversaId).setVisible(true);
             }
         });
     }
@@ -176,6 +191,7 @@ public class ConversaFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnexar;
     private javax.swing.JButton btEnviar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -187,9 +203,9 @@ public class ConversaFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Mensagem message) {
-        sPConversa.setBackground(Color.blue);
+        this.sPConversa.setBackground(Color.blue);
         MessagemPanel newMessage = new MessagemPanel(message.getMensagem(), message.getUsuario(), message.getHora());
         newMessage.setVisible(true);
-        
+        this.sPConversa.add(newMessage);
     }
 }

@@ -28,7 +28,7 @@ public class CadastrarFrame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        bGSexo = new javax.swing.ButtonGroup();
         lbLogin = new javax.swing.JLabel();
         tFLogin = new javax.swing.JTextField();
         tFSenha = new javax.swing.JTextField();
@@ -88,6 +88,7 @@ public class CadastrarFrame extends javax.swing.JPanel {
             }
         });
 
+        bGSexo.add(rBHomem);
         rBHomem.setText("Homem");
         rBHomem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +96,7 @@ public class CadastrarFrame extends javax.swing.JPanel {
             }
         });
 
+        bGSexo.add(rBMulher);
         rBMulher.setText("Mulher");
 
         jLabel1.setText("Eu sou:");
@@ -198,8 +200,8 @@ public class CadastrarFrame extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bGSexo;
     private javax.swing.JButton btEntrar;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbApelido;
