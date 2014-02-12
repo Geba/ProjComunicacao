@@ -24,7 +24,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
         l.setVisible(true);
         principalPanel.add(l);
         //principalPanel.setOpaque(false);
-       //principalPanel.revalidate();
+        //principalPanel.revalidate();
         //BigContainer.revalidate();
        
     }

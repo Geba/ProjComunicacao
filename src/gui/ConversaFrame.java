@@ -25,6 +25,12 @@ public class ConversaFrame extends javax.swing.JFrame {
         initComponents();
         this.nomeDaConversa = nomeDaConversa;
         this.conversaId = conversaId;
+        for(int i =0;i<35;i++){
+            MessagemPanel msg = new MessagemPanel("Mensagem "+i, nomeDaConversa,"12:70");
+            msg.setVisible(true);
+            pnConversa.add(msg);
+            
+        }
     }
 
     /**
@@ -46,9 +52,8 @@ public class ConversaFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         sPConversa = new javax.swing.JScrollPane();
-        sPUsuarios = new javax.swing.JScrollPane();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnConversa = new javax.swing.JPanel();
+        sPUsers = new javax.swing.JScrollPane();
 
         jPanel1.setNextFocusableComponent(tATexto);
 
@@ -107,13 +112,19 @@ public class ConversaFrame extends javax.swing.JFrame {
 
         jSplitPane1.setDividerLocation(301);
 
-        sPConversa.setPreferredSize(new java.awt.Dimension(2, 8));
-        jSplitPane1.setRightComponent(sPConversa);
+        sPConversa.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        sPConversa.setAutoscrolls(true);
+        sPConversa.setMaximumSize(new java.awt.Dimension(300, 32767));
+        sPConversa.setMinimumSize(new java.awt.Dimension(300, 450));
 
-        sPUsuarios.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        sPUsuarios.setAutoscrolls(true);
-        sPUsuarios.setMaximumSize(new java.awt.Dimension(300, 32767));
-        jSplitPane1.setLeftComponent(sPUsuarios);
+        pnConversa.setBackground(new java.awt.Color(51, 255, 51));
+        pnConversa.setLayout(new java.awt.GridLayout(0, 1));
+        sPConversa.setViewportView(pnConversa);
+
+        jSplitPane1.setLeftComponent(sPConversa);
+
+        sPUsers.setPreferredSize(new java.awt.Dimension(2, 8));
+        jSplitPane1.setRightComponent(sPUsers);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -123,7 +134,7 @@ public class ConversaFrame extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,15 +208,20 @@ public class ConversaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel pnConversa;
     private javax.swing.JScrollPane sPConversa;
-    private javax.swing.JScrollPane sPUsuarios;
+    private javax.swing.JScrollPane sPUsers;
     private javax.swing.JTextArea tATexto;
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Mensagem message) {
-        this.sPConversa.setBackground(Color.blue);
+        this.sPUsers.setBackground(Color.blue);
         MessagemPanel newMessage = new MessagemPanel(message.getMensagem(), message.getUsuario(), message.getHora());
         newMessage.setVisible(true);
-        this.sPConversa.add(newMessage);
+        this.sPUsers.add(newMessage);
     }
+
+    
 }
+
+
