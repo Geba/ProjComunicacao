@@ -53,6 +53,7 @@ public class ConversaFrame extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         sPConversa = new javax.swing.JScrollPane();
         pnConversa = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         sPUsers = new javax.swing.JScrollPane();
 
         jPanel1.setNextFocusableComponent(tATexto);
@@ -119,7 +120,25 @@ public class ConversaFrame extends javax.swing.JFrame {
 
         pnConversa.setBackground(new java.awt.Color(51, 255, 51));
         pnConversa.setAutoscrolls(true);
-        pnConversa.setLayout(new java.awt.GridLayout(1, 1));
+        pnConversa.setLayout(new javax.swing.BoxLayout(pnConversa, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel4.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel4.setPreferredSize(new java.awt.Dimension(10, 10));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 297, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 447, Short.MAX_VALUE)
+        );
+
+        pnConversa.add(jPanel4);
+
         sPConversa.setViewportView(pnConversa);
 
         jSplitPane1.setLeftComponent(sPConversa);
@@ -207,6 +226,7 @@ public class ConversaFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel pnConversa;

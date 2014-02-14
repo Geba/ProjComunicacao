@@ -42,7 +42,7 @@ public class MessagemPanel extends javax.swing.JPanel {
         jToggleButton1.setText("jToggleButton1");
 
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(50, 50));
+        setMaximumSize(new java.awt.Dimension(32767, 20));
         setPreferredSize(new java.awt.Dimension(389, 50));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
