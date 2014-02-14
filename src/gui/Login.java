@@ -40,7 +40,7 @@ public class Login extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(255, 240));
         setName(""); // NOI18N
-        setNextFocusableComponent(tFLogin);
+        setNextFocusableComponent(lbSenha);
         setPreferredSize(new java.awt.Dimension(255, 245));
 
         lbLogin.setText("Login");

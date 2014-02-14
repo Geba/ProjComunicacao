@@ -97,9 +97,8 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="focusableWindowState" type="boolean" value="false"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[300, 300]"/>
+      <Dimension value="[310, 310]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[300, 600]"/>
@@ -156,7 +155,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="principalPanel" pref="452" max="32767" attributes="0"/>
+                  <Component id="principalPanel" pref="553" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -170,6 +169,10 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
           </AccessibilityProperties>
+          <SubComponents>
+            <Component class="javax.swing.JDesktopPane" name="jDesktopPane1">
+            </Component>
+          </SubComponents>
           <LayoutCode>
             <CodeStatement>
               <CodeExpression id="1_flowLayout1">
@@ -211,6 +214,22 @@
               </StatementProvider>
               <Parameters>
                 <CodeExpression id="1_flowLayout1"/>
+              </Parameters>
+            </CodeStatement>
+            <CodeStatement>
+              <CodeExpression id="3_principalPanel"/>
+              <StatementProvider type="CodeMethod">
+                <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
+              </StatementProvider>
+              <Parameters>
+                <CodeExpression id="4_jDesktopPane1">
+                  <CodeVariable name="jDesktopPane1" type="8194" declaredType="javax.swing.JDesktopPane"/>
+                  <ExpressionOrigin>
+                    <ExpressionProvider type="ComponentRef">
+                      <ComponentRef name="jDesktopPane1"/>
+                    </ExpressionProvider>
+                  </ExpressionOrigin>
+                </CodeExpression>
               </Parameters>
             </CodeStatement>
           </LayoutCode>

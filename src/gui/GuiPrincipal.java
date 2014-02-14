@@ -11,7 +11,7 @@ import java.awt.Label;
  *
  * @author Geeo
  */
-public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
+public class GuiPrincipal extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form GuiPrincipal
@@ -26,7 +26,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
         //principalPanel.setOpaque(false);
         //principalPanel.revalidate();
         //BigContainer.revalidate();
-       
+
     }
 
     public void run() {
@@ -44,6 +44,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
 
         BigContainer = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -60,8 +61,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFocusableWindowState(false);
-        setMinimumSize(new java.awt.Dimension(300, 300));
+        setMinimumSize(new java.awt.Dimension(310, 310));
         setPreferredSize(new java.awt.Dimension(300, 600));
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
@@ -70,6 +70,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
         flowLayout1.setAlignOnBaseline(true);
         principalPanel.setLayout(flowLayout1);
+        principalPanel.add(jDesktopPane1);
 
         javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
         BigContainer.setLayout(BigContainerLayout);
@@ -84,7 +85,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -197,7 +198,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
             java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+//System.out.println("Ooie");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -218,6 +219,7 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable{
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

@@ -25,10 +25,10 @@ public class ConversaFrame extends javax.swing.JFrame {
         initComponents();
         this.nomeDaConversa = nomeDaConversa;
         this.conversaId = conversaId;
-        for(int i =0;i<35;i++){
+        for(int i =0;i<1;i++){
             MessagemPanel msg = new MessagemPanel("Mensagem "+i, nomeDaConversa,"12:70");
-            msg.setVisible(true);
-            pnConversa.add(msg);
+//            msg.setVisible(true);
+           pnConversa.add(msg);
             
         }
     }
@@ -118,7 +118,8 @@ public class ConversaFrame extends javax.swing.JFrame {
         sPConversa.setMinimumSize(new java.awt.Dimension(300, 450));
 
         pnConversa.setBackground(new java.awt.Color(51, 255, 51));
-        pnConversa.setLayout(new java.awt.GridLayout(0, 1));
+        pnConversa.setAutoscrolls(true);
+        pnConversa.setLayout(new java.awt.GridLayout(1, 1));
         sPConversa.setViewportView(pnConversa);
 
         jSplitPane1.setLeftComponent(sPConversa);

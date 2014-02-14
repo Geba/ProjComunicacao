@@ -34,13 +34,20 @@ public class MessagemPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         lbNameUser = new javax.swing.JLabel();
         lbMensagem = new javax.swing.JLabel();
         lbHora = new javax.swing.JLabel();
 
-        setFocusable(false);
+        jToggleButton1.setText("jToggleButton1");
 
-        lbNameUser.setText("User:");
+        setFocusable(false);
+        setMaximumSize(new java.awt.Dimension(50, 50));
+        setPreferredSize(new java.awt.Dimension(389, 50));
+        setRequestFocusEnabled(false);
+        setVerifyInputWhenFocusTarget(false);
+
+        lbNameUser.setText("Name");
 
         lbMensagem.setText("Mensagem");
 
@@ -57,7 +64,7 @@ public class MessagemPanel extends javax.swing.JPanel {
                         .addComponent(lbNameUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbHora))
-                    .addComponent(lbMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
+                    .addComponent(lbMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -67,7 +74,7 @@ public class MessagemPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNameUser)
                     .addComponent(lbHora))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbMensagem)
                 .addContainerGap())
         );
@@ -75,6 +82,7 @@ public class MessagemPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lbHora;
     private javax.swing.JLabel lbMensagem;
     private javax.swing.JLabel lbNameUser;

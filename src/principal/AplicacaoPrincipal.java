@@ -12,6 +12,7 @@ import eventos.MensagemEvent;
 import gui.ConversaFrame;
 import gui.GuiPrincipal;
 import interfaces.*;
+import java.awt.Container;
 
 /**
  * 
@@ -28,12 +29,22 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
 
 	public static void main(String[] args) {
                 gui = new GuiPrincipal();
-		gui.run();
+		//gui.run();
 		core = new Core();
-                core.run();
+                //core.run();
+                centerContainer(gui);
 		gui.setVisible(true);
                 ConversaFrame conversa = new ConversaFrame("oi", 100);
                 conversa.setVisible(true);
+                
+	}
+        
+        
+         public static void centerContainer(Container container) {  
+	     java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();  
+	     int componentWidth = container.getWidth();  
+	     int componentHeight = container.getHeight();  
+	     container.setBounds((screenSize.width-componentWidth)/2, (screenSize.height-componentHeight)/2, componentWidth, componentHeight);  
 	}
 
 	public void novaMensagem(MensagemEvent msg) {
