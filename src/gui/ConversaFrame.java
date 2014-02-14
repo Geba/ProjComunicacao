@@ -27,13 +27,13 @@ public class ConversaFrame extends javax.swing.JFrame {
 
     public ConversaFrame(String nomeDaConversa, long conversaId) {
         initComponents();
-
+/*
         sPConversa.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 e.getAdjustable().setValue(e.getAdjustable().getMaximum());
             }
         });
-
+*/
         this.user = new Usuario();
         this.nomeDaConversa = nomeDaConversa;
         this.conversaId = conversaId;
