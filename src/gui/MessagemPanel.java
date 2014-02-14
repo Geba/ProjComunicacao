@@ -42,8 +42,8 @@ public class MessagemPanel extends javax.swing.JPanel {
         jToggleButton1.setText("jToggleButton1");
 
         setFocusable(false);
-        setMaximumSize(new java.awt.Dimension(32767, 20));
-        setPreferredSize(new java.awt.Dimension(389, 50));
+        setMaximumSize(new java.awt.Dimension(32767, 40));
+        setPreferredSize(new java.awt.Dimension(215, 66));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
@@ -62,9 +62,9 @@ public class MessagemPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbNameUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addComponent(lbHora))
-                    .addComponent(lbMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
+                    .addComponent(lbMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
