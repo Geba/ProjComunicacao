@@ -11,6 +11,8 @@ import atomics.Usuario;
 import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import javax.swing.JScrollBar;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -27,22 +29,17 @@ public class ConversaFrame extends javax.swing.JFrame {
 
     public ConversaFrame(String nomeDaConversa, long conversaId) {
         initComponents();
-/*
-        sPConversa.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-            }
-        });
-*/
+        /*
+         sPConversa.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+         public void adjustmentValueChanged(AdjustmentEvent e) {
+         e.getAdjustable().setValue(e.getAdjustable().getMaximum());
+         }
+         });
+         */
         this.user = new Usuario();
         this.nomeDaConversa = nomeDaConversa;
         this.conversaId = conversaId;
-        for (int i = 0; i < 45; i++) {
-            MessagemPanel msg = new MessagemPanel("Mensagem " + i, nomeDaConversa, "12:70");
-//            msg.setVisible(true);
-            pnConversa.add(msg);
 
-        }
     }
 
     /**
@@ -99,6 +96,11 @@ public class ConversaFrame extends javax.swing.JFrame {
         jPanel1.setNextFocusableComponent(tATexto);
 
         btAnexar.setText("Anexar");
+        btAnexar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btAnexarMouseClicked(evt);
+            }
+        });
 
         btEnviar.setText("Enviar");
         btEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,6 +112,7 @@ public class ConversaFrame extends javax.swing.JFrame {
         tATexto.setColumns(20);
         tATexto.setLineWrap(true);
         tATexto.setRows(5);
+        tATexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         tATexto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tATextoKeyTyped(evt);
@@ -143,7 +146,6 @@ public class ConversaFrame extends javax.swing.JFrame {
 
         sPConversa.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         sPConversa.setAutoscrolls(true);
-        sPConversa.setMaximumSize(new java.awt.Dimension(300, 32767));
         sPConversa.setMinimumSize(new java.awt.Dimension(0, 0));
 
         pnConversa.setBackground(new java.awt.Color(51, 255, 51));
@@ -225,17 +227,18 @@ public class ConversaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEnviarMouseClicked
-        Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "00:00");
-        sendMessage(msg);
-
+        sendMessage();
     }//GEN-LAST:event_btEnviarMouseClicked
 
     private void tATextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tATextoKeyTyped
         if (evt.getKeyChar() == 10) {
-            Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "00:00");
-            sendMessage(msg);
+            sendMessage();
         }
     }//GEN-LAST:event_tATextoKeyTyped
+
+    private void btAnexarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAnexarMouseClicked
+
+    }//GEN-LAST:event_btAnexarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -293,15 +296,38 @@ public class ConversaFrame extends javax.swing.JFrame {
     public void addMensagem(Mensagem message) {
         MessagemPanel newMessage = new MessagemPanel(message.getMensagem(), message.getUsuario(), message.getHora());
         newMessage.setVisible(true);
-        this.sPUsers.add(newMessage);
-    }
-
-    public void sendMessage(Mensagem message) {
-        MessagemPanel msg = new MessagemPanel(message.getMensagem(), nomeDaConversa, "12:70");
-//            msg.setVisible(true);
-        pnConversa.add(msg);
-        this.tATexto.setText("");
+        System.out.println(this.sPConversa.getVerticalScrollBar().getMaximum());
+        this.pnConversa.add(newMessage);
+        this.pnConversa.revalidate();
+        System.out.println(this.sPConversa.getVerticalScrollBar().getMaximum());
+        System.out.println("passou aqui");
+        scrollPaneToBottom();
         this.sPConversa.revalidate();
+        this.pnConversa.revalidate();
+        
+        
+
     }
 
+    public void sendMessage() {
+        Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "Agorinhaa");
+        addMensagem(msg);
+//            msg.setVisible(true);
+        this.tATexto.setText("");
+    }
+
+    private void scrollPaneToBottom() {
+
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+
+                sPConversa.getVerticalScrollBar().setValue(
+                        sPConversa.getVerticalScrollBar().getMaximum());
+
+            }
+
+        });
+
+    }
 }
