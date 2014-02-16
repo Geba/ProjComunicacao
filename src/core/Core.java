@@ -20,7 +20,7 @@ import java.util.Vector;
 public class Core implements CoreInterface, Runnable {
 
     public Core() {
-
+    	//FILL ME :)
     }
 
     public void run() {
