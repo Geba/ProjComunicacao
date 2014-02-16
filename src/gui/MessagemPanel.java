@@ -1,16 +1,20 @@
 package gui;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author geeo
  */
-public class MessagemPanel extends javax.swing.JPanel {
+public class MessagemPanel extends javax.swing.JPanel implements ComponentListener {
 
     /**
      * Creates new form MessagemPanel
@@ -18,10 +22,12 @@ public class MessagemPanel extends javax.swing.JPanel {
     public MessagemPanel() {
         initComponents();
     }
-    public MessagemPanel(String mensagem, String usuario, String hora){
+
+    public MessagemPanel(String mensagem, String usuario, String hora) {
         initComponents();
         this.lbNameUser.setText(usuario);
         this.lbMensagem.setText(mensagem);
+        this.lbMensagem.addComponentListener(this);
         this.lbHora.setText(hora);
     }
 
@@ -122,4 +128,21 @@ public class MessagemPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea lbMensagem;
     private javax.swing.JLabel lbNameUser;
     // End of variables declaration//GEN-END:variables
+
+    public void componentResized(ComponentEvent ce) {
+        System.out.println("resize");
+    }
+
+    public void componentMoved(ComponentEvent ce) {
+        System.out.println("moved");
+    }
+
+    public void componentShown(ComponentEvent ce) {
+        System.out.println("Showed");
+    }
+
+    public void componentHidden(ComponentEvent ce) {
+        System.out.println("hided");
+    }
+
 }
