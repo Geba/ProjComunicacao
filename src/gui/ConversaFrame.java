@@ -296,14 +296,12 @@ public class ConversaFrame extends javax.swing.JFrame {
     public void addMensagem(Mensagem message) {
         MessagemPanel newMessage = new MessagemPanel(message.getMensagem(), message.getUsuario(), message.getHora());
         newMessage.setVisible(true);
-        System.out.println(this.sPConversa.getVerticalScrollBar().getMaximum());
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();
-        System.out.println(this.sPConversa.getVerticalScrollBar().getMaximum());
-        System.out.println("passou aqui");
+      
         scrollPaneToBottom();
-        this.sPConversa.revalidate();
-        this.pnConversa.revalidate();
+  
+    
         
         
 
@@ -312,7 +310,6 @@ public class ConversaFrame extends javax.swing.JFrame {
     public void sendMessage() {
         Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "Agorinhaa");
         addMensagem(msg);
-//            msg.setVisible(true);
         this.tATexto.setText("");
     }
 
