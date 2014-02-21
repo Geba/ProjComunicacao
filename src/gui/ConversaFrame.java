@@ -8,9 +8,11 @@ package gui;
 //import atomics.Mensagem;
 import atomics.Mensagem;
 import atomics.Usuario;
+
 import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+
 import javax.swing.JScrollBar;
 import javax.swing.SwingUtilities;
 
@@ -294,7 +296,7 @@ public class ConversaFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Mensagem message) {
-        MessagemPanel newMessage = new MessagemPanel(message.getMensagem(), message.getUsuario(), message.getHora());
+        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();
@@ -308,7 +310,11 @@ public class ConversaFrame extends javax.swing.JFrame {
     }
 
     public void sendMessage() {
-        Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "Agorinhaa");
+    	long id1 = 12345;
+    	long id2 = 6789;
+    	Mensagem msg = new Mensagem(id1, id2, "just now", this.tATexto.getText(), "rary");
+    	
+        //Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "Agorinhaa");
         addMensagem(msg);
         this.tATexto.setText("");
     }

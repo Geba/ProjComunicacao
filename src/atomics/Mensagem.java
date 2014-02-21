@@ -11,26 +11,53 @@ package atomics;
  */
 public class Mensagem {
 
-    private String mensagem;
-    private String usuario;
-    private String hora;
-
-    public Mensagem(String mensagem, String usuario, String hora) {
-        this.mensagem = mensagem;
-        this.usuario = usuario;
-        this.hora = hora;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public String getHora() {
-        return hora;
-    }
+//    private String mensagem;
+//    private String usuario;
+//    private String hora;
+    
+    private long sender_ID;
+    private long sala_ID;
+    private String time;
+    private String message;
+    private String sender_nickname;
+    
+	public Mensagem(long sender_ID, long sala_ID, String time, String message, String sender_nickname) {
+		this.sender_ID = sender_ID;
+		this.sala_ID = sala_ID;
+		this.time = time;
+		this.message = message;
+		this.sender_nickname = sender_nickname;
+	}
+	public long getSender_ID() {
+		return sender_ID;
+	}
+	public void setSender_ID(long sender_ID) {
+		this.sender_ID = sender_ID;
+	}
+	public long getSala_ID() {
+		return sala_ID;
+	}
+	public void setSala_ID(long sala_ID) {
+		this.sala_ID = sala_ID;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+	public String getSender_nickname() {
+		return sender_nickname;
+	}
+	public void setSender_nickname(String sender_nickname) {
+		this.sender_nickname = sender_nickname;
+	}
     
 }

@@ -10,7 +10,7 @@ import atomics.Mensagem;
 import erros.LoginNaoEncontradoException;
 import erros.ConexaoNaoEncontradaException;
 import atomics.Usuario;
-import atomics.Conversa;
+import atomics.Sala;
 import java.util.Vector;
 
 
@@ -21,7 +21,7 @@ import java.util.Vector;
 public interface CoreInterface {
     Usuario login(String Nome, String Senha)throws LoginNaoEncontradoException, ConexaoNaoEncontradaException;
     Vector<Mensagem> atualizarMensagens() throws ConexaoNaoEncontradaException;
-    Vector<Conversa> atualizarConversas() throws ConexaoNaoEncontradaException;
+    Vector<Sala> atualizarConversas() throws ConexaoNaoEncontradaException;
     void connectConversa(String ConversaId)throws ConexaoNaoEncontradaException;
         
 }

@@ -5,7 +5,7 @@
  */
 package core;
 
-import atomics.Conversa;
+import atomics.Sala;
 import atomics.Mensagem;
 import atomics.Usuario;
 import erros.ConexaoNaoEncontradaException;
@@ -35,7 +35,7 @@ public class Core implements CoreInterface, Runnable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Vector<Conversa> atualizarConversas() throws ConexaoNaoEncontradaException {
+    public Vector<Sala> atualizarConversas() throws ConexaoNaoEncontradaException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

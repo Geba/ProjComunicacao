@@ -11,8 +11,8 @@ package atomics;
  * @author Geeo
  */
 public class Usuario {
-    private long id;
-    private String nome;
-    private String photo;
-    private String apelido;
+    private long ID;
+    private String nickname;
+    private String IP;
+    private String avatar; // removivel
 }

@@ -6,17 +6,17 @@
 package atomics;
 
 import java.util.Vector;
-import atomics.Contato;
 
 /**
  *
  * @author Geeo
  */
-public class Conversa {
+public class Sala {
 
-    private int id;
-    private String nome;
-    private Vector<Mensagem> mensagens;
-    private Vector <Contato> contatos;
+	private long ID;
+    private String name;
+    private String creator_ID;
+    private Vector<Long> users_ID;
+    // private Vector<Mensagem> mensagens;
     
 }
