@@ -15,4 +15,33 @@ public class Usuario {
     private String nickname;
     private String IP;
     private String avatar; // removivel
+    
+    public Usuario(){}
+    
+	public long getID() {
+		return ID;
+	}
+	public void setID(long iD) {
+		ID = iD;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getIP() {
+		return IP;
+	}
+	public void setIP(String iP) {
+		IP = iP;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+    
+    
 }

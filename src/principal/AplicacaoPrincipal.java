@@ -44,7 +44,6 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
                 
 	}
         
-        
          public static void centerContainer(Container container) {  
 	     java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();  
 	     int componentWidth = container.getWidth();  
