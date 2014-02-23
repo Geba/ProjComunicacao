@@ -6,13 +6,14 @@
 package principal;
 
 import atomics.Mensagem;
-import core.Core;
+import core.*;
 import erros.ConexaoNaoEncontradaException;
 import eventos.MensagemEvent;
 import gui.ConversaFrame;
 import gui.GuiPrincipal;
 import interfaces.*;
 import java.awt.Container;
+
 
 /**
  * 
@@ -28,14 +29,18 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
 	}
 
 	public static void main(String[] args) {
-                gui = new GuiPrincipal();
-		//gui.run();
-		core = new Core();
-                //core.run();
-                centerContainer(gui);
-		gui.setVisible(true);
-                ConversaFrame conversa = new ConversaFrame("oi", 100);
-                conversa.setVisible(true);
+//                gui = new GuiPrincipal();
+//		//gui.run();
+//		core = new Core();
+//                //core.run();
+//                centerContainer(gui);
+//		gui.setVisible(true);
+//                ConversaFrame conversa = new ConversaFrame("oi", 100);
+//                conversa.setVisible(true);
+		
+		Database db = new Database();
+		TesteDatabase teste = new TesteDatabase(db);
+		teste.testar();
                 
 	}
         
