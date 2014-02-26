@@ -47,9 +47,7 @@ public class Sala {
 	public void setUsers_ID(Vector<Long> users_ID) {
 		this.users_ID = users_ID;
 	}
-	
-	
-	
+
 	public void addUser(long ID){
 		this.users_ID.add(ID);
 	}

@@ -6,8 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import erros.UsuarioNaoEncontradoException;
+import atomics.Mensagem;
 import atomics.Sala;
 import atomics.Usuario;
 
@@ -20,8 +24,7 @@ public class TesteDatabase {
 	}
 	
 	public void testar(){
-		//code the main here
-		System.out.println("testando a database");
+		//code the main here		
 		
 //		Usuario usr1 = new Usuario();
 //		Usuario usr2 = new Usuario();
@@ -62,11 +65,31 @@ public class TesteDatabase {
 //		db.WriteUsuario(usr2);
 		
 		try {
-			System.out.println(db.getUserIP(2348889));
+			String ip_ = db.GetUserIP(2348889);
+			System.out.println(ip_);
+			db.SetUserIP(2348889, "novo ip aqui");
+			System.out.println(db.GetUserIP(2348889));
+			db.SetUserIP(2348889, ip_);
+			System.out.println(db.GetUserIP(2348889));
 		} catch (UsuarioNaoEncontradoException e) {
-			// TODO Auto-generated catch block
+		//	 TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
+		Mensagem msg1 = new Mensagem(2348889, 32344432, dateFormat.format(new Date()), "oi pessoal", "Gatinho");
+		Mensagem msg2 = new Mensagem(2131231, 32344432, dateFormat.format(new Date()), "oieee", "florzinha");
+		Mensagem msg3 = new Mensagem(2348889, 32344432, dateFormat.format(new Date()), "tudo bom flor?", "Gatinho");
+		Mensagem msg4 = new Mensagem(2131231, 32344432, dateFormat.format(new Date()), "tudo e vc?", "florzinha");
+		
+		db.WriteMessage(msg1);
+		db.WriteMessage(msg2);
+		db.WriteMessage(msg3);
+		db.WriteMessage(msg4);
+		
+		
+		
 		
 	}
 	

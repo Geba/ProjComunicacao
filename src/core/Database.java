@@ -13,12 +13,16 @@ import erros.UsuarioNaoEncontradoException;
 import atomics.*;
 
 public class Database {
+	
+	private String extensao;
+	
 	public Database(){
 		System.out.println("database running");
+		this.extensao = ".hermes";
 	}
 	
 	public boolean WriteUsuario (Usuario user) {
-		File file = new File("database/usuarios/" + user.getID() + ".txt");
+		File file = new File("database/usuarios/" + user.getID() + this.extensao);
 		try {
 			//FileWriter fw = new FileWriter(file, true);
 			//PrintWriter pw = new PrintWriter(fw, true);
@@ -35,7 +39,7 @@ public class Database {
 	}
 	
 	public boolean WriteSala (Sala sala) { //do jeito que ta escrevendo, vai sobrescrever tudo
-		File file = new File("database/salas/" + sala.getID() + ".txt");
+		File file = new File("database/salas/" + sala.getID() + this.extensao);
 			try {
 				//FileWriter fw = new FileWriter(file, true);
 				PrintWriter pw = new PrintWriter(file);
@@ -55,8 +59,24 @@ public class Database {
 		return true;	
 	}
 	
-	public String getUserIP (long ID) throws UsuarioNaoEncontradoException {
-		File file = new File("database/usuarios/" + ID + ".txt");
+	public boolean WriteMessage (Mensagem msg) {
+		File file = new File("database/historicos/" + msg.getSala_ID() + this.extensao);
+		try {
+			FileWriter fw = new FileWriter(file, true);
+			PrintWriter pw = new PrintWriter(fw, true);
+			//PrintWriter pw = new PrintWriter(file);
+			pw.print(msg.getTime() + " ");
+			pw.print(msg.getSender_nickname() + " says: ");
+			pw.println(msg.getMessage());
+			pw.close();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;	
+	}
+	
+	public String GetUserIP (long ID) throws UsuarioNaoEncontradoException {
+		File file = new File("database/usuarios/" + ID + this.extensao);
 		String ip="";
 		
 		if (!file.exists())
@@ -73,6 +93,33 @@ public class Database {
 		}
 		
 		return ip;
+	}
+	
+	public boolean SetUserIP(long ID, String IP) throws UsuarioNaoEncontradoException {
+		File file = new File("database/usuarios/" + ID + this.extensao);
+		String um, dois, quatro;
+			
+		if (!file.exists())
+			throw new UsuarioNaoEncontradoException(ID);
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			um = br.readLine();
+			dois = br.readLine();
+			br.readLine();
+			quatro = br.readLine();
+			br.close();
+			PrintWriter pw = new PrintWriter(file);
+			pw.println(um);
+			pw.println(dois);
+			pw.println(IP);
+			pw.println(quatro);
+			pw.close();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+		
+		return true;
 	}
 	
 }

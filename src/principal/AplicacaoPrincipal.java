@@ -5,7 +5,7 @@
  */
 package principal;
 
-import atomics.Mensagem;
+import atomics.*;
 import core.*;
 import erros.ConexaoNaoEncontradaException;
 import eventos.MensagemEvent;
@@ -38,9 +38,8 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
 //                ConversaFrame conversa = new ConversaFrame("oi", 100);
 //                conversa.setVisible(true);
 		
-		Database db = new Database();
-		TesteDatabase teste = new TesteDatabase(db);
-		teste.testar();
+		ConsoleApplication console = new ConsoleApplication();
+		console.run();
                 
 	}
         
