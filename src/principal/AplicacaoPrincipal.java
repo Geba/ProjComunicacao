@@ -9,7 +9,7 @@ import atomics.*;
 import core.*;
 import erros.ConexaoNaoEncontradaException;
 import eventos.MensagemEvent;
-import gui.ConversaFrame;
+import gui.SalaFrame;
 import gui.GuiPrincipal;
 import interfaces.*;
 import java.awt.Container;
@@ -36,10 +36,10 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
         core.setGui(gui);
         centerContainer(gui);
         gui.setVisible(true);
-        ConversaFrame conversa = new ConversaFrame("oi", 100);
+        SalaFrame conversa = new SalaFrame("oi", 100);
         conversa.setVisible(true);
-         //       ConversaFrame conversa2 = new ConversaFrame("oi", 100);
-        //     ConversaFrame conversa3 = new ConversaFrame("oi", 100);
+         //       SalaFrame conversa2 = new SalaFrame("oi", 100);
+        //     SalaFrame conversa3 = new SalaFrame("oi", 100);
 
 //                conversa2.setVisible(true);
 //                conversa3.setVisible(true);
