@@ -5,6 +5,7 @@
  */
 package gui;
 
+import core.Core;
 import java.awt.Label;
 
 /**
@@ -12,7 +13,7 @@ import java.awt.Label;
  * @author Geeo
  */
 public class GuiPrincipal extends javax.swing.JFrame implements Runnable {
-
+   static Core core;
     /**
      * Creates new form GuiPrincipal
      */
@@ -227,5 +228,9 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
+
+    public void setCore(Core core) {
+        this.core = core;
+    }
 
 }

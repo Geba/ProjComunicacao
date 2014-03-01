@@ -9,6 +9,7 @@ import atomics.Sala;
 import atomics.Mensagem;
 import atomics.Usuario;
 import erros.ConexaoNaoEncontradaException;
+import gui.GuiPrincipal;
 import interfaces.CoreInterface;
 
 import java.util.Vector;
@@ -18,13 +19,17 @@ import java.util.Vector;
  * @author Geeo
  */
 public class Core implements CoreInterface, Runnable {
-
+    static GuiPrincipal gui;
     public Core() {
     	//FILL ME :)
     }
 
     public void run() {
         System.out.println("Core running"); //works!!
+    }
+
+    public void setGui(GuiPrincipal gui) {
+    this.gui = gui;
     }
 
 
