@@ -70,7 +70,6 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
         lbMensagem.setWrapStyleWord(true);
         lbMensagem.setFocusable(false);
         lbMensagem.setMinimumSize(new java.awt.Dimension(0, 0));
-        lbMensagem.setOpaque(false);
         jPanel2.add(lbMensagem);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -80,10 +79,10 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbNameUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 389, Short.MAX_VALUE)
                         .addComponent(lbHora)))
                 .addContainerGap())
         );
@@ -95,7 +94,7 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
                     .addComponent(lbNameUser)
                     .addComponent(lbHora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -103,11 +102,15 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,18 +126,14 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
 
     public void componentResized(ComponentEvent ce) {
         System.out.println("resize");
-                Dimension d = new Dimension();
         int fontSize = this.lbMensagem.getFont().getSize();
         int width = this.lbMensagem.getWidth();
         int characters = this.lbMensagem.getCaretPosition();
-        int newHeight = characters / width + 20;
-        Dimension dText = lbMensagem.getSize();
-        Dimension dPanel2 = jPanel2.getSize();
-        dText.height = newHeight;
-        dPanel2.height = newHeight;
-        this.lbMensagem.setMaximumSize(dText);
-        this.jPanel2.setMaximumSize(dPanel2);
-        this.jPanel1.setMaximumSize(new Dimension(20, 20));
+        System.out.println(characters);
+        int newHeight = ((characters / width))*fontSize*10;
+        System.out.println(fontSize);System.out.println(newHeight);
+        this.setMaximumSize(new Dimension(32767, newHeight+40000+this.jPanel1.getHeight()));
+        this.setMinimumSize(new Dimension(32767, newHeight+40000+this.jPanel1.getHeight()));
     }
 
     public void componentMoved(ComponentEvent ce) {

@@ -11,6 +11,7 @@ import erros.ConexaoNaoEncontradaException;
 import eventos.MensagemEvent;
 import gui.SalaFrame;
 import gui.GuiPrincipal;
+import gui.SalaFrameTest;
 import interfaces.*;
 import java.awt.Container;
 
@@ -18,7 +19,7 @@ import java.awt.Container;
  *
  * @author Geeo
  */
-public class AplicacaoPrincipal implements MensagemListenerInterface {
+public class AplicacaoPrincipal {
 
     private static GuiPrincipal gui;
     private static Core core;
@@ -36,13 +37,13 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
         core.setGui(gui);
         centerContainer(gui);
         gui.setVisible(true);
-        SalaFrame conversa = new SalaFrame("oi", 100);
+        SalaFrameTest conversa = new SalaFrameTest("oi", 100);
         conversa.setVisible(true);
-         //       SalaFrame conversa2 = new SalaFrame("oi", 100);
+        //       SalaFrame conversa2 = new SalaFrame("oi", 100);
         //     SalaFrame conversa3 = new SalaFrame("oi", 100);
 
 //                conversa2.setVisible(true);
-//                conversa3.setVisible(true);
+//                conversa3.setVisible(true
         ConsoleApplication console = new ConsoleApplication();
         console.run();
 
@@ -53,10 +54,6 @@ public class AplicacaoPrincipal implements MensagemListenerInterface {
         int componentWidth = container.getWidth();
         int componentHeight = container.getHeight();
         container.setBounds((screenSize.width - componentWidth) / 2, (screenSize.height - componentHeight) / 2, componentWidth, componentHeight);
-    }
-
-    public void novaMensagem(MensagemEvent msg) {
-
     }
 
     public void addConversa(String id) throws ConexaoNaoEncontradaException {
