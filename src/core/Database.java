@@ -21,7 +21,7 @@ public class Database {
 		this.extensao = ".hermes";
 	}
 	
-	public boolean WriteUsuario (Usuario user) {
+	public boolean WriteUsuario (User user) {
 		File file = new File("database/usuarios/" + user.getID() + this.extensao);
 		try {
 			//FileWriter fw = new FileWriter(file, true);
@@ -38,7 +38,7 @@ public class Database {
 		return true;	
 	}
 	
-	public boolean WriteSala (Sala sala) { //do jeito que ta escrevendo, vai sobrescrever tudo
+	public boolean WriteSala (Room sala) { //do jeito que ta escrevendo, vai sobrescrever tudo
 		File file = new File("database/salas/" + sala.getID() + this.extensao);
 			try {
 				//FileWriter fw = new FileWriter(file, true);
@@ -59,7 +59,7 @@ public class Database {
 		return true;	
 	}
 	
-	public boolean WriteMessage (Mensagem msg) {
+	public boolean WriteMessage (Message msg) {
 		File file = new File("database/historicos/" + msg.getSala_ID() + this.extensao);
 		try {
 			FileWriter fw = new FileWriter(file, true);

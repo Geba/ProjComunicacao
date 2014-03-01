@@ -6,7 +6,7 @@
 
 package eventos;
 
-import atomics.Mensagem;
+import atomics.Message;
 import java.util.EventObject;
 /**
  *
@@ -18,7 +18,7 @@ public class MensagemEvent extends EventObject{
      *
      * @param mensagem
      */
-    public MensagemEvent(Mensagem mensagem){
+    public MensagemEvent(Message mensagem){
         super(mensagem);
     }
 }

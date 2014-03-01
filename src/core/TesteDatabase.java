@@ -11,9 +11,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import erros.UsuarioNaoEncontradoException;
-import atomics.Mensagem;
-import atomics.Sala;
-import atomics.Usuario;
+import atomics.Message;
+import atomics.Room;
+import atomics.User;
 
 public class TesteDatabase {
 	
@@ -26,10 +26,10 @@ public class TesteDatabase {
 	public void testar(){
 		//code the main here		
 		
-//		Usuario usr1 = new Usuario();
-//		Usuario usr2 = new Usuario();
-//		Sala room1 = new Sala();
-//		Sala room2 = new Sala();
+//		User usr1 = new User();
+//		User usr2 = new User();
+//		Room room1 = new Room();
+//		Room room2 = new Room();
 //		
 //		usr1.setID(2131231);
 //		usr1.setNickname("sereiadomangue");
@@ -78,10 +78,10 @@ public class TesteDatabase {
 	
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		
-		Mensagem msg1 = new Mensagem(2348889, 32344432, dateFormat.format(new Date()), "oi pessoal", "Gatinho");
-		Mensagem msg2 = new Mensagem(2131231, 32344432, dateFormat.format(new Date()), "oieee", "florzinha");
-		Mensagem msg3 = new Mensagem(2348889, 32344432, dateFormat.format(new Date()), "tudo bom flor?", "Gatinho");
-		Mensagem msg4 = new Mensagem(2131231, 32344432, dateFormat.format(new Date()), "tudo e vc?", "florzinha");
+		Message msg1 = new Message(2348889, 32344432, dateFormat.format(new Date()), "oi pessoal", "Gatinho");
+		Message msg2 = new Message(2131231, 32344432, dateFormat.format(new Date()), "oieee", "florzinha");
+		Message msg3 = new Message(2348889, 32344432, dateFormat.format(new Date()), "tudo bom flor?", "Gatinho");
+		Message msg4 = new Message(2131231, 32344432, dateFormat.format(new Date()), "tudo e vc?", "florzinha");
 		
 		db.WriteMessage(msg1);
 		db.WriteMessage(msg2);

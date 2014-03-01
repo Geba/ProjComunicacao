@@ -11,7 +11,7 @@ import java.util.Vector;
  *
  * @author Geeo
  */
-public class Sala {
+public class Room {
 
 	private long ID;
     private String name;
@@ -19,7 +19,7 @@ public class Sala {
     private Vector<Long> users_ID;
     // private Vector<Mensagem> mensagens;
     
-    public Sala(){
+    public Room(){
     	users_ID = new Vector<Long>();
     }
     

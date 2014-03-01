@@ -10,13 +10,13 @@ package atomics;
  *
  * @author Geeo
  */
-public class Usuario {
+public class User {
     private long ID;
     private String nickname;
     private String IP;
     private String avatar; // removivel
     
-    public Usuario(){}
+    public User(){}
     
 	public long getID() {
 		return ID;

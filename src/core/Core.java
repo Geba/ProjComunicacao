@@ -5,12 +5,13 @@
  */
 package core;
 
-import atomics.Sala;
-import atomics.Mensagem;
-import atomics.Usuario;
+import atomics.Room;
+import atomics.Message;
+import atomics.User;
 import erros.ConexaoNaoEncontradaException;
 import gui.GuiPrincipal;
 import interfaces.CoreInterface;
+import java.util.List;
 
 import java.util.Vector;
 
@@ -30,6 +31,26 @@ public class Core implements CoreInterface, Runnable {
 
     public void setGui(GuiPrincipal gui) {
     this.gui = gui;
+    }
+
+    @Override
+    public List<User> refreshUsers(long idConversa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Room> refreshRooms() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean sendMessage(Message msg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean changeNickName(String newNickName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

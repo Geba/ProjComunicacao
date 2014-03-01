@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaces;
 
-import atomics.Mensagem;
+import atomics.Message;
 import erros.ConexaoNaoEncontradaException;
-import atomics.Usuario;
-import atomics.Sala;
+import atomics.User;
+import atomics.Room;
+import java.util.List;
 import java.util.Vector;
-
 
 /**
  *
@@ -19,5 +18,9 @@ import java.util.Vector;
  */
 public interface CoreInterface {
 
-        
+    public List<User> refreshUsers(long idConversa);
+    public List<Room> refreshRooms();
+    public boolean sendMessage(Message msg);
+    public boolean changeNickName(String newNickName);
+    
 }

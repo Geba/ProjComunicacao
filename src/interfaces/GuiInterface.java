@@ -11,5 +11,8 @@ package interfaces;
  * @author Geeo
  */
 public interface GuiInterface {
+    public void showNewMessage();
+    public void showNewRoom();
+    
     
 }

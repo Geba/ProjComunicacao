@@ -41,7 +41,6 @@ public class CadastrarFrame extends javax.swing.JPanel {
         rBHomem = new javax.swing.JRadioButton();
         rBMulher = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(280, 280));
@@ -101,8 +100,6 @@ public class CadastrarFrame extends javax.swing.JPanel {
 
         jLabel1.setText("Eu sou:");
 
-        jLabel2.setText("jLabel2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,10 +133,7 @@ public class CadastrarFrame extends javax.swing.JPanel {
                                 .addComponent(rBHomem)
                                 .addGap(18, 18, 18)
                                 .addComponent(rBMulher)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 55, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,9 +160,7 @@ public class CadastrarFrame extends javax.swing.JPanel {
                     .addComponent(rBMulher)
                     .addComponent(rBHomem)
                     .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(247, 247, 247)
+                .addGap(280, 280, 280)
                 .addComponent(btEntrar)
                 .addContainerGap())
         );
@@ -203,7 +195,6 @@ public class CadastrarFrame extends javax.swing.JPanel {
     private javax.swing.ButtonGroup bGSexo;
     private javax.swing.JButton btEntrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbApelido;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbSenha;

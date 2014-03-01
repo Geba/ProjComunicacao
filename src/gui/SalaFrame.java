@@ -5,9 +5,9 @@
  */
 package gui;
 
-//import atomics.Mensagem;
-import atomics.Mensagem;
-import atomics.Usuario;
+//import atomics.Message;
+import atomics.Message;
+import atomics.User;
 
 import java.awt.Color;
 import java.awt.event.AdjustmentEvent;
@@ -27,7 +27,7 @@ public class SalaFrame extends javax.swing.JFrame {
      */
     private static String nomeDaConversa;
     private static long conversaId;
-    private static Usuario user;
+    private static User user;
 
     public SalaFrame(String nomeDaConversa, long conversaId) {
         initComponents();
@@ -38,7 +38,7 @@ public class SalaFrame extends javax.swing.JFrame {
          }
          });
          */
-        this.user = new Usuario();
+        this.user = new User();
         this.nomeDaConversa = nomeDaConversa;
         this.conversaId = conversaId;
 
@@ -129,7 +129,7 @@ public class SalaFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btAnexar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -163,7 +163,7 @@ public class SalaFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 331, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +295,7 @@ public class SalaFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea tATexto;
     // End of variables declaration//GEN-END:variables
 
-    public void addMensagem(Mensagem message) {
+    public void addMensagem(Message message) {
         MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
@@ -312,9 +312,9 @@ public class SalaFrame extends javax.swing.JFrame {
     public void sendMessage() {
     	long id1 = 12345;
     	long id2 = 6789;
-    	Mensagem msg = new Mensagem(id1, id2, "just now", this.tATexto.getText(), "rary");
+    	Message msg = new Message(id1, id2, "just now", this.tATexto.getText(), "rary");
     	
-        //Mensagem msg = new Mensagem(this.tATexto.getText(), "geeo", "Agorinhaa");
+        //Mensagem msg = new Message(this.tATexto.getText(), "geeo", "Agorinhaa");
         addMensagem(msg);
         this.tATexto.setText("");
     }

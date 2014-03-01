@@ -139,7 +139,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btAnexar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="316" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="584" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btEnviar" min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
@@ -268,7 +268,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="331" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="596" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
