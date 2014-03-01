@@ -8,12 +8,10 @@ package core;
 import atomics.Room;
 import atomics.Message;
 import atomics.User;
-import erros.ConexaoNaoEncontradaException;
 import gui.GuiPrincipal;
 import interfaces.CoreInterface;
 import java.util.List;
 
-import java.util.Vector;
 
 /**
  *
@@ -90,6 +88,11 @@ public class Core implements CoreInterface, Runnable {
 
     @Override
     public boolean cancelDownload() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void reconnect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

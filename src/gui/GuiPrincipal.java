@@ -16,7 +16,8 @@ import java.awt.Label;
  * @author Geeo
  */
 public class GuiPrincipal extends javax.swing.JFrame implements Runnable, GuiInterface {
-   static Core core;
+
+    static Core core;
     /**
      * Creates new form GuiPrincipal
      */
@@ -253,11 +254,6 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable, GuiInt
 
     @Override
     public void showNewFile(Object file) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void reconnect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

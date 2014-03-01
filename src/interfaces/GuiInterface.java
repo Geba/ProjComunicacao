@@ -22,5 +22,5 @@ public interface GuiInterface {
 
     public void showNewFile(Object file);
 
-    public void reconnect();
+    
 }

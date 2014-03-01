@@ -38,6 +38,8 @@ public interface CoreInterface{
     
     public User logIn(String nickname);
     
+    public void reconnect();
+    
     
     public boolean cancelDownload();
     
