@@ -6,21 +6,45 @@
 package interfaces;
 
 import atomics.Message;
-import erros.ConexaoNaoEncontradaException;
 import atomics.User;
 import atomics.Room;
 import java.util.List;
-import java.util.Vector;
 
 /**
  *
  * @author Geeo
  */
-public interface CoreInterface {
+public interface CoreInterface{
 
     public List<User> refreshUsers(long idConversa);
+
     public List<Room> refreshRooms();
-    public boolean sendMessage(Message msg);
-    public boolean changeNickName(String newNickName);
+
+    public void sendMessage(Message msg);
+
+    public void changeNickName(String newNickName);
     
+    public void sendFile(Object file);
+    
+    public void refreshStatus(int UserId, int status);
+    
+    public void createNewRoom(String name, String assunto);
+    
+    public void closeRoom(String roomId);
+    
+    public Object startDownload(long fileId);
+    
+    public void logOut();
+    
+    public User logIn(String nickname);
+    
+    
+    public boolean cancelDownload();
+    
+    
+    
+    
+    
+    
+
 }

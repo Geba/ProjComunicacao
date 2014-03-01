@@ -15,16 +15,16 @@ import java.awt.event.ItemListener;
  *
  * @author geeo
  */
-public class MessagemPanel extends javax.swing.JPanel implements ComponentListener {
+public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListener {
 
     /**
      * Creates new form MessagemPanel
      */
-    public MessagemPanel() {
+    public MessagemPanel1() {
         initComponents();
     }
 
-    public MessagemPanel(String mensagem, String usuario, String hora) {
+    public MessagemPanel1(String mensagem, String usuario, String hora) {
         initComponents();
         this.lbNameUser.setText(usuario);
         this.lbMensagem.setText(mensagem);
@@ -60,9 +60,9 @@ public class MessagemPanel extends javax.swing.JPanel implements ComponentListen
         lbHora.setText("Hora");
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 153));
-        jPanel2.setMaximumSize(this.lbMensagem.getSize());
         jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
         lbMensagem.setColumns(20);
         lbMensagem.setLineWrap(true);
@@ -70,17 +70,8 @@ public class MessagemPanel extends javax.swing.JPanel implements ComponentListen
         lbMensagem.setWrapStyleWord(true);
         lbMensagem.setFocusable(false);
         lbMensagem.setMinimumSize(new java.awt.Dimension(0, 0));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-        );
+        lbMensagem.setOpaque(false);
+        jPanel2.add(lbMensagem);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,7 +80,7 @@ public class MessagemPanel extends javax.swing.JPanel implements ComponentListen
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbNameUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -104,7 +95,7 @@ public class MessagemPanel extends javax.swing.JPanel implements ComponentListen
                     .addComponent(lbNameUser)
                     .addComponent(lbHora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -132,7 +123,7 @@ public class MessagemPanel extends javax.swing.JPanel implements ComponentListen
 
     public void componentResized(ComponentEvent ce) {
         System.out.println("resize");
-        Dimension d = new Dimension();
+                Dimension d = new Dimension();
         int fontSize = this.lbMensagem.getFont().getSize();
         int width = this.lbMensagem.getWidth();
         int characters = this.lbMensagem.getCaretPosition();
@@ -143,7 +134,7 @@ public class MessagemPanel extends javax.swing.JPanel implements ComponentListen
         dPanel2.height = newHeight;
         this.lbMensagem.setMaximumSize(dText);
         this.jPanel2.setMaximumSize(dPanel2);
-
+        this.jPanel1.setMaximumSize(new Dimension(20, 20));
     }
 
     public void componentMoved(ComponentEvent ce) {

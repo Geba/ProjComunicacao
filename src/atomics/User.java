@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package atomics;
 
 /**
@@ -11,37 +10,53 @@ package atomics;
  * @author Geeo
  */
 public class User {
-    private long ID;
+
+    private long id;
     private String nickname;
     private String IP;
     private String avatar; // removivel
-    
-    public User(){}
-    
-	public long getID() {
-		return ID;
-	}
-	public void setID(long iD) {
-		ID = iD;
-	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	public String getIP() {
-		return IP;
-	}
-	public void setIP(String iP) {
-		IP = iP;
-	}
-	public String getAvatar() {
-		return avatar;
-	}
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-    
-    
+    private boolean spy;
+
+    public User() {
+    }
+
+    public long getID() {
+        return id;
+    }
+
+    public void setID(long iD) {
+        id = iD;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getIP() {
+        return IP;
+    }
+
+    public void setIP(String iP) {
+        IP = iP;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setSpy(boolean spy) {
+        this.spy = spy;
+    }
+
+    public boolean getSpy() {
+        return this.spy;
+    }
 }

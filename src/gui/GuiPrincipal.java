@@ -5,14 +5,17 @@
  */
 package gui;
 
+import atomics.Message;
+import atomics.Room;
 import core.Core;
+import interfaces.GuiInterface;
 import java.awt.Label;
 
 /**
  *
  * @author Geeo
  */
-public class GuiPrincipal extends javax.swing.JFrame implements Runnable {
+public class GuiPrincipal extends javax.swing.JFrame implements Runnable, GuiInterface {
    static Core core;
     /**
      * Creates new form GuiPrincipal
@@ -231,6 +234,31 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable {
 
     public void setCore(Core core) {
         this.core = core;
+    }
+
+    @Override
+    public void showNewRoom(Room room) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showReceivedMessage(Message msg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showNewSong(Object song) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showNewFile(Object file) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void reconnect() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

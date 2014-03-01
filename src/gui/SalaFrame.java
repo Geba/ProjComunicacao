@@ -228,10 +228,11 @@ public class SalaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //ok
     private void btEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEnviarMouseClicked
         sendMessage();
     }//GEN-LAST:event_btEnviarMouseClicked
-
+//ok
     private void tATextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tATextoKeyTyped
         if (evt.getKeyChar() == 10) {
             sendMessage();
@@ -296,24 +297,25 @@ public class SalaFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
-        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
+///        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
+        MessagemPanel1 newMessage = new MessagemPanel1(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();
-      
+
         scrollPaneToBottom();
-  
-    
-        
-        
+
+    }
+
+    public void addMsgTeste() {
 
     }
 
     public void sendMessage() {
-    	long id1 = 12345;
-    	long id2 = 6789;
-    	Message msg = new Message(id1, id2, "just now", this.tATexto.getText(), "rary");
-    	
+        long id1 = 12345;
+        long id2 = 6789;
+        Message msg = new Message(id1, id2, "just now", this.tATexto.getText(), "rary");
+
         //Mensagem msg = new Message(this.tATexto.getText(), "geeo", "Agorinhaa");
         addMensagem(msg);
         this.tATexto.setText("");
