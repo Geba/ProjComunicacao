@@ -12,8 +12,7 @@ public class ConsoleApplication {
 		//digite aqui o main
 		System.out.println("CONSOLE APPLICATION\n");
 		
-		ServerConnection server = new ServerConnection();
-		server.run();
+		//Server s = new Server();
 		
 	}
 	
