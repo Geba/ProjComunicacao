@@ -12,15 +12,16 @@ import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 import java.util.List;
 
-
 /**
  *
  * @author Geeo
  */
 public class Core implements CoreInterface, Runnable {
+
     static GuiPrincipalFrame gui;
+
     public Core() {
-    	//FILL ME :)
+        //FILL ME :)
     }
 
     public void run() {
@@ -28,7 +29,7 @@ public class Core implements CoreInterface, Runnable {
     }
 
     public void setGui(GuiPrincipalFrame gui) {
-    this.gui = gui;
+        this.gui = gui;
     }
 
     @Override
@@ -83,7 +84,8 @@ public class Core implements CoreInterface, Runnable {
 
     @Override
     public User logIn(String nickname) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Try to login");
+        return new User();
     }
 
     @Override
@@ -95,7 +97,5 @@ public class Core implements CoreInterface, Runnable {
     public void reconnect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
 
 }

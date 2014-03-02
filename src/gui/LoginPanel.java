@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
+
+import core.Core;
 
 /**
  *
@@ -15,8 +16,15 @@ public class LoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form Login
      */
+    private Core core;
+
     public LoginPanel() {
         initComponents();
+    }
+
+    LoginPanel(Core core) {
+        initComponents();
+        this.core = core;
     }
 
     /**
@@ -101,7 +109,8 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cBEspiarActionPerformed
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        // TODO add your handling code here:
+        String nickname = this.lbLogin.getText();
+        this.core.logIn(nickname);
     }//GEN-LAST:event_btEntrarActionPerformed
 
 

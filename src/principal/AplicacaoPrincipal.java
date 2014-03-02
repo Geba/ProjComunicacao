@@ -5,14 +5,10 @@
  */
 package principal;
 
-import atomics.*;
 import core.*;
 import erros.ConexaoNaoEncontradaException;
-import eventos.MensagemEvent;
-import gui.RoomFrame;
 import gui.GuiPrincipalFrame;
 import gui.RoomFrame;
-import interfaces.*;
 import java.awt.Container;
 
 /**
@@ -25,15 +21,14 @@ public class AplicacaoPrincipal {
     private static Core core;
 
     public AplicacaoPrincipal() {
-
     }
 
     public static void main(String[] args) {
-        gui = new GuiPrincipalFrame();
+        
         //gui.run();
         core = new Core();
         //core.run();
-        gui.setCore(core);
+        gui = new GuiPrincipalFrame(core);
         core.setGui(gui);
         centerContainer(gui);
         gui.setVisible(true);

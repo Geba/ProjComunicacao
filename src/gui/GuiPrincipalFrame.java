@@ -25,13 +25,14 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public GuiPrincipalFrame() {
         initComponents();
-        LoginPanel l = new LoginPanel();
+    }
+
+    public GuiPrincipalFrame(Core core) {
+        initComponents();
+        this.core = core;
+        LoginPanel l = new LoginPanel(core);
         l.setVisible(true);
         principalPanel.add(l);
-        //principalPanel.setOpaque(false);
-        //principalPanel.revalidate();
-        //BigContainer.revalidate();
-
     }
 
     public void run() {
