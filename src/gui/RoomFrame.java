@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
  *
  * @author geeo
  */
-public class SalaFrame extends javax.swing.JFrame {
+public class RoomFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Conversa
@@ -29,7 +29,7 @@ public class SalaFrame extends javax.swing.JFrame {
     private static long conversaId;
     private static User user;
 
-    public SalaFrame(String nomeDaConversa, long conversaId) {
+    public RoomFrame(String nomeDaConversa, long conversaId) {
         initComponents();
         /*
          sPConversa.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
@@ -150,13 +150,14 @@ public class SalaFrame extends javax.swing.JFrame {
         sPConversa.setAutoscrolls(true);
         sPConversa.setMinimumSize(new java.awt.Dimension(0, 0));
 
-        pnConversa.setBackground(new java.awt.Color(51, 255, 51));
+        pnConversa.setBackground(new java.awt.Color(153, 255, 204));
         pnConversa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnConversa.setFocusable(false);
         pnConversa.setLayout(new javax.swing.BoxLayout(pnConversa, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel4.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel4.setOpaque(false);
         jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -230,12 +231,19 @@ public class SalaFrame extends javax.swing.JFrame {
 
     //ok
     private void btEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEnviarMouseClicked
-        sendMessage();
+        if (this.tATexto.getText().length() != 0) {
+            sendMessage();
+        }
+
     }//GEN-LAST:event_btEnviarMouseClicked
 //ok
     private void tATextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tATextoKeyTyped
         if (evt.getKeyChar() == 10) {
-            sendMessage();
+            if (this.tATexto.getText().length() != 1) {
+                sendMessage();
+            } else {
+                this.tATexto.setText("");
+            }
         }
     }//GEN-LAST:event_tATextoKeyTyped
 
@@ -260,20 +268,20 @@ public class SalaFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SalaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SalaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SalaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SalaFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SalaFrame(nomeDaConversa, conversaId).setVisible(true);
+                new RoomFrame(nomeDaConversa, conversaId).setVisible(true);
             }
         });
     }
@@ -297,17 +305,14 @@ public class SalaFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
-///        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
-        MessagePanel1 newMessage = new MessagePanel1(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
+        ///        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
+        MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
+        //newMessage.resizeAgain();
         this.pnConversa.revalidate();
 
         scrollPaneToBottom();
-
-    }
-
-    public void addMsgTeste() {
 
     }
 

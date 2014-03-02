@@ -9,9 +9,9 @@ import atomics.*;
 import core.*;
 import erros.ConexaoNaoEncontradaException;
 import eventos.MensagemEvent;
-import gui.SalaFrame;
-import gui.GuiPrincipal;
-import gui.SalaFrameTest;
+import gui.RoomFrame;
+import gui.GuiPrincipalFrame;
+import gui.RoomFrame;
 import interfaces.*;
 import java.awt.Container;
 
@@ -21,7 +21,7 @@ import java.awt.Container;
  */
 public class AplicacaoPrincipal {
 
-    private static GuiPrincipal gui;
+    private static GuiPrincipalFrame gui;
     private static Core core;
 
     public AplicacaoPrincipal() {
@@ -29,7 +29,7 @@ public class AplicacaoPrincipal {
     }
 
     public static void main(String[] args) {
-        gui = new GuiPrincipal();
+        gui = new GuiPrincipalFrame();
         //gui.run();
         core = new Core();
         //core.run();
@@ -37,10 +37,10 @@ public class AplicacaoPrincipal {
         core.setGui(gui);
         centerContainer(gui);
         gui.setVisible(true);
-        SalaFrameTest conversa = new SalaFrameTest("oi", 100);
+        RoomFrame conversa = new RoomFrame("oi", 100);
         conversa.setVisible(true);
-        //       SalaFrame conversa2 = new SalaFrame("oi", 100);
-        //     SalaFrame conversa3 = new SalaFrame("oi", 100);
+        //       RoomFrame conversa2 = new RoomFrame("oi", 100);
+        //     RoomFrame conversa3 = new RoomFrame("oi", 100);
 
 //                conversa2.setVisible(true);
 //                conversa3.setVisible(true

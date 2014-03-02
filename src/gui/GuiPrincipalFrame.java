@@ -15,17 +15,17 @@ import java.awt.Label;
  *
  * @author Geeo
  */
-public class GuiPrincipal extends javax.swing.JFrame implements Runnable, GuiInterface {
+public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, GuiInterface {
 
     static Core core;
     /**
-     * Creates new form GuiPrincipal
+     * Creates new form GuiPrincipalFrame
      */
     private boolean logado = false;
 
-    public GuiPrincipal() {
+    public GuiPrincipalFrame() {
         initComponents();
-        Login l = new Login();
+        LoginPanel l = new LoginPanel();
         l.setVisible(true);
         principalPanel.add(l);
         //principalPanel.setOpaque(false);
@@ -67,7 +67,6 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable, GuiInt
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(310, 310));
-        setPreferredSize(new java.awt.Dimension(300, 600));
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
 
@@ -194,20 +193,20 @@ public class GuiPrincipal extends javax.swing.JFrame implements Runnable, GuiInt
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPrincipalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPrincipalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPrincipalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPrincipalFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 //System.out.println("Ooie");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiPrincipal().setVisible(true);
+                new GuiPrincipalFrame().setVisible(true);
 
             }
         });

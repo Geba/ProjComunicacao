@@ -8,7 +8,7 @@ package core;
 import atomics.Room;
 import atomics.Message;
 import atomics.User;
-import gui.GuiPrincipal;
+import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @author Geeo
  */
 public class Core implements CoreInterface, Runnable {
-    static GuiPrincipal gui;
+    static GuiPrincipalFrame gui;
     public Core() {
     	//FILL ME :)
     }
@@ -27,7 +27,7 @@ public class Core implements CoreInterface, Runnable {
         System.out.println("Core running"); //works!!
     }
 
-    public void setGui(GuiPrincipal gui) {
+    public void setGui(GuiPrincipalFrame gui) {
     this.gui = gui;
     }
 

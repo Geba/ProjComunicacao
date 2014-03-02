@@ -10,12 +10,12 @@ package gui;
  *
  * @author Geeo
  */
-public class Login extends javax.swing.JPanel {
+public class LoginPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public LoginPanel() {
         initComponents();
     }
 
