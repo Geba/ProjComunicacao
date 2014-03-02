@@ -127,13 +127,27 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
     public void componentResized(ComponentEvent ce) {
         System.out.println("resize");
         int fontSize = this.lbMensagem.getFont().getSize();
-        int width = this.lbMensagem.getWidth();
+        int width = this.jPanel2.getWidth();
         int characters = this.lbMensagem.getCaretPosition();
-        System.out.println(characters);
-        int newHeight = ((characters / width))*fontSize*10;
-        System.out.println(fontSize);System.out.println(newHeight);
-        this.setMaximumSize(new Dimension(32767, newHeight+40000+this.jPanel1.getHeight()));
-        this.setMinimumSize(new Dimension(32767, newHeight+40000+this.jPanel1.getHeight()));
+        //System.out.println(characters);
+        //System.out.println(width);
+        int newHeight = 0;
+        //O código tá aqui
+        if (characters > width) {
+            newHeight = (int) ((this.lbHora.getHeight() * 4 * ((characters / (width/10)) + 2.0)));
+            System.out.println(newHeight);
+        } else {
+            newHeight = 6 * this.lbHora.getHeight();
+        }
+        //o codigo tá aqui
+        //System.out.println(fontSize);
+        System.out.println(newHeight);
+        width = this.jPanel2.getWidth();
+        this.setPreferredSize(new Dimension(width, newHeight));
+        this.revalidate();
+        //this.setMinimumSize(new Dimension(0, newHeight));
+        //this.setMaximumSize(new Dimension(3276723+1, newHeight+1));
+
     }
 
     public void componentMoved(ComponentEvent ce) {
