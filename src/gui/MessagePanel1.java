@@ -153,10 +153,9 @@ public class MessagePanel1 extends javax.swing.JPanel implements ComponentListen
 
         //O código tá aqui
         if (characters > taxaCharPerLine) {
-            System.out.println("entrou");
             double qntLines = (characters / taxaCharPerLine);
             System.out.println("qntLines: " + qntLines);
-            newHeight = (int) (this.lbHora.getHeight()*2+((fontSize-3.48)*qntLines));
+            newHeight = (int) (this.lbHora.getHeight()*2.5+((0.87*fontSize)*qntLines));
 
         }
 
