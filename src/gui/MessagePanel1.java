@@ -15,16 +15,16 @@ import java.awt.event.ItemListener;
  *
  * @author geeo
  */
-public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListener {
+public class MessagePanel1 extends javax.swing.JPanel implements ComponentListener {
 
     /**
      * Creates new form MessagemPanel
      */
-    public MessagemPanel1() {
+    public MessagePanel1() {
         initComponents();
     }
 
-    public MessagemPanel1(String mensagem, String usuario, String hora) {
+    public MessagePanel1(String mensagem, String usuario, String hora) {
         initComponents();
         this.lbNameUser.setText(usuario);
         this.lbMensagem.setText(mensagem);
@@ -51,9 +51,12 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
         jToggleButton1.setText("jToggleButton1");
 
         setFocusable(false);
+        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(215, 66));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
+
+        jPanel1.setOpaque(false);
 
         lbNameUser.setText("Name");
 
@@ -61,6 +64,7 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 153));
         jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
@@ -82,35 +86,29 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbNameUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 389, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
                         .addComponent(lbHora)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNameUser)
                     .addComponent(lbHora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -126,28 +124,7 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
 
     public void componentResized(ComponentEvent ce) {
         System.out.println("resize");
-        int fontSize = this.lbMensagem.getFont().getSize();
-        int width = this.jPanel2.getWidth();
-        int characters = this.lbMensagem.getCaretPosition();
-        //System.out.println(characters);
-        //System.out.println(width);
-        int newHeight = 0;
-        //O código tá aqui
-        if (characters > width) {
-            newHeight = (int) ((this.lbHora.getHeight() * 4 * ((characters / (width/10)) + 2.0)));
-            System.out.println(newHeight);
-        } else {
-            newHeight = 6 * this.lbHora.getHeight();
-        }
-        //o codigo tá aqui
-        //System.out.println(fontSize);
-        System.out.println(newHeight);
-        width = this.jPanel2.getWidth();
-        this.setPreferredSize(new Dimension(width, newHeight));
-        this.revalidate();
-        //this.setMinimumSize(new Dimension(0, newHeight));
-        //this.setMaximumSize(new Dimension(3276723+1, newHeight+1));
-
+        resizeAgain();
     }
 
     public void componentMoved(ComponentEvent ce) {
@@ -160,6 +137,37 @@ public class MessagemPanel1 extends javax.swing.JPanel implements ComponentListe
 
     public void componentHidden(ComponentEvent ce) {
         System.out.println("hided");
+    }
+
+    public void resizeAgain() {
+        int fontSize = this.lbMensagem.getFont().getSize();
+        int width = this.jPanel2.getWidth();
+        int characters = this.lbMensagem.getCaretPosition();
+        //System.out.println(characters);
+        //System.out.println(width);
+        int newHeight = 3 * lbHora.getHeight();
+        System.out.println("fontSize:" + fontSize);
+        System.out.println("width:" + width);
+        System.out.println("caretPosition:" + characters);
+        double taxaCharPerLine = width * 50 / 453;
+
+        //O código tá aqui
+        if (characters > taxaCharPerLine) {
+            System.out.println("entrou");
+            double qntLines = (characters / taxaCharPerLine);
+            System.out.println("qntLines: " + qntLines);
+            newHeight = (int) (this.lbHora.getHeight()*2+((fontSize-3.48)*qntLines));
+
+        }
+
+        //o codigo tá aqui
+        System.out.println("NewHeight :" + newHeight);
+        width = this.jPanel2.getWidth();
+        this.setPreferredSize(new Dimension(width, newHeight));
+        this.revalidate();
+        //this.setMinimumSize(new Dimension(0, newHeight));
+        this.setMaximumSize(new Dimension(3276723 + 1, newHeight + 1));
+
     }
 
 }

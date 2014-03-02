@@ -298,7 +298,7 @@ public class SalaFrame extends javax.swing.JFrame {
 
     public void addMensagem(Message message) {
 ///        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
-        MessagemPanel1 newMessage = new MessagemPanel1(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
+        MessagePanel1 newMessage = new MessagePanel1(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();

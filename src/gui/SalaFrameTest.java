@@ -150,13 +150,14 @@ public class SalaFrameTest extends javax.swing.JFrame {
         sPConversa.setAutoscrolls(true);
         sPConversa.setMinimumSize(new java.awt.Dimension(0, 0));
 
-        pnConversa.setBackground(new java.awt.Color(51, 255, 51));
+        pnConversa.setBackground(new java.awt.Color(153, 255, 204));
         pnConversa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnConversa.setFocusable(false);
         pnConversa.setLayout(new javax.swing.BoxLayout(pnConversa, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel4.setBackground(new java.awt.Color(102, 102, 0));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel4.setOpaque(false);
         jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -298,9 +299,10 @@ public class SalaFrameTest extends javax.swing.JFrame {
 
     public void addMensagem(Message message) {
         ///        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
-        MessagemPanel1 newMessage = new MessagemPanel1(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
+        MessagePanel1 newMessage = new MessagePanel1(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
+        //newMessage.resizeAgain();
         this.pnConversa.revalidate();
 
         scrollPaneToBottom();
