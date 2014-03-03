@@ -18,6 +18,11 @@ public class User {
     private boolean spy;
     private String status;
 
+    public User(long id, String nickname) {
+        this.id = id;
+        this.nickname = nickname;
+    }
+
     public long getId() {
         return id;
     }

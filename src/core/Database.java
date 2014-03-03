@@ -11,6 +11,7 @@ import java.util.Vector;
 
 import erros.UsuarioNaoEncontradoException;
 import atomics.*;
+import java.util.ArrayList;
 
 public class Database {
 	
@@ -47,7 +48,7 @@ public class Database {
 				pw.println(sala.getName());
 				pw.println(sala.getCreator_ID());
 				
-				Vector<Long> ids = sala.getUsers_ID();
+				ArrayList<Long> ids = sala.getUsers_ID();
 				Iterator<Long> it = ids.iterator();
 				while(it.hasNext())
 					pw.println(it.next());

@@ -36,26 +36,45 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lbLogin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="tFLogin" pref="261" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="rBOnline" min="-2" max="-2" attributes="0"/>
-                          <Component id="rBAway" min="-2" max="-2" attributes="0"/>
-                          <Component id="rBInvisible" min="-2" max="-2" attributes="0"/>
-                          <Component id="rBBusy" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lbLogin" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="tFLogin" pref="158" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rBOnline" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rBAway" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rBInvisible" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rBBusy" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lbId" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="tfUserId" pref="177" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="btEntrar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lbServidorIp" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="tFServidorIp" pref="159" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btEntrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,7 +96,17 @@
               <Component id="rBInvisible" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btEntrar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="68" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfUserId" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lbServidorIp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tFServidorIp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,6 +118,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tFLogin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="user"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tFLoginActionPerformed"/>
       </Events>
@@ -135,6 +167,32 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Invisible"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbId">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="UserId"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfUserId">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0001"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUserIdActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbServidorIp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ServidorIp"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tFServidorIp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="localHost"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tFServidorIpActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

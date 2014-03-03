@@ -11,10 +11,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import atomics.Message;
+import atomics.Room;
 import atomics.User;
 import core.Core;
 
 import javax.swing.SwingUtilities;
+import principal.Global;
 
 /**
  *
@@ -25,21 +27,16 @@ public class RoomFrame extends javax.swing.JFrame {
     /**
      * Creates new form Conversa
      */
-    private static String nomeDaConversa;
-    private static long conversaId;
-    private static User user;
-    private Core core;
+    private Room room;
 
     public RoomFrame() {
         initComponents();
     }
 
-    public RoomFrame(String nomeDaConversa, long conversaId, User user, Core core) {
+    public RoomFrame(Room room) {
         initComponents();
-        this.user = new User();
-        this.nomeDaConversa = nomeDaConversa;
-        this.conversaId = conversaId;
-        this.core = core;
+        this.room = room;
+        this.lbRoomName.setText(room.getName());
     }
 
     /**
@@ -55,7 +52,7 @@ public class RoomFrame extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbRoomName = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btAnexar = new javax.swing.JButton();
         btEnviar = new javax.swing.JButton();
@@ -73,8 +70,7 @@ public class RoomFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText(nomeDaConversa);
+        lbRoomName.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -82,16 +78,18 @@ public class RoomFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lbRoomName)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lbRoomName)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
+
+        lbRoomName.getAccessibleContext().setAccessibleName("");
 
         jPanel1.setNextFocusableComponent(tATexto);
 
@@ -166,7 +164,7 @@ public class RoomFrame extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGap(0, 549, Short.MAX_VALUE)
         );
 
         pnConversa.add(jPanel4);
@@ -206,7 +204,7 @@ public class RoomFrame extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sPUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                    .addComponent(sPUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +285,6 @@ public class RoomFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAnexar;
     private javax.swing.JButton btEnviar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -296,6 +293,7 @@ public class RoomFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel lbRoomName;
     private javax.swing.JPanel pnConversa;
     private javax.swing.JScrollPane sPConversa;
     private javax.swing.JScrollPane sPUsers;
@@ -311,15 +309,18 @@ public class RoomFrame extends javax.swing.JFrame {
     }
 
     public void sendMessage(int code) {
-    	
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); ////isso tem que ser alterado pelo servidor
-    	String time = dateFormat.format(new Date());
-    	
-    	String str = this.tATexto.getText();
-        long id1 = 12345;
-              
-        Message msg = new Message(id1, this.getID(), time.substring(time.length()-8, time.length()), 
-        						  str.substring(0, str.length()-code), "htadacam");
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); ////isso tem que ser alterado pelo servidor
+        String time = dateFormat.format(new Date());
+
+        String str = this.tATexto.getText();
+        //Message msg = new Message(id1, this.getID(), time.substring(time.length() - 8, time.length()),
+        //      str.substring(0, str.length() - code), "htadacam");
+        if (room == null) {
+            System.out.println("Sala nula");
+        }
+        System.out.print(Global.user.getId());
+        Message msg = new Message(Global.user.getID(), this.room.getID(), time.substring(time.length() - 8, time.length()), str, Global.user.getNickname());
         Core.sendMessage(msg);
 //        addMensagem(msg);
         this.tATexto.setText("");
@@ -339,9 +340,9 @@ public class RoomFrame extends javax.swing.JFrame {
         });
 
     }
-    
+
     public long getID() {
-    	return this.conversaId;
+        return this.room.getID();
     }
-    
+
 }

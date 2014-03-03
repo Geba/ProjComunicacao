@@ -49,18 +49,32 @@ public class Core implements Runnable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Room> refreshRooms() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Room> refreshRooms() {//from server
+        System.out.println("falta retornar as salas");
+        //testes
+        Room r1 = new Room(1, "Animais", 1);//roomid, roomname, rooomcreater
+        Room r2 = new Room(2, "Utensilios", 3);
+        Room r3 = new Room(3, "Veiculos", 2);
+        Room r4 = new Room(4, "Pokemons", 3);
+        Room r5 = new Room(5, "Cientistas", 2);
+        ArrayList rooms = new ArrayList<Room>();
+        rooms.add(r1);
+        rooms.add(r2);
+        rooms.add(r3);
+        rooms.add(r4);
+        rooms.add(r5);
+        //Teste
+        return rooms;
     }
 
     public static void sendMessage(Message msg) {
-        System.out.println("Core: trying to send message"); 
-    	try {
-			Global.cliente.send(msg);
-		} catch (IOException e) {
-			System.out.println("erro no send (core)");
-			e.printStackTrace();
-		}
+        System.out.println("Core: trying to send message");
+        try {
+            Global.cliente.send(msg);
+        } catch (IOException e) {
+            System.out.println("erro no send (core)");
+            e.printStackTrace();
+        }
     }
 
     public void changeNickName(String newNickName) {
@@ -91,13 +105,14 @@ public class Core implements Runnable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public User logIn(String nickname) {
+    public void logIn(String nickname, long userId, String ipServer) throws IOException {//para testes
         System.out.println("Try to login");
 
-        this.user = new User();
-
-        this.gui.logIn(user);
-        return null;
+        Global.user = new User(1, nickname);
+        Global.setClient(new Cliente(ipServer, 8080));
+        Global.cliente.executa();
+        Global.oppenedRooms = new ArrayList<Room>();
+        Global.gui.logIn();
 
     }
 
@@ -109,8 +124,21 @@ public class Core implements Runnable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void receiveMessage(Message m){
-    	gui.addMessage(m);
+    public static void receiveMessage(Message m) {
+        gui.addMessage(m);
     }
-    
+
+    public void enterRoom(Room room) {//fazer conexao com o servidor
+        boolean achei = false;
+        Global.gui.showNewRoom(room);
+        /*
+         for (int i = 0; !achei& i < Global.oppenedRooms.size(); i++) {
+         if (Global.oppenedRooms.get(i).getID() == room.getID()) {
+         achei  =true;
+                
+         }
+         }
+         */
+    }
+
 }

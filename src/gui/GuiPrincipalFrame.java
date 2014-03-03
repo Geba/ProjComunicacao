@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JProgressBar;
+import principal.Global;
 
 /**
  *
@@ -23,28 +24,21 @@ import javax.swing.JProgressBar;
  */
 public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, GuiInterface {
 
-    static Core core;
+
     private boolean logado = false;
     private RoomsListPanel roomsPanel;
     private User user;
-    private List<RoomFrame> rooms;
-    
+    private List<RoomFrame> roomFrameList;
 
     /**
      * Creates new form GuiPrincipalFrame
      */
     public GuiPrincipalFrame() {
         initComponents();
-    }
-
-    public GuiPrincipalFrame(Core core) {
-        initComponents();
-        this.core = core;
-        LoginPanel l = new LoginPanel(core);
+        LoginPanel l = new LoginPanel();
         l.setVisible(true);
         principalPanel.add(l);
-        
-        rooms = new ArrayList<RoomFrame>();   
+        roomFrameList = new ArrayList<RoomFrame>();
     }
 
     public void run() {
@@ -245,13 +239,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
-    public void setCore(Core core) {
-        this.core = core;
-    }
-
+ 
     @Override
     public void showNewRoom(Room room) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RoomFrame conversa = new RoomFrame(room);
+        conversa.setVisible(true);
     }
 
     @Override
@@ -269,36 +261,34 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void logIn(User user) {
-        this.user = user;
-
+    public void logIn() {
         this.principalPanel.removeAll();
         //loagind window
         LoadingPanel lp = new LoadingPanel("Loading Rooms");
         this.principalPanel.add(lp);
-        
-        
-        
-        
         //loading window
+        List<Room> actualRooms = Global.core.refreshRooms();
+        
         this.roomsPanel = new RoomsListPanel();
+        this.roomsPanel.refreshExistingRooms(actualRooms);
         this.roomsPanel.setVisible(true);
+        this.principalPanel.removeAll();
         this.principalPanel.add(roomsPanel);
         this.principalPanel.revalidate();
 
     }
-    
-    public void addRoomFrame(RoomFrame rf){
-    	this.rooms.add(rf);
+
+    public void addRoomFrame(RoomFrame rf) {
+        this.roomFrameList.add(rf);
     }
 
-	public void addMessage(Message m) {
-		for (int i=0; i<rooms.size(); i++){
-			System.out.println(rooms.get(i).getID()+" "+m.getSala_ID());
-			if(rooms.get(i).getID()==m.getSala_ID()){
-				rooms.get(i).addMensagem(m);
-			}
-		}
-	}
+    public void addMessage(Message m) {
+        for (int i = 0; i < roomFrameList.size(); i++) {
+            System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
+            if (roomFrameList.get(i).getID() == m.getSala_ID()) {
+                roomFrameList.get(i).addMensagem(m);
+            }
+        }
+    }
 
 }
