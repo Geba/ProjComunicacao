@@ -8,12 +8,7 @@ package gui;
 //import atomics.Message;
 import atomics.Message;
 import atomics.User;
-
-import java.awt.Color;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
-
-import javax.swing.JScrollBar;
+import core.Core;
 import javax.swing.SwingUtilities;
 
 /**
@@ -28,20 +23,18 @@ public class RoomFrame extends javax.swing.JFrame {
     private static String nomeDaConversa;
     private static long conversaId;
     private static User user;
+    private Core core;
 
-    public RoomFrame(String nomeDaConversa, long conversaId) {
+    public RoomFrame() {
         initComponents();
-        /*
-         sPConversa.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-         public void adjustmentValueChanged(AdjustmentEvent e) {
-         e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-         }
-         });
-         */
+    }
+
+    public RoomFrame(String nomeDaConversa, long conversaId, User user, Core core) {
+        initComponents();
         this.user = new User();
         this.nomeDaConversa = nomeDaConversa;
         this.conversaId = conversaId;
-
+        this.core = core;
     }
 
     /**
@@ -281,7 +274,7 @@ public class RoomFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RoomFrame(nomeDaConversa, conversaId).setVisible(true);
+                new RoomFrame().setVisible(true);
             }
         });
     }
@@ -305,23 +298,18 @@ public class RoomFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
-        ///        MessagemPanel newMessage = new MessagemPanel(message.getMessage(), message.getSender_nickname()+" says:", message.getTime());
         MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
-        //newMessage.resizeAgain();
         this.pnConversa.revalidate();
-
         scrollPaneToBottom();
-
     }
 
     public void sendMessage() {
         long id1 = 12345;
         long id2 = 6789;
         Message msg = new Message(id1, id2, "just now", this.tATexto.getText(), "rary");
-
-        //Mensagem msg = new Message(this.tATexto.getText(), "geeo", "Agorinhaa");
+        this.core.sendMessage(msg);
         addMensagem(msg);
         this.tATexto.setText("");
     }

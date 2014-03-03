@@ -36,28 +36,25 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         lbLogin = new javax.swing.JLabel();
         tFLogin = new javax.swing.JTextField();
-        cBEspiar = new javax.swing.JCheckBox();
         btEntrar = new javax.swing.JButton();
+        rBOnline = new javax.swing.JRadioButton();
+        rBBusy = new javax.swing.JRadioButton();
+        rBAway = new javax.swing.JRadioButton();
+        rBInvisible = new javax.swing.JRadioButton();
 
         setMaximumSize(new java.awt.Dimension(400, 400));
         setMinimumSize(new java.awt.Dimension(255, 240));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(255, 245));
 
-        lbLogin.setText("Login");
+        lbLogin.setText("NickName:");
 
         tFLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tFLoginActionPerformed(evt);
-            }
-        });
-
-        cBEspiar.setText("Só quero dar uma espiadinha");
-        cBEspiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBEspiarActionPerformed(evt);
             }
         });
 
@@ -67,6 +64,23 @@ public class LoginPanel extends javax.swing.JPanel {
                 btEntrarActionPerformed(evt);
             }
         });
+
+        buttonGroup1.add(rBOnline);
+        rBOnline.setText("Online");
+
+        buttonGroup1.add(rBBusy);
+        rBBusy.setText("Busy");
+        rBBusy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rBBusyActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rBAway);
+        rBAway.setText("Away");
+
+        buttonGroup1.add(rBInvisible);
+        rBInvisible.setText("Invisible");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,11 +92,18 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbLogin)
                         .addGap(23, 23, 23)
-                        .addComponent(tFLogin))
-                    .addComponent(cBEspiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btEntrar)))
+                        .addComponent(tFLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rBOnline)
+                            .addComponent(rBAway)
+                            .addComponent(rBInvisible)
+                            .addComponent(rBBusy))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(12, 12, 12))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btEntrar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -92,11 +113,17 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbLogin)
                     .addComponent(tFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cBEspiar)
+                .addGap(23, 23, 23)
+                .addComponent(rBOnline)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rBBusy)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rBAway)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rBInvisible)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btEntrar)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,20 +131,24 @@ public class LoginPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tFLoginActionPerformed
 
-    private void cBEspiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBEspiarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cBEspiarActionPerformed
-
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         String nickname = this.lbLogin.getText();
         this.core.logIn(nickname);
     }//GEN-LAST:event_btEntrarActionPerformed
 
+    private void rBBusyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBBusyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rBBusyActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
-    private javax.swing.JCheckBox cBEspiar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel lbLogin;
+    private javax.swing.JRadioButton rBAway;
+    private javax.swing.JRadioButton rBBusy;
+    private javax.swing.JRadioButton rBInvisible;
+    private javax.swing.JRadioButton rBOnline;
     private javax.swing.JTextField tFLogin;
     // End of variables declaration//GEN-END:variables
 }

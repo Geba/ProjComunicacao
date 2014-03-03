@@ -44,7 +44,7 @@ public class Core implements CoreInterface, Runnable {
 
     @Override
     public void sendMessage(Message msg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Core: trying to send message");
     }
 
     @Override

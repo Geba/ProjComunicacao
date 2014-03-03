@@ -5,6 +5,7 @@
  */
 package principal;
 
+import atomics.User;
 import core.*;
 import erros.ConexaoNaoEncontradaException;
 import gui.GuiPrincipalFrame;
@@ -19,12 +20,12 @@ public class AplicacaoPrincipal {
 
     private static GuiPrincipalFrame gui;
     private static Core core;
+    private static User user;
 
     public AplicacaoPrincipal() {
     }
 
     public static void main(String[] args) {
-        
         //gui.run();
         core = new Core();
         //core.run();
@@ -32,13 +33,9 @@ public class AplicacaoPrincipal {
         core.setGui(gui);
         centerContainer(gui);
         gui.setVisible(true);
-        RoomFrame conversa = new RoomFrame("oi", 100);
+        RoomFrame conversa = new RoomFrame("roomName", 12345678, user, core);
         conversa.setVisible(true);
-        //       RoomFrame conversa2 = new RoomFrame("oi", 100);
-        //     RoomFrame conversa3 = new RoomFrame("oi", 100);
-
-//                conversa2.setVisible(true);
-//                conversa3.setVisible(true
+        
         ConsoleApplication console = new ConsoleApplication();
         console.run();
 
@@ -51,8 +48,6 @@ public class AplicacaoPrincipal {
         container.setBounds((screenSize.width - componentWidth) / 2, (screenSize.height - componentHeight) / 2, componentWidth, componentHeight);
     }
 
-    public void addConversa(String id) throws ConexaoNaoEncontradaException {
-
-    }
+  
 
 }

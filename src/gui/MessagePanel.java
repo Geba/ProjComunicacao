@@ -123,7 +123,6 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
     // End of variables declaration//GEN-END:variables
 
     public void componentResized(ComponentEvent ce) {
-        System.out.println("resize");
         resizeAgain();
     }
 
@@ -143,28 +142,28 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         int fontSize = this.lbMensagem.getFont().getSize();
         int width = this.jPanel2.getWidth();
         int characters = this.lbMensagem.getCaretPosition();
-        //System.out.println(characters);
-        //System.out.println(width);
+        
+        
         int newHeight = 3 * lbHora.getHeight();
-        System.out.println("fontSize:" + fontSize);
-        System.out.println("width:" + width);
-        System.out.println("caretPosition:" + characters);
+        
+        
+        
         double taxaCharPerLine = width * 50 / 453;
 
         //O código tá aqui
         if (characters > taxaCharPerLine) {
             double qntLines = (characters / taxaCharPerLine);
-            System.out.println("qntLines: " + qntLines);
+
             newHeight = (int) (this.lbHora.getHeight()*2.5+((0.87*fontSize)*qntLines));
 
         }
 
-        //o codigo tá aqui
-        System.out.println("NewHeight :" + newHeight);
+
+
         width = this.jPanel2.getWidth();
         this.setPreferredSize(new Dimension(width, newHeight));
         this.revalidate();
-        //this.setMinimumSize(new Dimension(0, newHeight));
+
         this.setMaximumSize(new Dimension(3276723 + 1, newHeight + 1));
 
     }
