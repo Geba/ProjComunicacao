@@ -1,9 +1,10 @@
 package core;
-import java.io.DataOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.IOException;
-
 import java.net.*;
 import java.util.Scanner;
+
+import atomics.Message;
 
 public class Cliente {
 	public static void main(String[] args) throws UnknownHostException,
@@ -29,11 +30,18 @@ public class Cliente {
 		r.start();
 
 		// le msgs do teclado e manda pro servidor
-		DataOutputStream dos = new DataOutputStream(cliente.getOutputStream());
+		ObjectOutputStream dos = new ObjectOutputStream(cliente.getOutputStream());
 		while (true) {
 			String s = new Scanner(System.in).nextLine();
 			// System.out.println(s);
-			dos.writeBytes(s + "\n");
+			// long sender_ID, long sala_ID, String time, String message, String sender_nickname
+			
+			Message msgobj = new Message(1029383, 432483, "ano passado", s, "cliente1");
+			//Serializador serializador = new Serializador();
+			//dos.write(serializador.serializa(msgobj));
+			
+			dos.writeObject(msgobj);
+			
 		}
 
 	}

@@ -1,5 +1,5 @@
 package core;
-import java.io.DataOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ public class Servidor {
 	}
 
 	private int porta;
-	private List<DataOutputStream> clientes;
+	private List<ObjectOutputStream> clientes;
 
 	public Servidor(int porta) {
 		this.porta = porta;
-		this.clientes = new ArrayList<DataOutputStream>();
+		this.clientes = new ArrayList<ObjectOutputStream>();
 	}
 
 	public void executa() throws IOException {
@@ -33,7 +33,7 @@ public class Servidor {
 					+ cliente.getInetAddress().getHostAddress());
 
 			// adiciona saida do cliente a lista
-			DataOutputStream dos = new DataOutputStream(
+			ObjectOutputStream dos = new ObjectOutputStream(
 					cliente.getOutputStream());
 			this.clientes.add(dos);
 
@@ -55,4 +55,29 @@ public class Servidor {
 			}
 		}
 	}
+	
+	public void distribuiMensagem(byte[] msg) {		
+		// envia msg para todo mundo
+		for (int i = 0; i < clientes.size(); i++) {
+			try {
+				clientes.get(i).write(msg);
+			} catch (IOException e) {
+				System.out.println("erro no distribui");
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void distribuiMensagem(Object msg) {		
+		// envia msg para todo mundo
+		for (int i = 0; i < clientes.size(); i++) {
+			try {
+				clientes.get(i).writeObject(msg);
+			} catch (IOException e) {
+				System.out.println("erro no distribui");
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
