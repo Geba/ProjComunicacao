@@ -1,4 +1,7 @@
 package atomics;
+import java.io.Serializable;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -9,7 +12,8 @@ package atomics;
  *
  * @author geeo
  */
-public class Message {
+@SuppressWarnings("serial")
+public class Message implements Serializable {
 
 //    private String mensagem;
 //    private String usuario;
@@ -58,6 +62,16 @@ public class Message {
 	}
 	public void setSender_nickname(String sender_nickname) {
 		this.sender_nickname = sender_nickname;
+	}
+	
+	public String toString(){
+		String ret = "";
+		ret += "sender_ID: "+this.getSender_ID()+
+				"\nsala_ID: "+this.getSala_ID()+
+				"\ntime: "+this.getTime()+
+				"\nmessage: "+this.getMessage()+
+				"\nnickname: "+this.getSender_nickname()+"\n";
+		return ret;
 	}
     
 }

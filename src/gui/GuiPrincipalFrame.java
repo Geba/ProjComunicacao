@@ -10,7 +10,11 @@ import atomics.Room;
 import atomics.User;
 import core.Core;
 import interfaces.GuiInterface;
+
 import java.awt.Label;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JProgressBar;
 
 /**
@@ -23,6 +27,8 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private boolean logado = false;
     private RoomsListPanel roomsPanel;
     private User user;
+    private List<RoomFrame> rooms;
+    
 
     /**
      * Creates new form GuiPrincipalFrame
@@ -37,6 +43,8 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         LoginPanel l = new LoginPanel(core);
         l.setVisible(true);
         principalPanel.add(l);
+        
+        rooms = new ArrayList<RoomFrame>();   
     }
 
     public void run() {
@@ -279,5 +287,18 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         this.principalPanel.revalidate();
 
     }
+    
+    public void addRoomFrame(RoomFrame rf){
+    	this.rooms.add(rf);
+    }
+
+	public void addMessage(Message m) {
+		for (int i=0; i<rooms.size(); i++){
+			System.out.println(rooms.get(i).getID()+" "+m.getSala_ID());
+			if(rooms.get(i).getID()==m.getSala_ID()){
+				rooms.get(i).addMensagem(m);
+			}
+		}
+	}
 
 }

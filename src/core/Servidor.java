@@ -30,6 +30,7 @@ public class Servidor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//this.print("Porta " + this.porta + " aberta!");
 		System.out.println("Porta " + this.porta + " aberta!");
 				
 		try {
@@ -38,7 +39,7 @@ public class Servidor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(ip);
+		System.out.println("Server IP: "+ip);
 		
 	}
 
@@ -48,12 +49,13 @@ public class Servidor {
 
 			// aceita um cliente
 			Socket cliente = servidor.accept();
+			this.print("Nova conexao com o cliente "
+					+ cliente.getInetAddress().getHostAddress());
 			System.out.println("Nova conexao com o cliente "
 					+ cliente.getInetAddress().getHostAddress());
 
 			// adiciona saida do cliente a lista
-			ObjectOutputStream dos = new ObjectOutputStream(
-					cliente.getOutputStream());
+			ObjectOutputStream dos = new ObjectOutputStream(cliente.getOutputStream());
 			this.clientes.add(dos);
 
 			// cria tratador de cliente numa nova thread

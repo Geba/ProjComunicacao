@@ -10,7 +10,10 @@ import core.*;
 import erros.ConexaoNaoEncontradaException;
 import gui.GuiPrincipalFrame;
 import gui.RoomFrame;
+
 import java.awt.Container;
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 /**
  *
@@ -25,7 +28,7 @@ public class AplicacaoPrincipal {
     public AplicacaoPrincipal() {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException, IOException {
         //gui.run();
         core = new Core();
         //core.run();
@@ -33,8 +36,18 @@ public class AplicacaoPrincipal {
         core.setGui(gui);
         centerContainer(gui);
         gui.setVisible(true);
-        RoomFrame conversa = new RoomFrame("roomName", 12345678, user, core);
+        RoomFrame conversa = new RoomFrame("roomName", 456, user, core);
+        //RoomFrame conversa2 = new RoomFrame("roomName2", 123, user, core);
         conversa.setVisible(true);
+        //conversa2.setVisible(true);
+        
+        Global.setCore(core);
+        Global.setGui(gui);
+        Global.setClient(new Cliente("localHost", 8080));
+        Global.cliente.executa();
+        gui.addRoomFrame(conversa);
+        //gui.addRoomFrame(conversa2);
+        
         
         ConsoleApplication console = new ConsoleApplication();
         console.run();

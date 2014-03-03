@@ -307,10 +307,9 @@ public class RoomFrame extends javax.swing.JFrame {
 
     public void sendMessage() {
         long id1 = 12345;
-        long id2 = 6789;
-        Message msg = new Message(id1, id2, "just now", this.tATexto.getText(), "rary");
-        this.core.sendMessage(msg);
-        addMensagem(msg);
+        Message msg = new Message(id1, this.getID(), "just now", this.tATexto.getText(), "outrocliente");
+        Core.sendMessage(msg);
+//        addMensagem(msg);
         this.tATexto.setText("");
     }
 
@@ -328,4 +327,9 @@ public class RoomFrame extends javax.swing.JFrame {
         });
 
     }
+    
+    public long getID() {
+    	return this.conversaId;
+    }
+    
 }

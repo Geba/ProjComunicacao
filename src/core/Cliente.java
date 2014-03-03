@@ -15,6 +15,8 @@ public class Cliente {
 
 	private String host;
 	private int porta;
+	private Socket cliente;
+	ObjectOutputStream dos;
 
 	public Cliente(String host, int porta) {
 		this.host = host;
@@ -22,7 +24,7 @@ public class Cliente {
 	}
 
 	public void executa() throws UnknownHostException, IOException {
-		Socket cliente = new Socket(this.host, this.porta);
+		cliente = new Socket(this.host, this.porta);
 		System.out.println("O cliente se conectou ao servidor!");
 
 		// thread para receber mensagens do servidor
@@ -30,19 +32,16 @@ public class Cliente {
 		r.start();
 
 		// le msgs do teclado e manda pro servidor
-		ObjectOutputStream dos = new ObjectOutputStream(cliente.getOutputStream());
-		while (true) {
-			String s = new Scanner(System.in).nextLine();
-			// System.out.println(s);
-			// long sender_ID, long sala_ID, String time, String message, String sender_nickname
-			
-			Message msgobj = new Message(1029383, 432483, "ano passado", s, "cliente1");
-			//Serializador serializador = new Serializador();
-			//dos.write(serializador.serializa(msgobj));
-			
-			dos.writeObject(msgobj);
-			
-		}
-
+		dos = new ObjectOutputStream(cliente.getOutputStream());
+//		while (true) {
+//			String s = new Scanner(System.in).nextLine();
+//			Message msgobj = new Message(1029383, 432483, "ano passado", s, "cliente1");			
+//			dos.writeObject(msgobj);	
+//		}
 	}
+	
+	public void send(Message m) throws IOException {
+		this.dos.writeObject(m);
+	}
+	
 }

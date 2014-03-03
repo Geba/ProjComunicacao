@@ -12,7 +12,12 @@ public class MainServer {
 		ServidorFrame sf = new ServidorFrame(servidor);
 		servidor.setFrame(sf);
 		sf.setVisible(true);
-		
+		try {
+			servidor.executa();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			servidor.executa();
 		} catch (IOException e) {

@@ -10,16 +10,23 @@ import atomics.Message;
 import atomics.User;
 import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
+
+import java.io.IOException;
 import java.util.List;
+
 import atomics.User;
 import atomics.Message;
+
 import java.util.ArrayList;
+
+import principal.Global;
 
 /**
  *
  * @author Geeo
  */
-public class Core implements CoreInterface, Runnable {
+public class Core implements Runnable {
+//public class Core implements CoreInterface, Runnable {
 
     static GuiPrincipalFrame gui;
     static User user;
@@ -38,57 +45,52 @@ public class Core implements CoreInterface, Runnable {
         this.gui = gui;
     }
 
-    @Override
     public List<User> refreshUsers(long idConversa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public List<Room> refreshRooms() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void sendMessage(Message msg) {
-        System.out.println("Core: trying to send message");
+    public static void sendMessage(Message msg) {
+        System.out.println("Core: trying to send message"); 
+    	try {
+			Global.cliente.send(msg);
+		} catch (IOException e) {
+			System.out.println("erro no send (core)");
+			e.printStackTrace();
+		}
     }
 
-    @Override
     public void changeNickName(String newNickName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void sendFile(Object file) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void refreshStatus(int UserId, int status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void createNewRoom(String name, String assunto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void closeRoom(String roomId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public Object startDownload(long fileId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void logOut() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public User logIn(String nickname) {
         System.out.println("Try to login");
 
@@ -99,14 +101,16 @@ public class Core implements CoreInterface, Runnable {
 
     }
 
-    @Override
     public boolean cancelDownload() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void reconnect() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public static void receiveMessage(Message m){
+    	gui.addMessage(m);
+    }
+    
 }
