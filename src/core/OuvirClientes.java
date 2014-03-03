@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import atomics.Message;
+
 public class OuvirClientes extends Thread {
 
 	private InputStream cliente;
@@ -35,8 +37,11 @@ public class OuvirClientes extends Thread {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(this.cliente);
 			
-			while(true)
-				servidor.distribuiMensagem(ois.readObject());
+			while(true) {
+				Message m = (Message) ois.readObject();
+				servidor.print(m.getSender_nickname()+"says: "+m.getMessage());
+				servidor.distribuiMensagem(m);
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

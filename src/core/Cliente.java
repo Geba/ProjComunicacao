@@ -7,11 +7,11 @@ import java.util.Scanner;
 import atomics.Message;
 
 public class Cliente {
-	public static void main(String[] args) throws UnknownHostException,
-			IOException {
-		// dispara cliente
-		new Cliente("localhost", 8080).executa();
-	}
+//	public static void main(String[] args) throws UnknownHostException,
+//			IOException {
+//		// dispara cliente
+//		new Cliente("localhost", 8080).executa();
+//	}
 
 	private String host;
 	private int porta;

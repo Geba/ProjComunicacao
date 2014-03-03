@@ -24,8 +24,9 @@ public class ServidorFrame extends javax.swing.JFrame {
     }
 
     public ServidorFrame(Servidor servidor) {
-        this.lbIP.setText("IP: " + servidor.getIP());
+    	initComponents();
         this.servidor = servidor;
+        this.lbIP.setText("IP: " + servidor.getIP());
     }
 
     public void addLog(String log) {

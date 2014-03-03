@@ -5,25 +5,44 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import gui.ServidorFrame;
+
 public class Servidor {
 
-	public static void main(String[] args) throws IOException {
-		// inicia o servidor
-		System.out.println("SERVIDOR RUNNING...");
-		new Servidor(8080).executa();
-	}
-
+//	public static void main(String[] args) throws IOException {
+//		// inicia o servidor
+//		System.out.println("SERVIDOR RUNNING...");
+//		new Servidor(8080).executa();
+//	}
+	
+	private String ip;
+	private ServerSocket servidor;
 	private int porta;
 	private List<ObjectOutputStream> clientes;
+	ServidorFrame sf;
 
 	public Servidor(int porta) {
 		this.porta = porta;
 		this.clientes = new ArrayList<ObjectOutputStream>();
+		try {
+			this.servidor = new ServerSocket(this.porta);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Porta " + this.porta + " aberta!");
+				
+		try {
+			this.ip = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(ip);
+		
 	}
 
 	public void executa() throws IOException {
-		ServerSocket servidor = new ServerSocket(this.porta);
-		System.out.println("Porta " + this.porta + " aberta!");
 
 		while (true) {
 
@@ -79,5 +98,30 @@ public class Servidor {
 			}
 		}
 	}
-
+	
+	public String getIP(){
+		return this.ip;
+	}
+	
+	public void reset(){
+		try {
+			this.servidor.close();
+			for (int i=0; i<clientes.size(); i++)
+				clientes.get(i).close();
+			
+			this.executa();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setFrame(ServidorFrame sf){
+		this.sf = sf;
+	}
+	
+	public void print(String str){
+		this.sf.addLog(str);
+	}
+	
 }
