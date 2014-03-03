@@ -7,9 +7,11 @@ package gui;
 
 import atomics.Message;
 import atomics.Room;
+import atomics.User;
 import core.Core;
 import interfaces.GuiInterface;
 import java.awt.Label;
+import javax.swing.JProgressBar;
 
 /**
  *
@@ -18,11 +20,13 @@ import java.awt.Label;
 public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, GuiInterface {
 
     static Core core;
+    private boolean logado = false;
+    private RoomsListPanel roomsPanel;
+    private User user;
+
     /**
      * Creates new form GuiPrincipalFrame
      */
-    private boolean logado = false;
-
     public GuiPrincipalFrame() {
         initComponents();
     }
@@ -255,6 +259,25 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     @Override
     public void showNewFile(Object file) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void logIn(User user) {
+        this.user = user;
+
+        this.principalPanel.removeAll();
+        //loagind window
+        LoadingPanel lp = new LoadingPanel("Loading Rooms");
+        this.principalPanel.add(lp);
+        
+        
+        
+        
+        //loading window
+        this.roomsPanel = new RoomsListPanel();
+        this.roomsPanel.setVisible(true);
+        this.principalPanel.add(roomsPanel);
+        this.principalPanel.revalidate();
+
     }
 
 }
