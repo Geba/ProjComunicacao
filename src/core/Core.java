@@ -11,6 +11,9 @@ import atomics.User;
 import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 import java.util.List;
+import atomics.User;
+import atomics.Message;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,9 +22,12 @@ import java.util.List;
 public class Core implements CoreInterface, Runnable {
 
     static GuiPrincipalFrame gui;
+    static User user;
+    static List<Room> rooms;
 
     public Core() {
-        //FILL ME :)
+        this.user = null;
+        this.rooms = new ArrayList<Room>();
     }
 
     public void run() {
@@ -85,7 +91,12 @@ public class Core implements CoreInterface, Runnable {
     @Override
     public User logIn(String nickname) {
         System.out.println("Try to login");
-        return new User();
+
+        this.user = new User();
+
+        this.gui.logIn(user);
+        return null;
+
     }
 
     @Override

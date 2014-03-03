@@ -133,7 +133,9 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         String nickname = this.lbLogin.getText();
+        
         this.core.logIn(nickname);
+        
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void rBBusyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rBBusyActionPerformed
