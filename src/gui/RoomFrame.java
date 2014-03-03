@@ -6,9 +6,14 @@
 package gui;
 
 //import atomics.Message;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import atomics.Message;
 import atomics.User;
 import core.Core;
+
 import javax.swing.SwingUtilities;
 
 /**
@@ -225,7 +230,7 @@ public class RoomFrame extends javax.swing.JFrame {
     //ok
     private void btEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEnviarMouseClicked
         if (this.tATexto.getText().length() != 0) {
-            sendMessage();
+            sendMessage(0);
         }
 
     }//GEN-LAST:event_btEnviarMouseClicked
@@ -233,7 +238,7 @@ public class RoomFrame extends javax.swing.JFrame {
     private void tATextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tATextoKeyTyped
         if (evt.getKeyChar() == 10) {
             if (this.tATexto.getText().length() != 1) {
-                sendMessage();
+                sendMessage(1);
             } else {
                 this.tATexto.setText("");
             }
@@ -298,16 +303,23 @@ public class RoomFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
-        MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says:", message.getTime());
+        MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says: ", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();
         scrollPaneToBottom();
     }
 
-    public void sendMessage() {
+    public void sendMessage(int code) {
+    	
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); ////isso tem que ser alterado pelo servidor
+    	String time = dateFormat.format(new Date());
+    	
+    	String str = this.tATexto.getText();
         long id1 = 12345;
-        Message msg = new Message(id1, this.getID(), "just now", this.tATexto.getText(), "outrocliente");
+              
+        Message msg = new Message(id1, this.getID(), time.substring(time.length()-8, time.length()), 
+        						  str.substring(0, str.length()-code), "htadacam");
         Core.sendMessage(msg);
 //        addMensagem(msg);
         this.tATexto.setText("");
