@@ -23,7 +23,7 @@ public class UserPanel extends javax.swing.JPanel {
     public UserPanel(User user) {
         initComponents();
         this.lbName.setText(user.getNickname());
-        this.lbStatus.setText(user.getStatus());
+        this.lbStatus.setText(user.getStatus()+"");
     }
 
     /**

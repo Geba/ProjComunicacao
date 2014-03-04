@@ -8,8 +8,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import atomics.Message;
+import atomics.Request;
+import atomics.User;
 import gui.ServidorFrame;
 
 public class Servidor {
@@ -23,13 +26,12 @@ public class Servidor {
 	private String ip;
 	private ServerSocket servidor;
 	private int porta;
-	private List<ObjectOutputStream> clientes;
+	//private List<ObjectOutputStream> clientes;
 	ServidorFrame sf;
-	DateFormat dateFormat;
 
 	public Servidor(int porta) {
 		this.porta = porta;
-		this.clientes = new ArrayList<ObjectOutputStream>();
+		//this.clientes = new ArrayList<ObjectOutputStream>();
 		try {
 			this.servidor = new ServerSocket(this.porta);
 		} catch (IOException e) {
@@ -45,7 +47,6 @@ public class Servidor {
 			e.printStackTrace();
 		}
 		System.out.println("Server IP: " + ip);
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	}
 
 	public void executa() throws IOException {
@@ -54,70 +55,50 @@ public class Servidor {
 
 			// aceita um cliente
 			Socket cliente = servidor.accept();
-			this.print("Nova conexao com o cliente "
-					+ cliente.getInetAddress().getHostAddress());
-			System.out.println("Nova conexao com o cliente "
-					+ cliente.getInetAddress().getHostAddress());
 
 			// adiciona saida do cliente a lista
-			ObjectOutputStream dos = new ObjectOutputStream(
-					cliente.getOutputStream());
-			this.clientes.add(dos);
+			ObjectOutputStream dos = new ObjectOutputStream(cliente.getOutputStream());
+            long id = GlobalServer.core.createUserBeforeLogin(dos);
+             
+ 			this.print("Nova conexao com o cliente "
+					+ cliente.getInetAddress().getHostAddress() +" com o ID: "+id);
+			System.out.println("Nova conexao com o cliente "
+					+ cliente.getInetAddress().getHostAddress()+" com o ID: "+id);
 
 			// cria tratador de cliente numa nova thread
-			OuvirClientes oc = new OuvirClientes(cliente.getInputStream(), this, cliente.getLocalAddress().getHostAddress());
+			OuvirClientes oc = new OuvirClientes(id, cliente.getInputStream(), this, cliente.getLocalAddress().getHostAddress());
 			oc.start();
 		}
 
 	}
 
-//	public void distribuiMensagem(String msg) {
-//		// envia msg para todo mundo
-//		for (int i = 0; i < clientes.size(); i++) {
-//			try {
-//				clientes.get(i).writeBytes(msg + "\n");
-//			} catch (IOException e) {
-//				System.out.println("erro no distribui");
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-
-//	public void distribuiMensagem(byte[] msg) {
-//		// envia msg para todo mundo
-//		for (int i = 0; i < clientes.size(); i++) {
-//			try {
-//				clientes.get(i).write(msg);
-//			} catch (IOException e) {
-//				System.out.println("erro no distribui");
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-
-	public void distribuiMensagem(Object msg) {
-		// envia msg para todo mundo
-		((Message) msg).setTime(this.dateFormat.format(new Date()));
-		for (int i = 0; i < clientes.size(); i++) {
-			try {
-				clientes.get(i).writeObject(msg);
-			} catch (IOException e) {
-				System.out.println("erro no distribui");
-				e.printStackTrace();
-			}
-		}
+	public void send(Request rq, User user) throws IOException {
+            //ObjectOutputStream dos = new ObjectOutputStream(user.getSocket().getOutputStream());
+            user.getSocket().writeObject(rq);
+	}
+        
+        public void send(Request rq, long id) throws IOException {
+            boolean sair = false;
+            for(int i=0; !sair & i<GlobalServer.users.size(); i++){
+                if(GlobalServer.users.get(i).getId()==id) {
+                	//System.out.println("achou o cara pra mandar");
+                	GlobalServer.users.get(i).getSocket().writeObject(rq);
+                    //System.out.println("escreveu o objeto");
+                    sair = true;
+                }
+            }
 	}
 
 	public String getIP() {
-		return this.ip;
+            return this.ip;
 	}
 
 	public void reset() {
 		try {
 			this.servidor.close();
-			for (int i = 0; i < clientes.size(); i++)
-				clientes.get(i).close();
-
+			for (int i = 0; i < GlobalServer.users.size(); i++)
+				GlobalServer.users.get(i).getSocket().close();
+                        this.servidor = new ServerSocket(this.porta);
 			this.executa();
 
 		} catch (IOException e) {

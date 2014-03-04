@@ -320,7 +320,7 @@ public class RoomFrame extends javax.swing.JFrame {
             System.out.println("Sala nula");
         }
         System.out.print(GlobalClient.user.getId());
-        Message msg = new Message(GlobalClient.user.getID(), this.room.getID(), time.substring(time.length() - 8, time.length()), str, GlobalClient.user.getNickname());
+        Message msg = new Message(GlobalClient.user.getId(), this.room.getID(), time.substring(time.length() - 8, time.length()), str, GlobalClient.user.getNickname());
         Core.sendMessage(msg);
 //        addMensagem(msg);
         this.tATexto.setText("");

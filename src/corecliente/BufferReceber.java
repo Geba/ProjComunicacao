@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 
 import atomics.Message;
+import atomics.Request;
 
 public class BufferReceber extends Thread {
 
@@ -21,8 +22,9 @@ public class BufferReceber extends Thread {
 			
 			while (true) {
 				try {
-					Message m = (Message) ois.readObject();
-					Core.receiveMessage(m);
+					Request m = (Request) ois.readObject();
+					System.out.println("recebeu "+m.tipo);
+					GlobalClient.core.handleRequest(m);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {

@@ -5,22 +5,23 @@
  */
 package atomics;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Geeo
  */
-public class Room {
+public class Room implements Serializable {
 
     private long ID;
     private String name;
     private long creator_ID;
-    private ArrayList<Long> users_ID;
+    private ArrayList<User> users;
     // private Vector<Mensagem> mensagens;
 
     public Room() {
-        users_ID = new ArrayList<Long>();
+        users = new ArrayList<User>();
     }
 
     public Room(long ID, String name, long creator_ID) {
@@ -53,16 +54,16 @@ public class Room {
         this.creator_ID = creator_ID;
     }
 
-    public ArrayList<Long> getUsers_ID() {
-        return users_ID;
-    }
+    public ArrayList<User> getUsers() {
+		return users;
+	}
 
-    public void setUsers_ID(ArrayList<Long> users_ID) {
-        this.users_ID = users_ID;
-    }
+	public void setUsers(ArrayList<User> users) {
+		this.users = users;
+	}
 
-    public void addUser(long ID) {
-        this.users_ID.add(ID);
+	public void addUser(User u) {
+        this.users.add(u);
     }
 
 }

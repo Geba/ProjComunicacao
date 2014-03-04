@@ -265,16 +265,16 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         //loagind window
         LoadingPanel lp = new LoadingPanel("Loading Rooms");
         this.principalPanel.add(lp);
+
         //loading window
-        List<Room> actualRooms = GlobalClient.core.refreshRooms();
+        GlobalClient.core.refreshRooms();
 
-        this.roomsPanel = new RoomsListPanel();
-        this.roomsPanel.refreshExistingRooms(actualRooms);
-        this.roomsPanel.setVisible(true);
-        this.principalPanel.removeAll();
-        this.principalPanel.add(roomsPanel);
-        this.principalPanel.revalidate();
-
+//        this.roomsPanel = new RoomsListPanel();
+//        this.roomsPanel.refreshExistingRooms(actualRooms);
+//        this.roomsPanel.setVisible(true);
+//        this.principalPanel.removeAll();
+//        this.principalPanel.add(roomsPanel);
+//        this.principalPanel.revalidate();
     }
 
     public void addRoomFrame(RoomFrame rf) {
@@ -288,6 +288,21 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
                 roomFrameList.get(i).addMensagem(m);
             }
         }
+    }
+
+    public void showExistingRooms(ArrayList<Room> existingRooms) {
+        System.out.println("Etrou aqui, rooms qnt: " + existingRooms.size());
+        this.principalPanel.removeAll();
+        if (existingRooms.size() != 0) {
+            this.roomsPanel = new RoomsListPanel();
+            this.roomsPanel.refreshExistingRooms(existingRooms);
+            this.roomsPanel.setVisible(true);
+            this.principalPanel.add(roomsPanel);
+        } else {
+            NaoExistemRooms teste = new NaoExistemRooms();
+            this.principalPanel.add(teste);
+        }
+        this.principalPanel.revalidate();
     }
 
 }

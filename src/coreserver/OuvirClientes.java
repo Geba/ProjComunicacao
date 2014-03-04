@@ -8,17 +8,20 @@ import java.util.List;
 import java.util.Scanner;
 
 import atomics.Message;
+import atomics.Request;
 
 public class OuvirClientes extends Thread {
 	
 	private String ip;
 	private InputStream cliente;
 	private Servidor servidor;
+        private long id;
 
-	public OuvirClientes(InputStream cliente, Servidor servidor, String ip) {
+	public OuvirClientes(long id, InputStream cliente, Servidor servidor, String ip) {
 		this.cliente = cliente;
 		this.servidor = servidor;
 		this.ip = ip;
+                this.id = id;
 	}
 
 	public void run() {
@@ -26,9 +29,12 @@ public class OuvirClientes extends Thread {
 			ObjectInputStream ois = new ObjectInputStream(this.cliente);
 
 			while (true) {
-				Message m = (Message) ois.readObject();
+				System.out.println("esperando chegar algo");
+				Request m = (Request) ois.readObject();
+                System.out.println("chegou "+m.tipo);       
 				//servidor.print(m.getSender_nickname() + " says: " + m.getMessage());
-				servidor.distribuiMensagem(m);
+				//servidor.distribuiMensagem(m);
+                GlobalServer.core.handleRequest(m, id);
 			}
 
 		} catch (IOException e) {
@@ -45,7 +51,7 @@ public class OuvirClientes extends Thread {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("erro no ouvir clientes2");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 }

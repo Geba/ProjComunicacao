@@ -23,14 +23,14 @@ public class Database {
 	}
 	
 	public boolean WriteUsuario (User user) {
-		File file = new File("database/usuarios/" + user.getID() + this.extensao);
+		File file = new File("database/usuarios/" + user.getId() + this.extensao);
 		try {
 			//FileWriter fw = new FileWriter(file, true);
 			//PrintWriter pw = new PrintWriter(fw, true);
 			PrintWriter pw = new PrintWriter(file);
-			pw.println(user.getID());
+			pw.println(user.getId());
 			pw.println(user.getNickname());
-			pw.println(user.getIP());
+			//pw.println(user.getIP());
 			pw.println(user.getAvatar());
 			pw.close();
 		} catch (IOException e) {
@@ -48,10 +48,10 @@ public class Database {
 				pw.println(sala.getName());
 				pw.println(sala.getCreator_ID());
 				
-				ArrayList<Long> ids = sala.getUsers_ID();
-				Iterator<Long> it = ids.iterator();
-				while(it.hasNext())
-					pw.println(it.next());
+//				ArrayList<Long> ids = sala.getUsers_ID();
+//				Iterator<Long> it = ids.iterator();
+//				while(it.hasNext())
+//					pw.println(it.next());
 				
 				pw.close();
 			} catch (IOException e) {

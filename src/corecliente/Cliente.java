@@ -5,6 +5,7 @@ import java.net.*;
 import java.util.Scanner;
 
 import atomics.Message;
+import atomics.Request;
 
 public class Cliente {
 //	public static void main(String[] args) throws UnknownHostException,
@@ -40,8 +41,10 @@ public class Cliente {
 //		}
 	}
 	
-	public void send(Message m) throws IOException {
+	public void send(Request m) throws IOException {
+		System.out.println(m.tipo +" < cliente");
 		this.dos.writeObject(m);
 	}
+        
 	
 }

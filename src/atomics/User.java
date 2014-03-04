@@ -5,6 +5,8 @@
  */
 package atomics;
 
+import java.io.ObjectOutputStream;
+
 /**
  *
  * @author Geeo
@@ -13,72 +15,64 @@ public class User {
 
     private long id;
     private String nickname;
-    private String IP;
     private String avatar; // removivel
-    private boolean spy;
-    private String status;
+    private int status;
+    private ObjectOutputStream socket;
 
     public User(long id, String nickname) {
         this.id = id;
         this.nickname = nickname;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
+    
+    public User(long id, ObjectOutputStream socket){
         this.id = id;
+        this.socket = socket;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
+    
+    public User(long id, String nickname, int status){
+        this.id = id;
+        this.nickname = nickname;
         this.status = status;
     }
 
-    public User() {
-    }
+	public long getId() {
+		return id;
+	}
 
-    public long getID() {
-        return id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setID(long iD) {
-        id = iD;
-    }
+	public String getNickname() {
+		return nickname;
+	}
 
-    public String getNickname() {
-        return nickname;
-    }
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
+	public String getAvatar() {
+		return avatar;
+	}
 
-    public String getIP() {
-        return IP;
-    }
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 
-    public void setIP(String iP) {
-        IP = iP;
-    }
+	public int getStatus() {
+		return status;
+	}
 
-    public String getAvatar() {
-        return avatar;
-    }
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+	public ObjectOutputStream getSocket() {
+		return socket;
+	}
 
-    public void setSpy(boolean spy) {
-        this.spy = spy;
-    }
+	public void setSocket(ObjectOutputStream socket) {
+		this.socket = socket;
+	}
 
-    public boolean getSpy() {
-        return this.spy;
-    }
 }

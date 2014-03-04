@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 import java.util.ArrayList;
+import principal.Constantes;
 
 
 /**
@@ -46,31 +47,26 @@ public class Core implements Runnable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Room> refreshRooms() {//from server
-        System.out.println("falta retornar as salas");
-        //testes
-        Room r1 = new Room(1, "Animais", 1); //roomid, roomname, rooomcreater
-        Room r2 = new Room(2, "Utensilios", 3);
-        Room r3 = new Room(3, "Veiculos", 2);
-        Room r4 = new Room(4, "Pokemons", 3);
-        Room r5 = new Room(5, "Cientistas", 2);
-        ArrayList<Room> rooms = new ArrayList<Room>();
-        rooms.add(r1);
-        rooms.add(r2);
-        rooms.add(r3);
-        rooms.add(r4);
-        rooms.add(r5);
-        //Teste
-        return rooms;
+    public void refreshRooms() {//from server
+    	Request rq = new Request(Constantes.GET_EXISTING_ROOMS);
+    	rq.sender_ID = GlobalClient.user.getId();
+    	try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERRO NO REQUEST REFRESH ROOMS");
+			//e.printStackTrace();
+		}
     }
 
     public static void sendMessage(Message msg) {
         System.out.println("Core: trying to send message");
+        Request rq = new Request(msg);
         try {
-            GlobalClient.cliente.send(msg);
+            GlobalClient.cliente.send(rq);
         } catch (IOException e) {
             System.out.println("erro no send (core)");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -102,15 +98,22 @@ public class Core implements Runnable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void logIn(String nickname, long userId, String ipServer) throws IOException {//para testes
+    public void logIn(String nickname, long userId, String ipServer, int status) throws IOException {//para testes
         System.out.println("Try to login");
 
-        GlobalClient.user = new User(1, nickname);
         GlobalClient.setClient(new Cliente(ipServer, 8080));
-        GlobalClient.cliente.executa();
+        GlobalClient.cliente.executa(); //cria a conexao
+     
+        Request newuserrequest = new Request(Constantes.LOGIN, nickname, status);     
+        GlobalClient.cliente.send(newuserrequest);
+        System.out.println("mandou o request de login");
+
+    }
+    public void logInOk (User user) {
+    	System.out.println("pode comemorar \\o");
+        GlobalClient.user = user;
         GlobalClient.oppenedRooms = new ArrayList<Room>();
         GlobalClient.gui.logIn();
-
     }
 
     public boolean cancelDownload() {
@@ -131,7 +134,25 @@ public class Core implements Runnable {
 
     public void handleRequest(Request rq){
         
+        int tipo = rq.tipo;
+        
+        switch(tipo){
+            case Constantes.LOGIN_OK:
+                logInOk(new User(rq.sender_ID, rq.sender_nickname, rq.newStatus));
+                break;
+            case Constantes.RECEIVE_MESSAGE:
+            	receiveMessage(rq.getMessage());
+            	break;
+            case Constantes.GET_EXISTING_ROOMS:
+            	showExistingRooms(rq);
+        }
+        
     }
+
+	private void showExistingRooms(Request rq) {
+		System.out.println("show existing rooms cliente");
+		GlobalClient.gui.showExistingRooms(rq.existingRooms);
+	}
     
     
 }

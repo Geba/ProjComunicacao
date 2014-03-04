@@ -177,8 +177,11 @@ public class LoginPanel extends javax.swing.JPanel {
         String str = this.tfUserId.getText();
         long id1 = Long.parseLong(str);
         String ip = this.tFServidorIp.getText();
+        
+        int status = 0; ///////////////////////
+        
         try {
-            GlobalClient.core.logIn(nickname, id1, ip);
+            GlobalClient.core.logIn(nickname, id1, ip, status);
         } catch (IOException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

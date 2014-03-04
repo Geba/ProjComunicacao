@@ -14,9 +14,18 @@ import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import principal.Constantes;
 
 
 /**
@@ -24,114 +33,105 @@ import java.util.ArrayList;
  * @author Geeo
  */
 public class CoreServer implements Runnable {
-//public class Core implements CoreInterface, Runnable {
+	
+	DateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
 
-//    static GuiPrincipalFrame gui;
-  //  static User user;
-//    static List<Room> rooms;
-
-    public CoreServer() {
-  //      this.user = null;
-    //    this.rooms = new ArrayList<Room>();
-    }
+    public CoreServer() {}
 
     public void run() {
         System.out.println("Core running"); //works!!
     }
 
-    public void setGui(GuiPrincipalFrame gui) {
-      //  this.gui = gui;
+    public long createUserBeforeLogin(ObjectOutputStream socket){
+        long id = new Random().nextInt(999999);
+        User u = new User(id, socket);
+        GlobalServer.users.add(u);
+        return id;
     }
 
-    public List<User> refreshUsers(long idConversa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public List<Room> refreshRooms() {//from server
-        System.out.println("falta retornar as salas");
-        //testes
-        Room r1 = new Room(1, "Animais", 1); //roomid, roomname, rooomcreater
-        Room r2 = new Room(2, "Utensilios", 3);
-        Room r3 = new Room(3, "Veiculos", 2);
-        Room r4 = new Room(4, "Pokemons", 3);
-        Room r5 = new Room(5, "Cientistas", 2);
-        ArrayList<Room> rooms = new ArrayList<Room>();
-        rooms.add(r1);
-        rooms.add(r2);
-        rooms.add(r3);
-        rooms.add(r4);
-        rooms.add(r5);
-        //Teste
-        return rooms;
-    }
-
-    public static void sendMessage(Message msg) {
-        System.out.println("Core: trying to send message");
-        try {
-            GlobalClient.cliente.send(msg);
-        } catch (IOException e) {
-            System.out.println("erro no send (core)");
-            e.printStackTrace();
+    public void handleRequest(Request rq, long id){
+        //o id é só para o login
+        int tipo = rq.tipo;
+        System.out.println("handle server, tipo: "+tipo);
+        switch(tipo){
+            case Constantes.LOGIN:
+            	handleLogin(rq, id);         
+                break;
+            case Constantes.SEND_MESSAGE:
+            	sendMessage(rq);
+                break;
+            case Constantes.GET_EXISTING_ROOMS:
+            	getExistingRooms(rq);
+            	//sendMessage(rq);
+            	break;
+            default:
+                throw new UnsupportedOperationException("Not supported yet.");
+                            
+            
         }
-    }
-
-    public void changeNickName(String newNickName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void sendFile(Object file) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void refreshStatus(int UserId, int status) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void createNewRoom(String name, String assunto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void closeRoom(String roomId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Object startDownload(long fileId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void logOut() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void logIn(String nickname, long userId, String ipServer) throws IOException {//para testes
-        System.out.println("Try to login");
-
-        GlobalClient.user = new User(1, nickname);
-        GlobalClient.setClient(new Cliente(ipServer, 8080));
-        GlobalClient.cliente.executa();
-        GlobalClient.oppenedRooms = new ArrayList<Room>();
-        GlobalClient.gui.logIn();
-
-    }
-
-    public boolean cancelDownload() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void reconnect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void receiveMessage(Message m) {
-        GlobalClient.gui.receiveMessage(m);
-    }
-
-    public void enterRoom(Room room) {//fazer conexao com o servidor
-        GlobalClient.gui.showNewRoom(room);
-    }
-
-    public void handleRequest(Request rq){
         
+    }
+    
+    private void getExistingRooms(Request rq) {
+    	Request r = new Request(Constantes.GET_EXISTING_ROOMS);
+    	r.existingRooms = GlobalServer.rooms;
+    	//r.existingRooms = null;
+    	try {
+    		System.out.println("Vai mandar do servidor para o cliente as existing rooms");
+			GlobalServer.servidor.send(r, rq.sender_ID);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERRO EM MANDAR AS SALAS PRO CLIENTE");
+		}
+	}
+
+	private void sendMessage(Request rq) {
+		//System.out.println("sending message start");
+		
+    	rq.time = dataFormat.format(new Date());
+    	rq.tipo = Constantes.RECEIVE_MESSAGE;
+		long salaid = rq.sala_ID;
+		boolean sair = false;
+		for (int i=0; i < GlobalServer.rooms.size() && !sair; i++) {
+			System.out.println(GlobalServer.rooms.get(i).getID()+" ? "+salaid);
+			if (GlobalServer.rooms.get(i).getID()==salaid){
+				ArrayList<User> users = GlobalServer.rooms.get(i).getUsers();
+				for (int j=0; j < users.size(); j++){
+					try {
+						GlobalServer.servidor.send(rq, users.get(j));
+						//System.out.println("sending message");
+					} catch (IOException e) {
+						System.out.println("ERRO EM ENVIAR A MENSAGEM");
+						//e.printStackTrace();
+					}
+				}
+				sair = true;
+			}
+		}
+		
+	}
+
+	public void handleLogin(Request rq, long id){
+        boolean sair = false;
+        for (int i=0; i < GlobalServer.users.size() && !sair; i++){
+        	//System.out.println(GlobalServer.users.get(i).getId() + " ? " + id);
+            if(GlobalServer.users.get(i).getId()==id){                   	
+                GlobalServer.users.get(i).setNickname(rq.sender_nickname);
+                GlobalServer.users.get(i).setStatus(rq.newStatus);
+                
+                Request ok = new Request(Constantes.LOGIN_OK, id);
+                ok.sender_nickname = rq.sender_nickname;
+                ok.newStatus = rq.newStatus;
+                
+                try {
+                    GlobalServer.servidor.send(ok, GlobalServer.users.get(i));
+                } catch (IOException ex) {
+                    System.out.println("ERRO NO ESCREVER DO LOGIN");
+                    //Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                sair = true;
+            } //se sair do if, sai do for
+        } 
     }
     
     
