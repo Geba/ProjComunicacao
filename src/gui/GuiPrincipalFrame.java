@@ -251,12 +251,12 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     @Override
-    public void showNewSong(Object song) {
+    public void showReceivedSong(Object song) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void showNewFile(Object file) {
+    public void showReceivedFile(Object file) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

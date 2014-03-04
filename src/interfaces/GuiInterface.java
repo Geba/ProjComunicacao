@@ -18,8 +18,8 @@ public interface GuiInterface {
 
     public void showReceivedMessage(Message msg);
 
-    public void showNewSong(Object song);
+    public void showReceivedSong(Object song);
 
-    public void showNewFile(Object file);
+    public void showReceivedFile(Object file);
 
 }

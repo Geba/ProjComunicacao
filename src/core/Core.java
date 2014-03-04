@@ -7,6 +7,7 @@ package core;
 
 import atomics.Room;
 import atomics.Message;
+import atomics.Request;
 import atomics.User;
 import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
@@ -129,4 +130,9 @@ public class Core implements Runnable {
         Global.gui.showNewRoom(room);
     }
 
+    public void handleRequest(Request rq){
+        
+    }
+    
+    
 }
