@@ -128,9 +128,19 @@ public class Core implements Runnable {
         GlobalClient.gui.receiveMessage(m);
     }
 
-    public void enterRoom(Room room) {//fazer conexao com o servidor
-        GlobalClient.gui.showNewRoom(room);
-    }
+    public void requestEnterRoom(Room room) throws IOException {//fazer conexao com o servidor
+        Request rq = new Request(Constantes.ENTER_ROOM);
+        rq.sender_ID = GlobalClient.user.getId();
+        rq.sala_ID= room.getID();
+        
+        GlobalClient.cliente.send(rq);
+     }
+
+	private void showRoom(Request rq) {
+		Room newRoom = rq.existingRooms.get(0);
+		GlobalClient.oppenedRooms.add(newRoom);
+		GlobalClient.gui.showNewRoom(newRoom);
+	}
 
     public void handleRequest(Request rq){
         
@@ -145,9 +155,14 @@ public class Core implements Runnable {
             	break;
             case Constantes.GET_EXISTING_ROOMS:
             	showExistingRooms(rq);
+            	break;
+            case Constantes.ENTER_ROOM://acabei de entrar em uma sala especifica
+            	showRoom(rq);
+            	break;
         }
         
     }
+
 
 	private void showExistingRooms(Request rq) {
 		System.out.println("show existing rooms cliente");

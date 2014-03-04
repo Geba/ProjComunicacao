@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 
 import atomics.Message;
 import atomics.Request;
+import principal.Constantes;
 
 public class BufferReceber extends Thread {
 
@@ -18,12 +19,12 @@ public class BufferReceber extends Thread {
 		// recebe msgs do servidor e imprime na tela
 		ObjectInputStream ois;
 		try {
-			ois = new ObjectInputStream(this.servidor);
+			ois = new ObjectInputStream(this.servidor); ////
 			
 			while (true) {
 				try {
 					Request m = (Request) ois.readObject();
-					System.out.println("recebeu "+m.tipo);
+					System.out.println("recebeu "+Constantes.gettipo(m.tipo));
 					GlobalClient.core.handleRequest(m);
 				} catch (IOException e) {
 					e.printStackTrace();

@@ -6,12 +6,13 @@
 package atomics;
 
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  *
  * @author Geeo
  */
-public class User {
+public class User implements Serializable {
 
     private long id;
     private String nickname;

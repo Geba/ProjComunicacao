@@ -28,6 +28,7 @@ public class Room implements Serializable {
         this.ID = ID;
         this.name = name;
         this.creator_ID = creator_ID;
+        users = new ArrayList<User>();
     }
 
     public long getID() {

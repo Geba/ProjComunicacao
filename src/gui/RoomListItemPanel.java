@@ -5,6 +5,8 @@
  */
 package gui;
 
+import java.io.IOException;
+
 import atomics.Room;
 import erros.UsuarioNaoEncontradoException;
 import corecliente.GlobalClient;
@@ -43,7 +45,12 @@ public class RoomListItemPanel extends javax.swing.JPanel {
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
+                try {
+					formMouseClicked(evt);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -67,8 +74,10 @@ public class RoomListItemPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        GlobalClient.core.enterRoom(this.room);
+    private void formMouseClicked(java.awt.event.MouseEvent evt) throws IOException {//GEN-FIRST:event_formMouseClicked
+        System.out.println("Clicou em "+ this.room.getName());
+        GlobalClient.core.requestEnterRoom(this.room);
+        
     }//GEN-LAST:event_formMouseClicked
 
 

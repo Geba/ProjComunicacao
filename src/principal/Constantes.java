@@ -29,7 +29,7 @@ public class Constantes {
     public static final int LOGIN_OK = 15; //um ack mandado do servidor pra o cliente
     public static final int RECEIVE_MESSAGE = 16; //quando o cliente receber uma msg
     
-    public static String tipo (int i) {
+    public static String gettipo (int i) {
 		String s = "";
 		switch (i) {
 		case LOGIN:
