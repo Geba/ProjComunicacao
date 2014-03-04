@@ -1,4 +1,4 @@
-package principal;
+package corecliente;
 
 import corecliente.Cliente;
 import corecliente.Core;
@@ -6,7 +6,7 @@ import gui.GuiPrincipalFrame;
 import atomics.*;
 import java.util.ArrayList;
 
-public class Global {
+public class GlobalClient {
 
     public static Core core;
     public static GuiPrincipalFrame gui;
@@ -20,7 +20,7 @@ public class Global {
     }
 
     public static void setCore(Core core) {
-        Global.core = core;
+        GlobalClient.core = core;
     }
 
     public static GuiPrincipalFrame getGui() {
@@ -28,10 +28,10 @@ public class Global {
     }
 
     public static void setGui(GuiPrincipalFrame gui) {
-        Global.gui = gui;
+        GlobalClient.gui = gui;
     }
 
     public static void setClient(Cliente cliente) {
-        Global.cliente = cliente;
+        GlobalClient.cliente = cliente;
     }
 }

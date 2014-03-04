@@ -7,7 +7,7 @@ package gui;
 
 import atomics.Room;
 import erros.UsuarioNaoEncontradoException;
-import principal.Global;
+import corecliente.GlobalClient;
 
 /**
  *
@@ -68,7 +68,7 @@ public class RoomListItemPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        Global.core.enterRoom(this.room);
+        GlobalClient.core.enterRoom(this.room);
     }//GEN-LAST:event_formMouseClicked
 
 

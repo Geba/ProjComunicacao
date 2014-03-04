@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JProgressBar;
-import principal.Global;
+import corecliente.GlobalClient;
 
 /**
  *
@@ -266,7 +266,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         LoadingPanel lp = new LoadingPanel("Loading Rooms");
         this.principalPanel.add(lp);
         //loading window
-        List<Room> actualRooms = Global.core.refreshRooms();
+        List<Room> actualRooms = GlobalClient.core.refreshRooms();
 
         this.roomsPanel = new RoomsListPanel();
         this.roomsPanel.refreshExistingRooms(actualRooms);

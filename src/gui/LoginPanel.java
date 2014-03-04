@@ -9,7 +9,7 @@ import corecliente.Core;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import principal.Global;
+import corecliente.GlobalClient;
 
 /**
  *
@@ -178,7 +178,7 @@ public class LoginPanel extends javax.swing.JPanel {
         long id1 = Long.parseLong(str);
         String ip = this.tFServidorIp.getText();
         try {
-            Global.core.logIn(nickname, id1, ip);
+            GlobalClient.core.logIn(nickname, id1, ip);
         } catch (IOException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

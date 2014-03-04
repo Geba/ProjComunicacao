@@ -16,7 +16,7 @@ import atomics.User;
 import corecliente.Core;
 
 import javax.swing.SwingUtilities;
-import principal.Global;
+import corecliente.GlobalClient;
 
 /**
  *
@@ -319,8 +319,8 @@ public class RoomFrame extends javax.swing.JFrame {
         if (room == null) {
             System.out.println("Sala nula");
         }
-        System.out.print(Global.user.getId());
-        Message msg = new Message(Global.user.getID(), this.room.getID(), time.substring(time.length() - 8, time.length()), str, Global.user.getNickname());
+        System.out.print(GlobalClient.user.getId());
+        Message msg = new Message(GlobalClient.user.getID(), this.room.getID(), time.substring(time.length() - 8, time.length()), str, GlobalClient.user.getNickname());
         Core.sendMessage(msg);
 //        addMensagem(msg);
         this.tATexto.setText("");

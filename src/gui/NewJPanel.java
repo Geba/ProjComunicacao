@@ -5,7 +5,7 @@
  */
 package gui;
 
-import principal.Global;
+import corecliente.GlobalClient;
 
 /**
  *
@@ -18,7 +18,7 @@ public class NewJPanel extends javax.swing.JPanel {
      */
     public NewJPanel() {
         initComponents();
-        Global.user.getNickname();
+        GlobalClient.user.getNickname();
     }
 
     /**

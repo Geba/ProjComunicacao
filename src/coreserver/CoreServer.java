@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package corecliente;
+package coreserver;
 
+import corecliente.*;
 import atomics.Room;
 import atomics.Message;
 import atomics.Request;
@@ -22,14 +23,14 @@ import java.util.ArrayList;
  *
  * @author Geeo
  */
-public class Core implements Runnable {
+public class CoreServer implements Runnable {
 //public class Core implements CoreInterface, Runnable {
 
 //    static GuiPrincipalFrame gui;
   //  static User user;
 //    static List<Room> rooms;
 
-    public Core() {
+    public CoreServer() {
   //      this.user = null;
     //    this.rooms = new ArrayList<Room>();
     }

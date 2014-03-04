@@ -5,6 +5,7 @@
  */
 package principal;
 
+import corecliente.GlobalClient;
 import corecliente.Core;
 import atomics.Room;
 import atomics.User;
@@ -31,16 +32,16 @@ public class AplicacaoPrincipal {
 
     public static void main(String[] args) throws UnknownHostException, IOException {
         //gui.run();
-        Global.core = new Core();
+        GlobalClient.core = new Core();
         //core.run();
-        Global.gui = new GuiPrincipalFrame();
-        Global.gui.setVisible(true);
+        GlobalClient.gui = new GuiPrincipalFrame();
+        GlobalClient.gui.setVisible(true);
         //core.setGui(gui);
-        centerContainer(Global.gui);
+        centerContainer(GlobalClient.gui);
         /*
-        Global.setClient(new Cliente("localHost", 8080));
-        Global.cliente.executa();
-        Global.oppenedRooms = new ArrayList<Room>();
+        GlobalClient.setClient(new Cliente("localHost", 8080));
+        GlobalClient.cliente.executa();
+        GlobalClient.oppenedRooms = new ArrayList<Room>();
         */
         //gui.setVisible(true);
         //RoomFrame conversa = new RoomFrame("roomName", 456, user, core);
@@ -49,7 +50,7 @@ public class AplicacaoPrincipal {
         //conversa2.setVisible(true);
 
         //Global.setCore(core);
-//        Global.setGui(gui);
+//        GlobalClient.setGui(gui);
         //gui.addRoomFrame(conversa);
         //gui.addRoomFrame(conversa2);
         
