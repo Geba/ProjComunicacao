@@ -14,9 +14,6 @@ import interfaces.CoreInterface;
 import java.io.IOException;
 import java.util.List;
 
-import atomics.User;
-import atomics.Message;
-
 import java.util.ArrayList;
 
 import principal.Global;
@@ -52,12 +49,12 @@ public class Core implements Runnable {
     public List<Room> refreshRooms() {//from server
         System.out.println("falta retornar as salas");
         //testes
-        Room r1 = new Room(1, "Animais", 1);//roomid, roomname, rooomcreater
+        Room r1 = new Room(1, "Animais", 1); //roomid, roomname, rooomcreater
         Room r2 = new Room(2, "Utensilios", 3);
         Room r3 = new Room(3, "Veiculos", 2);
         Room r4 = new Room(4, "Pokemons", 3);
         Room r5 = new Room(5, "Cientistas", 2);
-        ArrayList rooms = new ArrayList<Room>();
+        ArrayList<Room> rooms = new ArrayList<Room>();
         rooms.add(r1);
         rooms.add(r2);
         rooms.add(r3);
@@ -129,16 +126,7 @@ public class Core implements Runnable {
     }
 
     public void enterRoom(Room room) {//fazer conexao com o servidor
-        boolean achei = false;
         Global.gui.showNewRoom(room);
-        /*
-         for (int i = 0; !achei& i < Global.oppenedRooms.size(); i++) {
-         if (Global.oppenedRooms.get(i).getID() == room.getID()) {
-         achei  =true;
-                
-         }
-         }
-         */
     }
 
 }

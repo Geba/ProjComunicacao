@@ -1,25 +1,31 @@
 package core;
+
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import atomics.Message;
 import gui.ServidorFrame;
 
 public class Servidor {
 
-//	public static void main(String[] args) throws IOException {
-//		// inicia o servidor
-//		System.out.println("SERVIDOR RUNNING...");
-//		new Servidor(8080).executa();
-//	}
-	
+	// public static void main(String[] args) throws IOException {
+	// // inicia o servidor
+	// System.out.println("SERVIDOR RUNNING...");
+	// new Servidor(8080).executa();
+	// }
+
 	private String ip;
 	private ServerSocket servidor;
 	private int porta;
 	private List<ObjectOutputStream> clientes;
 	ServidorFrame sf;
+	DateFormat dateFormat;
 
 	public Servidor(int porta) {
 		this.porta = porta;
@@ -30,17 +36,16 @@ public class Servidor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//this.print("Porta " + this.porta + " aberta!");
+		// this.print("Porta " + this.porta + " aberta!");
 		System.out.println("Porta " + this.porta + " aberta!");
-				
+
 		try {
 			this.ip = InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Server IP: "+ip);
-		
+		System.out.println("Server IP: " + ip);
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	}
 
 	public void executa() throws IOException {
@@ -55,11 +60,12 @@ public class Servidor {
 					+ cliente.getInetAddress().getHostAddress());
 
 			// adiciona saida do cliente a lista
-			ObjectOutputStream dos = new ObjectOutputStream(cliente.getOutputStream());
+			ObjectOutputStream dos = new ObjectOutputStream(
+					cliente.getOutputStream());
 			this.clientes.add(dos);
 
 			// cria tratador de cliente numa nova thread
-			OuvirClientes oc = new OuvirClientes(cliente.getInputStream(), this);
+			OuvirClientes oc = new OuvirClientes(cliente.getInputStream(), this, cliente.getLocalAddress().getHostAddress());
 			oc.start();
 		}
 
@@ -76,8 +82,8 @@ public class Servidor {
 			}
 		}
 	}
-	
-	public void distribuiMensagem(byte[] msg) {		
+
+	public void distribuiMensagem(byte[] msg) {
 		// envia msg para todo mundo
 		for (int i = 0; i < clientes.size(); i++) {
 			try {
@@ -89,8 +95,9 @@ public class Servidor {
 		}
 	}
 
-	public void distribuiMensagem(Object msg) {		
+	public void distribuiMensagem(Object msg) {
 		// envia msg para todo mundo
+		((Message) msg).setTime(this.dateFormat.format(new Date()));
 		for (int i = 0; i < clientes.size(); i++) {
 			try {
 				clientes.get(i).writeObject(msg);
@@ -100,30 +107,30 @@ public class Servidor {
 			}
 		}
 	}
-	
-	public String getIP(){
+
+	public String getIP() {
 		return this.ip;
 	}
-	
-	public void reset(){
+
+	public void reset() {
 		try {
 			this.servidor.close();
-			for (int i=0; i<clientes.size(); i++)
+			for (int i = 0; i < clientes.size(); i++)
 				clientes.get(i).close();
-			
+
 			this.executa();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void setFrame(ServidorFrame sf){
+
+	public void setFrame(ServidorFrame sf) {
 		this.sf = sf;
 	}
-	
-	public void print(String str){
+
+	public void print(String str) {
 		this.sf.addLog(str);
 	}
-	
+
 }

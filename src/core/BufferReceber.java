@@ -22,8 +22,7 @@ public class BufferReceber extends Thread {
 			while (true) {
 				try {
 					Message m = (Message) ois.readObject();
-					Core.receiveMessage(m); //////
-					//System.out.println(m.toString());
+					Core.receiveMessage(m);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
