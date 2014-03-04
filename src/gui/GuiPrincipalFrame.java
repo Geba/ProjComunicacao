@@ -24,10 +24,9 @@ import principal.Global;
  */
 public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, GuiInterface {
 
-
-    private boolean logado = false;
+//    private boolean logado = false;
     private RoomsListPanel roomsPanel;
-    private User user;
+//    private User user;
     private List<RoomFrame> roomFrameList;
 
     /**
@@ -239,10 +238,10 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
- 
     @Override
     public void showNewRoom(Room room) {
         RoomFrame conversa = new RoomFrame(room);
+        roomFrameList.add(conversa);
         conversa.setVisible(true);
     }
 
@@ -268,7 +267,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         this.principalPanel.add(lp);
         //loading window
         List<Room> actualRooms = Global.core.refreshRooms();
-        
+
         this.roomsPanel = new RoomsListPanel();
         this.roomsPanel.refreshExistingRooms(actualRooms);
         this.roomsPanel.setVisible(true);
@@ -282,7 +281,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         this.roomFrameList.add(rf);
     }
 
-    public void addMessage(Message m) {
+    public void receiveMessage(Message m) {
         for (int i = 0; i < roomFrameList.size(); i++) {
             System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
             if (roomFrameList.get(i).getID() == m.getSala_ID()) {

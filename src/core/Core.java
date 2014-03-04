@@ -28,13 +28,13 @@ import principal.Global;
 public class Core implements Runnable {
 //public class Core implements CoreInterface, Runnable {
 
-    static GuiPrincipalFrame gui;
-    static User user;
-    static List<Room> rooms;
+//    static GuiPrincipalFrame gui;
+  //  static User user;
+//    static List<Room> rooms;
 
     public Core() {
-        this.user = null;
-        this.rooms = new ArrayList<Room>();
+  //      this.user = null;
+    //    this.rooms = new ArrayList<Room>();
     }
 
     public void run() {
@@ -42,7 +42,7 @@ public class Core implements Runnable {
     }
 
     public void setGui(GuiPrincipalFrame gui) {
-        this.gui = gui;
+      //  this.gui = gui;
     }
 
     public List<User> refreshUsers(long idConversa) {
@@ -125,7 +125,7 @@ public class Core implements Runnable {
     }
 
     public static void receiveMessage(Message m) {
-        gui.addMessage(m);
+        Global.gui.receiveMessage(m);
     }
 
     public void enterRoom(Room room) {//fazer conexao com o servidor
