@@ -1,4 +1,4 @@
-package core;
+package coreserver;
 
 import java.io.File;
 import java.io.BufferedReader;

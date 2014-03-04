@@ -8,7 +8,7 @@ package gui;
 import atomics.Message;
 import atomics.Room;
 import atomics.User;
-import core.Core;
+import corecliente.Core;
 import interfaces.GuiInterface;
 
 import java.awt.Label;

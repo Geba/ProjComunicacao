@@ -1,4 +1,4 @@
-package core;
+package corecliente;
 
 public class ConsoleApplication {
 	

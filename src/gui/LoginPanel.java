@@ -5,7 +5,7 @@
  */
 package gui;
 
-import core.Core;
+import corecliente.Core;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

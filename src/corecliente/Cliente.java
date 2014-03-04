@@ -1,4 +1,4 @@
-package core;
+package corecliente;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.*;

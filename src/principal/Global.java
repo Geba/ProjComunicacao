@@ -1,8 +1,8 @@
 package principal;
 
-import core.Core;
+import corecliente.Cliente;
+import corecliente.Core;
 import gui.GuiPrincipalFrame;
-import core.*;
 import atomics.*;
 import java.util.ArrayList;
 

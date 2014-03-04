@@ -5,9 +5,9 @@
  */
 package principal;
 
+import corecliente.Core;
 import atomics.Room;
 import atomics.User;
-import core.*;
 import erros.ConexaoNaoEncontradaException;
 import gui.GuiPrincipalFrame;
 import gui.RoomFrame;

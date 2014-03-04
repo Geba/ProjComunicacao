@@ -13,7 +13,7 @@ import java.util.Date;
 import atomics.Message;
 import atomics.Room;
 import atomics.User;
-import core.Core;
+import corecliente.Core;
 
 import javax.swing.SwingUtilities;
 import principal.Global;
