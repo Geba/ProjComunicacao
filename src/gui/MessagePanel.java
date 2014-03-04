@@ -139,27 +139,18 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
     }
 
     public void resizeAgain() {
+        
         int fontSize = this.lbMensagem.getFont().getSize();
         int width = this.jPanel2.getWidth();
-        int characters = this.lbMensagem.getCaretPosition();
-        
-        
+        //int characters = this.lbMensagem.getCaretPosition();
+        int characters = this.lbMensagem.getText().length();//o getCaretPosition parou de funcionar, do nada!??
         int newHeight = 3 * lbHora.getHeight();
-        
-        
-        
         double taxaCharPerLine = width * 50 / 453;
-
-        //O código tá aqui
+        //O códigd tá aqui, onde dá o resize
         if (characters > taxaCharPerLine) {
             double qntLines = (characters / taxaCharPerLine);
-
-            newHeight = (int) (this.lbHora.getHeight()*2.5+((0.87*fontSize)*qntLines));
-
+            newHeight = (int) (this.lbHora.getHeight()*2.5+((0.87*fontSize)*qntLines)+5);//valores altamente experimentais
         }
-
-
-
         width = this.jPanel2.getWidth();
         this.setPreferredSize(new Dimension(width, newHeight));
         this.revalidate();
@@ -167,5 +158,5 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         this.setMaximumSize(new Dimension(3276723 + 1, newHeight + 1));
 
     }
-
+     
 }
