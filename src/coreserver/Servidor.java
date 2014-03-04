@@ -71,29 +71,29 @@ public class Servidor {
 
 	}
 
-	public void distribuiMensagem(String msg) {
-		// envia msg para todo mundo
-		for (int i = 0; i < clientes.size(); i++) {
-			try {
-				clientes.get(i).writeBytes(msg + "\n");
-			} catch (IOException e) {
-				System.out.println("erro no distribui");
-				e.printStackTrace();
-			}
-		}
-	}
+//	public void distribuiMensagem(String msg) {
+//		// envia msg para todo mundo
+//		for (int i = 0; i < clientes.size(); i++) {
+//			try {
+//				clientes.get(i).writeBytes(msg + "\n");
+//			} catch (IOException e) {
+//				System.out.println("erro no distribui");
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 
-	public void distribuiMensagem(byte[] msg) {
-		// envia msg para todo mundo
-		for (int i = 0; i < clientes.size(); i++) {
-			try {
-				clientes.get(i).write(msg);
-			} catch (IOException e) {
-				System.out.println("erro no distribui");
-				e.printStackTrace();
-			}
-		}
-	}
+//	public void distribuiMensagem(byte[] msg) {
+//		// envia msg para todo mundo
+//		for (int i = 0; i < clientes.size(); i++) {
+//			try {
+//				clientes.get(i).write(msg);
+//			} catch (IOException e) {
+//				System.out.println("erro no distribui");
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 
 	public void distribuiMensagem(Object msg) {
 		// envia msg para todo mundo

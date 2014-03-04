@@ -1,7 +1,6 @@
 package gui;
 
-
-import coreserver.Servidor;
+import coreserver.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,16 +16,12 @@ public class ServidorFrame extends javax.swing.JFrame {
     /**
      * Creates new form ServidorFrame
      */
-    private Servidor servidor ;
-
+    //private Servidor servidor ;
     public ServidorFrame() {
         initComponents();
-    }
 
-    public ServidorFrame(Servidor servidor) {
-    	initComponents();
-        this.servidor = servidor;
-        this.lbIP.setText("IP: " + servidor.getIP());
+        //  this.servidor = servidor;
+        this.lbIP.setText("IP: " + GlobalServer.servidor.getIP());
     }
 
     public void addLog(String log) {
@@ -109,7 +104,8 @@ public class ServidorFrame extends javax.swing.JFrame {
 
     private void btResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btResetMouseClicked
         this.jTextArea1.setText("");
-        this.servidor.reset();
+        //this.servidor.reset();
+        GlobalServer.servidor.reset();
     }//GEN-LAST:event_btResetMouseClicked
 
     /**
