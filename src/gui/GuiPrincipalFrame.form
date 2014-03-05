@@ -144,9 +144,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="principalPanel" pref="276" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                      <Component id="principalPanel" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -155,7 +158,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="principalPanel" pref="553" max="32767" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="principalPanel" min="-2" pref="452" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -169,10 +174,6 @@
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
           </AccessibilityProperties>
-          <SubComponents>
-            <Component class="javax.swing.JDesktopPane" name="jDesktopPane1">
-            </Component>
-          </SubComponents>
           <LayoutCode>
             <CodeStatement>
               <CodeExpression id="1_flowLayout1">
@@ -216,23 +217,26 @@
                 <CodeExpression id="1_flowLayout1"/>
               </Parameters>
             </CodeStatement>
-            <CodeStatement>
-              <CodeExpression id="3_principalPanel"/>
-              <StatementProvider type="CodeMethod">
-                <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component"/>
-              </StatementProvider>
-              <Parameters>
-                <CodeExpression id="4_jDesktopPane1">
-                  <CodeVariable name="jDesktopPane1" type="8194" declaredType="javax.swing.JDesktopPane"/>
-                  <ExpressionOrigin>
-                    <ExpressionProvider type="ComponentRef">
-                      <ComponentRef name="jDesktopPane1"/>
-                    </ExpressionProvider>
-                  </ExpressionOrigin>
-                </CodeExpression>
-              </Parameters>
-            </CodeStatement>
           </LayoutCode>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="userShow1" alignment="0" pref="276" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="userShow1" alignment="0" pref="71" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="gui.UserShow" name="userShow1">
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

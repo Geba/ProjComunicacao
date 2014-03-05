@@ -6,19 +6,36 @@
 package gui;
 
 import corecliente.GlobalClient;
+import javax.swing.JLabel;
 
 /**
  *
  * @author geeo
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class UserShow extends javax.swing.JPanel {
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
+    public UserShow() {
         initComponents();
-        GlobalClient.user.getNickname();
+        
+    }
+
+    public JLabel getLbUserNickname() {
+        return lbUserNickname;
+    }
+
+    public void setLbUserNickname(JLabel lbUserNickname) {
+        this.lbUserNickname = lbUserNickname;
+    }
+
+    public JLabel getLbWelcome() {
+        return lbWelcome;
+    }
+
+    public void setLbWelcome(JLabel lbWelcome) {
+        this.lbWelcome = lbWelcome;
     }
 
     /**

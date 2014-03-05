@@ -31,23 +31,56 @@ public class RoomsListPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btAdicionarSala = new javax.swing.JButton();
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+
+        btAdicionarSala.setText("AdicionarSala");
+        btAdicionarSala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btAdicionarSalaMouseClicked(evt);
+            }
+        });
+        btAdicionarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAdicionarSalaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btAdicionarSala, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btAdicionarSala)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btAdicionarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarSalaActionPerformed
+        AddRoom addroomframe = new AddRoom();
+        addroomframe.setVisible(true);
+    }//GEN-LAST:event_btAdicionarSalaActionPerformed
+
+    private void btAdicionarSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAdicionarSalaMouseClicked
+
+    }//GEN-LAST:event_btAdicionarSalaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAdicionarSala;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

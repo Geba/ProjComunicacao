@@ -56,7 +56,8 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         BigContainer = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        userShow1 = new gui.UserShow();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -86,7 +87,17 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
         flowLayout1.setAlignOnBaseline(true);
         principalPanel.setLayout(flowLayout1);
-        principalPanel.add(jDesktopPane1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(userShow1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(userShow1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
         BigContainer.setLayout(BigContainerLayout);
@@ -94,14 +105,18 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addGroup(BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         BigContainerLayout.setVerticalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -190,7 +205,9 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //System.out.print("xau");
-        GlobalClient.core.logOut();
+        if (GlobalClient.user != null) {
+            GlobalClient.core.logOut();
+        }
     }//GEN-LAST:event_formWindowClosing
 
     /**
@@ -240,13 +257,14 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
+    private gui.UserShow userShow1;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -273,6 +291,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void logIn() {
         this.principalPanel.removeAll();
+        this.userShow1.getLbUserNickname().setText(GlobalClient.user.getNickname());
         //loagind window
         LoadingPanel lp = new LoadingPanel("Loading Rooms");
         this.principalPanel.add(lp);
@@ -316,23 +335,32 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         this.principalPanel.revalidate();
     }
 
-	public void showOpenedRoom(long id) {
+    public void showOpenedRoom(long id) {
+        // TODO Auto-generated method stub
+        System.out.println("chamou showOpenRoom");
+    }
+
+    public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
+        //for(int i  = 0;i<GlobalClient.gui.)
+        System.out.println("chamou shownewUSer");
+    }
+
+    public void alertSaiuSala(long sala_ID, String sender_nickname) {
+        System.out.println("AlertSaiuSala: alertar ao usuario a saida de alguem e atualizar a lista de usuarios visiveis na conversa");
+    }
+
+    public void alertMudouStatus(long sala_ID, long sender_ID,
+            String sender_nickname) {
+        System.out.println("AlertMudouStatus: alertar ao usuario a mudanca de status e atualizar a lista de usuarios visiveis na conversa");
+
+    }
+
+    void createRoom(String roomName) {
+        GlobalClient.core.createRoom(roomName);
+    }
+
+	public void refreshActualRooms(Room room) {
 		// TODO Auto-generated method stub
-		System.out.println("chamou showOpenRoom");
-	}
-
-	public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
-		//for(int i  = 0;i<GlobalClient.gui.)
-		System.out.println("chamou shownewUSer");
-	}
-
-	public void alertSaiuSala(long sala_ID, String sender_nickname) {
-		System.out.println("AlertSaiuSala: alertar ao usuario a saida de alguem e atualizar a lista de usuarios visiveis na conversa");	
-	}
-
-	public void alertMudouStatus(long sala_ID, long sender_ID,
-			String sender_nickname) {
-		System.out.println("AlertMudouStatus: alertar ao usuario a mudanca de status e atualizar a lista de usuarios visiveis na conversa");
 		
 	}
 
