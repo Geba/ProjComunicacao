@@ -159,7 +159,6 @@ public class CoreServer implements Runnable {
 						}
 					}
 				}
-				i = GlobalServer.rooms.size() + 2;
 			}
 		}
 
