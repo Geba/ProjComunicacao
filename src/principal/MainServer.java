@@ -37,6 +37,7 @@ public class MainServer {
 		GlobalServer.servidor.setFrame(sf);
 		sf.setVisible(true);
 		try {
+			System.out.println("main server try");
 			GlobalServer.servidor.executa();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

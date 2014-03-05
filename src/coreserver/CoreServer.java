@@ -50,7 +50,7 @@ public class CoreServer implements Runnable {
     }
 
     public void handleRequest(Request rq, long id) {
-        //o id é só para o login
+        //id it's only for login
         int tipo = rq.tipo;
         System.out.println("handle server, tipo: " + tipo);
         switch (tipo) {
@@ -78,12 +78,18 @@ public class CoreServer implements Runnable {
         Request r = new Request(Constantes.GET_EXISTING_ROOMS);
         r.existingRooms = GlobalServer.rooms;
         //r.existingRooms = null;
+        
+        System.out.println(r);
+        System.out.println(r.existingRooms);
+        
         try {
             System.out.println("Vai mandar do servidor para o cliente as existing rooms");
             GlobalServer.servidor.send(r, rq.sender_ID);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("ERRO EM MANDAR AS SALAS PRO CLIENTE");
+        	e.printStackTrace();
+           // System.out.println("ERRO EM MANDAR AS SALAS PRO CLIENTE");
         }
     }
 
@@ -97,7 +103,7 @@ public class CoreServer implements Runnable {
         for (int i = 0; i < GlobalServer.rooms.size() && !sair; i++) {
             System.out.println(GlobalServer.rooms.get(i).getID() + " ? " + salaid);
             if (GlobalServer.rooms.get(i).getID() == salaid) {
-                ArrayList<User> users = GlobalServer.rooms.get(i).getUsers();
+                ArrayList<Long> users = GlobalServer.rooms.get(i).getUsers_ID();
                 for (int j = 0; j < users.size(); j++) {
                     try {
                         GlobalServer.servidor.send(rq, users.get(j));
@@ -143,16 +149,16 @@ public class CoreServer implements Runnable {
                 for (int j = 0; j < GlobalServer.users.size(); j++) {
                     if (GlobalServer.users.get(j).getId() == rq.sender_ID) {
                         u = GlobalServer.users.get(j);
-                        System.out.println(GlobalServer.rooms.get(i).getID());
-                        System.out.println(GlobalServer.rooms.get(i).getUsers());
-                        GlobalServer.rooms.get(i).getUsers().add(u);
+                        //System.out.println(GlobalServer.rooms.get(i).getID());
+                        //System.out.println(GlobalServer.rooms.get(i).getUsers_ID());
+                        GlobalServer.rooms.get(i).getUsers_ID().add(u.getId());
                         try {
                         	rq.existingRooms = new ArrayList<Room>();
                         	rq.existingRooms.add(GlobalServer.rooms.get(i));
                             GlobalServer.servidor.send(rq, u);
                             rq.tipo = Constantes.NEW_USER;
                             rq.sender_nickname = u.getNickname();
-                            for (int k = 0; k < GlobalServer.rooms.get(i).getUsers().size(); k++) {
+                            for (int k = 0; k < GlobalServer.rooms.get(i).getUsers_ID().size(); k++) {
                              //mandar pra todo mundo que chegou um cara novo
                             }
                         } catch (IOException ex) {

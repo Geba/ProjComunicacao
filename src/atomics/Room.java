@@ -17,18 +17,18 @@ public class Room implements Serializable {
     private long ID;
     private String name;
     private long creator_ID;
-    private ArrayList<User> users;
+    private ArrayList<Long> users_ID;
     // private Vector<Mensagem> mensagens;
 
     public Room() {
-        users = new ArrayList<User>();
+    	users_ID = new ArrayList<Long>();
     }
 
     public Room(long ID, String name, long creator_ID) {
         this.ID = ID;
         this.name = name;
         this.creator_ID = creator_ID;
-        users = new ArrayList<User>();
+        users_ID = new ArrayList<Long>();
     }
 
     public long getID() {
@@ -55,16 +55,21 @@ public class Room implements Serializable {
         this.creator_ID = creator_ID;
     }
 
-    public ArrayList<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(ArrayList<User> users) {
-		this.users = users;
-	}
-
 	public void addUser(User u) {
-        this.users.add(u);
+        this.users_ID.add(u.getId());
     }
+	
+	public void addUser(long id){
+		this.users_ID.add(id);
+	}
+
+	public ArrayList<Long> getUsers_ID() {
+		return users_ID;
+	}
+
+	public void setUsers_ID(ArrayList<Long> users_ID) {
+		this.users_ID = users_ID;
+	}
+	
 
 }

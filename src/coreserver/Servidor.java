@@ -28,6 +28,7 @@ public class Servidor {
 	private int porta;
 	//private List<ObjectOutputStream> clientes;
 	ServidorFrame sf;
+	private boolean reset;
 
 	public Servidor(int porta) {
 		this.porta = porta;
@@ -47,12 +48,14 @@ public class Servidor {
 			e.printStackTrace();
 		}
 		System.out.println("Server IP: " + ip);
+		reset = false;
 	}
 
 	public void executa() throws IOException {
 
-		while (true) {
-
+		while (!reset) {			
+			//System.out.println("imprimindo o socket serv w(1) "+servidor);
+			
 			// aceita um cliente
 			Socket cliente = servidor.accept();
 
@@ -80,8 +83,11 @@ public class Servidor {
         public void send(Request rq, long id) throws IOException {
             boolean sair = false;
             for(int i=0; !sair & i<GlobalServer.users.size(); i++){
+            	System.out.println(GlobalServer.users.get(i).getId()+" ? "+id);
                 if(GlobalServer.users.get(i).getId()==id) {
-                	//System.out.println("achou o cara pra mandar");
+                	System.out.println("achou o cara pra mandar");
+                	System.out.println("imprimindo socket: "+GlobalServer.users.get(i).getSocket());
+                	System.out.println("request: "+rq);
                 	GlobalServer.users.get(i).getSocket().writeObject(rq);
                     //System.out.println("escreveu o objeto");
                     sair = true;
@@ -94,13 +100,16 @@ public class Servidor {
 	}
 
 	public void reset() {
+		reset = true;
+		System.out.println("server reset");
 		try {
 			this.servidor.close();
 			for (int i = 0; i < GlobalServer.users.size(); i++)
 				GlobalServer.users.get(i).getSocket().close();
-                        this.servidor = new ServerSocket(this.porta);
-			this.executa();
-
+            this.servidor = new ServerSocket(this.porta);
+			//this.executa();
+            System.out.println("imprimindo o socket serv "+servidor);
+            System.out.println("saiu do server reset");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
