@@ -66,6 +66,15 @@ public class RoomFrame extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jTextPane1);
 
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                closeWindowGeba(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
         jPanel5.setBackground(new java.awt.Color(0, 48, 64));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
@@ -88,8 +97,6 @@ public class RoomFrame extends javax.swing.JFrame {
                 .addComponent(lbRoomName)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
-
-        lbRoomName.getAccessibleContext().setAccessibleName("");
 
         jPanel1.setNextFocusableComponent(tATexto);
 
@@ -247,6 +254,14 @@ public class RoomFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btAnexarMouseClicked
 
+    private void closeWindowGeba(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindowGeba
+ 
+    }//GEN-LAST:event_closeWindowGeba
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        GlobalClient.core.exitRoom(this.room.getID());
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -337,6 +352,11 @@ public class RoomFrame extends javax.swing.JFrame {
 
     public long getID() {
         return this.room.getID();
+    }
+
+    private int closeWindow() {
+        System.out.println("closeWindow");
+        return 0;
     }
 
 }

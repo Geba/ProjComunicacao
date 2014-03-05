@@ -158,16 +158,16 @@ public class Core implements Runnable {
 	}
 
 	public void logOut() {
-		throw new UnsupportedOperationException("Not supported yet."); // To
-																		// change
-																		// body
-																		// of
-																		// generated
-																		// methods,
-																		// choose
-																		// Tools
-																		// |
-																		// Templates.
+		Request rq = new Request(Constantes.LOGOUT);
+		rq.sender_ID = GlobalClient.user.getId();
+		rq.existingRooms = GlobalClient.oppenedRooms;
+		rq.sender_nickname = GlobalClient.user.getNickname();
+		try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void logIn(String nickname, long userId, String ipServer, int status)
@@ -263,17 +263,81 @@ public class Core implements Runnable {
 		case Constantes.NEW_USER:
 			handleNewUser(rq);
 			break;
+		case Constantes.SAIU_SALA:
+			handleSaiuSala(rq);
+			break;
+		case Constantes.MUDOU_STATUS:
+			handleMudouStatus(rq);
+			break;
+		//case Constantes.
 		}
 
 	}
 
-	private void handleNewUser(Request rq) {
-		GlobalClient.gui.showNewUser(rq.sala_ID, rq.sender_nickname, rq.newStatus);
+	private void handleMudouStatus(Request rq) {
+		//someone in some room changed the status
+		GlobalClient.gui.alertMudouStatus(rq.sala_ID, rq.sender_ID, rq.sender_nickname);
 		
+	}
+
+	private void handleSaiuSala(Request rq) {
+		for(int i=0; i<GlobalClient.oppenedRooms.size(); i++){
+			if(GlobalClient.oppenedRooms.get(i).getID()==rq.sala_ID){
+				for(int j=0; j < GlobalClient.oppenedRooms.get(i).getUsers_ID().size(); j++){
+					if(GlobalClient.oppenedRooms.get(i).getUsers_ID().get(j)==rq.sender_ID){
+						GlobalClient.oppenedRooms.get(i).getUsers_ID().remove(j);
+					}
+					j = GlobalClient.oppenedRooms.get(i).getUsers_ID().size()+20;
+				}
+				GlobalClient.gui.alertSaiuSala(rq.sala_ID, rq.sender_nickname);
+			}
+			i = GlobalClient.oppenedRooms.size()+5;
+		}
+		
+	}
+
+	private void handleNewUser(Request rq) {
+		GlobalClient.gui.showNewUser(rq.sala_ID, rq.sender_nickname,
+				rq.newStatus);
+
 	}
 
 	private void showExistingRooms(Request rq) {
 		GlobalClient.gui.showExistingRooms(rq.existingRooms);
+	}
+
+	public void exitRoom(long sala_id) {
+		System.out.println("Saiu da sala");
+		Request rq = new Request(Constantes.EXIT_ROOM);
+		rq.sala_ID = sala_id;
+		rq.sender_ID = GlobalClient.user.getId();
+		rq.sender_nickname = GlobalClient.user.getNickname();
+		for(int i =0; i < GlobalClient.oppenedRooms.size();i++){
+			if(GlobalClient.oppenedRooms.get(i).getID() == sala_id){
+				GlobalClient.oppenedRooms.remove(i);
+			}
+		}
+		
+		try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void mudarStatus(int status) {
+		Request rq = new Request(Constantes.MUDAR_STATUS);
+		rq.newStatus = status;
+		rq.sender_ID = GlobalClient.user.getId();
+		rq.sender_nickname = GlobalClient.user.getNickname();
+		rq.existingRooms = GlobalClient.oppenedRooms;
+		try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

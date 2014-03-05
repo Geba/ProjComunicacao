@@ -67,9 +67,100 @@ public class CoreServer implements Runnable {
 		case Constantes.ENTER_ROOM:
 			handleEnterRoom(rq);
 			break;
+		case Constantes.EXIT_ROOM:
+			handleExitRoom(rq);
+			break;
+		case Constantes.MUDAR_STATUS:
+			handleMudarStatus(rq);
+			break;
+		case Constantes.LOGOUT:
+			handleLogOut(rq);
+			break;
 		default:
 			throw new UnsupportedOperationException("Not supported yet.");
 
+		}
+
+	}
+
+	private void handleLogOut(Request rq) {
+		// User u = null;
+		for (int i = 0; i < GlobalServer.users.size(); i++) {
+			if (GlobalServer.users.get(i).getId() == rq.sender_ID) {
+				// u = GlobalServer.users.get(i);
+				GlobalServer.users.remove(i);
+				i = GlobalServer.users.size() + 10;
+			}
+		}
+
+		rq.tipo = Constantes.SAIU_SALA;
+		for (int i = 0; i < GlobalServer.rooms.size(); i++) {
+			for (int j = 0; j < rq.existingRooms.size(); j++) {
+				if (GlobalServer.rooms.get(i).getID() == rq.existingRooms.get(j).getID()) { // achei uma sala
+					for (int k = 0; k < GlobalServer.rooms.get(i).getUsers_ID()
+							.size(); k++) {
+						if (GlobalServer.rooms.get(i).getUsers_ID().get(k) != rq.sender_ID) {
+							try {
+								GlobalServer.servidor.send(rq,
+										GlobalServer.rooms.get(i).getUsers_ID()
+												.get(k));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	private void handleMudarStatus(Request rq) {
+		rq.tipo = Constantes.MUDOU_STATUS;
+		for (int i = 0; i < GlobalServer.rooms.size(); i++) {
+			for (int j = 0; j < rq.existingRooms.size(); j++) {
+				if (GlobalServer.rooms.get(i).getID() == rq.existingRooms
+						.get(i).getID()) { // achei uma sala
+					for (int k = 0; k < GlobalServer.rooms.get(i).getUsers_ID()
+							.size(); k++) {
+						if (GlobalServer.rooms.get(i).getUsers_ID().get(k) != rq.sender_ID) {
+							try {
+								GlobalServer.servidor.send(rq,
+										GlobalServer.rooms.get(i).getUsers_ID()
+												.get(k));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void handleExitRoom(Request rq) {
+		rq.tipo = Constantes.SAIU_SALA;
+		for (int i = 0; i < GlobalServer.rooms.size(); i++) {
+			if (GlobalServer.rooms.get(i).getID() == rq.sala_ID) {
+				for (int j = 0; j < GlobalServer.rooms.get(i).getUsers_ID()
+						.size(); j++) { // tem que percorrer todo
+					if (rq.sender_ID == GlobalServer.rooms.get(i).getUsers_ID()
+							.get(j)) {
+						GlobalServer.rooms.get(i).getUsers_ID().remove(j);
+					} else {
+						try {
+							GlobalServer.servidor.send(rq, GlobalServer.rooms
+									.get(i).getUsers_ID().get(j));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				i = GlobalServer.rooms.size() + 2;
+			}
 		}
 
 	}

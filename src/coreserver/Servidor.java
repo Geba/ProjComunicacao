@@ -83,7 +83,6 @@ public class Servidor {
         public void send(Request rq, long id) throws IOException {
             boolean sair = false;
             for(int i=0; !sair & i<GlobalServer.users.size(); i++){
-            	System.out.println(GlobalServer.users.get(i).getId()+" ? "+id);
                 if(GlobalServer.users.get(i).getId()==id) {
                 	System.out.println("achou o cara pra mandar");
                 	System.out.println("imprimindo socket: "+GlobalServer.users.get(i).getSocket());

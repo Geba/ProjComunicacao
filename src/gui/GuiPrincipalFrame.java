@@ -74,6 +74,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(310, 310));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
 
@@ -183,6 +188,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //System.out.print("xau");
+        GlobalClient.core.logOut();
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -284,7 +294,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void receiveMessage(Message m) {
         for (int i = 0; i < roomFrameList.size(); i++) {
-            System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
+            //System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
             if (roomFrameList.get(i).getID() == m.getSala_ID()) {
                 roomFrameList.get(i).addMensagem(m);
             }
@@ -314,6 +324,16 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 	public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
 		//for(int i  = 0;i<GlobalClient.gui.)
 		System.out.println("chamou shownewUSer");
+	}
+
+	public void alertSaiuSala(long sala_ID, String sender_nickname) {
+		System.out.println("AlertSaiuSala: alertar ao usuario a saida de alguem e atualizar a lista de usuarios visiveis na conversa");	
+	}
+
+	public void alertMudouStatus(long sala_ID, long sender_ID,
+			String sender_nickname) {
+		System.out.println("AlertMudouStatus: alertar ao usuario a mudanca de status e atualizar a lista de usuarios visiveis na conversa");
+		
 	}
 
 }
