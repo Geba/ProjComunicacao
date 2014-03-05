@@ -24,7 +24,9 @@ public class Request implements Serializable {
     public String time;
     public String message;
     public String sender_nickname;
-    public File file;
+    //public File file;
+    	public byte[] file_bytes;
+    	public String file_path;
     public int tipo;
     public boolean pvt;
     public int newStatus;

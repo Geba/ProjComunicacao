@@ -12,13 +12,16 @@ import atomics.User;
 import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
 import coreserver.GlobalServer;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import principal.Constantes;
 
 /**
@@ -55,6 +58,23 @@ public class Core implements Runnable {
         // Tools
         // |
         // Templates.
+    }
+    
+    public void SendFile(String path) { //esse método sera chamado pela gui quando um usuario desejar mandar um arquivo
+    	 
+    	File file = new File(path);
+    	
+    	//
+    	// implementar aqui a serializacao do File
+    	//
+    	
+    	Request rq = new Request(Constantes.SEND_FILE);
+    	try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void refreshRooms() {// from server
