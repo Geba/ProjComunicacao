@@ -6,6 +6,7 @@
 package coreserver;
 
 import corecliente.*;
+import atomics.Arquivo;
 import atomics.Room;
 import atomics.Message;
 import atomics.Request;
@@ -78,6 +79,9 @@ public class CoreServer implements Runnable {
                 break;
             case Constantes.CREATE_ROOM:
                 handleCreateRoom(rq);
+                break;
+            case Constantes.SEND_FILE:
+                handleSendFile(rq);
                 break;
             default:
                 throw new UnsupportedOperationException("Not supported yet.");
@@ -299,4 +303,32 @@ public class CoreServer implements Runnable {
 
         }
     }
+
+    private void handleSendFile(Request rq) {
+        long file_id = downloadFile(rq);
+        Request rq2 = new Request(Constantes.FILE_SENT);
+        rq2.sala_ID = rq.sala_ID;
+        rq2.sender_nickname = rq.sender_nickname;
+        rq2.file_path = rq.file_path;
+        rq2.fileLink = file_id;
+        for (int i = 0; i < GlobalServer.rooms.size(); i++) {
+            if (GlobalServer.rooms.get(i).getID() == rq.sala_ID) {
+                for (int j = 0; j < GlobalServer.rooms.get(i).getUsers_ID()
+                        .size(); j++) { // tem que percorrer todo
+                        try {
+                            GlobalServer.servidor.send(rq2, GlobalServer.rooms.get(i).getUsers_ID().get(j));
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                }
+            }
+        }
+    }
+
+	private long downloadFile(Request rq) { //////
+		long id = GlobalServer.files.size()+1;
+		GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
+		return id;
+	}
 }

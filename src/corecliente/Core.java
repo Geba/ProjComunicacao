@@ -13,6 +13,8 @@ import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -59,23 +61,6 @@ public class Core implements Runnable {
         // |
         // Templates.
     }
-    
-    public void SendFile(String path) { //esse método sera chamado pela gui quando um usuario desejar mandar um arquivo
-    	 
-    	File file = new File(path);
-    	
-    	//
-    	// implementar aqui a serializacao do File
-    	//
-    	
-    	Request rq = new Request(Constantes.SEND_FILE);
-    	try {
-			GlobalClient.cliente.send(rq);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
 
     public void refreshRooms() {// from server
         Request rq = new Request(Constantes.GET_EXISTING_ROOMS);
@@ -113,17 +98,45 @@ public class Core implements Runnable {
         // Templates.
     }
 
-    public void sendFile(Object file) {
-        throw new UnsupportedOperationException("Not supported yet."); // To
-        // change
-        // body
-        // of
-        // generated
-        // methods,
-        // choose
-        // Tools
-        // |
-        // Templates.
+    public void sendFile(String path, long sala_id) {
+    	File file = new File(path);
+    	byte[] bytes = new byte[(int) file.length()];
+    	//FileInputStream fis = new FileInputStream(file);
+    	try {
+        	FileInputStream fis = new FileInputStream(file);
+			fis.read(bytes);
+	    	fis.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+    	Request rq = new Request(Constantes.SEND_FILE);
+    	rq.file_bytes = bytes;
+    	rq.file_path = path;
+    	rq.sender_ID = GlobalClient.user.getId();
+    	rq.sender_nickname = GlobalClient.user.getNickname();
+    	rq.sala_ID = sala_id;
+    	
+    	try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void receiveFile(Request rq, String path_out) {
+    	try {
+        	byte[] bytes = rq.file_bytes;
+        	FileOutputStream fos = new FileOutputStream(path_out);
+        	fos.write(bytes);
+        	fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
 
     public void refreshStatus(int UserId, int status) {
@@ -293,12 +306,28 @@ public class Core implements Runnable {
             case Constantes.CREATED_ROOM:
                 handleCreatedRoom(rq);
                 break;
+            case Constantes.FILE_SENT:
+            	handleFileSent(rq);
+            	break;
             //case Constantes.
         }
 
     }
 
-    private void handleMudouStatus(Request rq) {
+    private void handleFileSent(Request rq) {
+    	//System.out.println("Chegou aqui");
+    	String name = "";
+    	int index = 0;
+    	for (int i=0; i < rq.file_path.length(); i++){
+    		if(rq.file_path.charAt(i)=='/'){
+    			index = i;
+    		}
+    	}
+    	name = rq.file_path.substring(index+1, rq.file_path.length());
+		GlobalClient.gui.showNewFile(name, rq.sender_nickname, rq.sala_ID, rq.fileLink);
+	}
+
+	private void handleMudouStatus(Request rq) {
         //someone in some room changed the status
         GlobalClient.gui.alertMudouStatus(rq.sala_ID, rq.sender_ID, rq.sender_nickname);
 

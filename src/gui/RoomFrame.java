@@ -17,6 +17,8 @@ import corecliente.Core;
 
 import javax.swing.SwingUtilities;
 import corecliente.GlobalClient;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -251,11 +253,20 @@ public class RoomFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tATextoKeyTyped
 
     private void btAnexarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAnexarMouseClicked
-
+        String caminhoArquivo = "";
+        JFileChooser arquivo = new JFileChooser();
+        int retorno = arquivo.showOpenDialog(null);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
+            JOptionPane.showMessageDialog(null, caminhoArquivo);
+        } else {
+//não abriu
+        }
+        GlobalClient.gui.sendFile(caminhoArquivo, this.room.getID());
     }//GEN-LAST:event_btAnexarMouseClicked
 
     private void closeWindowGeba(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindowGeba
- 
+
     }//GEN-LAST:event_closeWindowGeba
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -276,16 +287,21 @@ public class RoomFrame extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RoomFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RoomFrame.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -316,6 +332,7 @@ public class RoomFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
+    	System.out.println("addMensagem:" + message.getMessage() + " "+this);
         MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says: ", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
@@ -324,8 +341,6 @@ public class RoomFrame extends javax.swing.JFrame {
     }
 
     public void sendMessage(int code) {
-
-
 
         String str = this.tATexto.getText();
         System.out.print(GlobalClient.user.getId());

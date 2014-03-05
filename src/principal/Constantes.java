@@ -80,6 +80,11 @@ public class Constantes {
 		case SAIU_SALA:
 			s = "SAIU_SALA";
 			break;
+		case FILE_SENT:
+			s = "FILE_SENT";
+			break;
+		default:
+			s = "não existe nas constantes";
 		}
 		return s;
 	}

@@ -3,6 +3,7 @@ package principal;
 import coreserver.CoreServer;
 import coreserver.GlobalServer;
 import coreserver.Servidor;
+import atomics.Arquivo;
 import atomics.User;
 import atomics.Room;
 
@@ -19,6 +20,7 @@ public class MainServer {
 		// Servidor servidor = new Servidor(8080);
 		GlobalServer.core = new CoreServer();
 		GlobalServer.rooms = new ArrayList<Room>();
+		GlobalServer.files = new ArrayList<Arquivo>();
 		//teste
 		Room r1 = new Room(01, "Animais", 00);
 		Room r2 = new Room(02, "Pokemons", 00);

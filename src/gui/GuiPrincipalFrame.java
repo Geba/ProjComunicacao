@@ -315,6 +315,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         for (int i = 0; i < roomFrameList.size(); i++) {
             //System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
             if (roomFrameList.get(i).getID() == m.getSala_ID()) {
+            	System.out.println(m.getMessage());
                 roomFrameList.get(i).addMensagem(m);
             }
         }
@@ -361,6 +362,20 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
 	public void refreshActualRooms(Room room) {
 		// TODO Auto-generated method stub
+		
+	}
+
+    void sendFile(String caminhoArquivo, long sala_id) {
+      GlobalClient.core.sendFile(caminhoArquivo, sala_id);
+      
+    }
+
+	public void showNewFile(String name, String sender_nickname, long sala_ID,
+			long fileLink) {
+		System.out.println("entrou no show new file (gui principal)");
+		Message msg = new Message(00, sala_ID, "", "Novo arquivo chegou: link" + fileLink, sender_nickname);
+	
+		receiveMessage(msg);
 		
 	}
 
