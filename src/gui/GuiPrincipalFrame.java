@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JProgressBar;
+
 import corecliente.GlobalClient;
 
 /**
@@ -304,5 +305,15 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         }
         this.principalPanel.revalidate();
     }
+
+	public void showOpenedRoom(long id) {
+		// TODO Auto-generated method stub
+		System.out.println("chamou showOpenRoom");
+	}
+
+	public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
+		//for(int i  = 0;i<GlobalClient.gui.)
+		System.out.println("chamou shownewUSer");
+	}
 
 }

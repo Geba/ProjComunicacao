@@ -310,17 +310,11 @@ public class RoomFrame extends javax.swing.JFrame {
 
     public void sendMessage(int code) {
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"); ////isso tem que ser alterado pelo servidor
-        String time = dateFormat.format(new Date());
+
 
         String str = this.tATexto.getText();
-        //Message msg = new Message(id1, this.getID(), time.substring(time.length() - 8, time.length()),
-        //      str.substring(0, str.length() - code), "htadacam");
-        if (room == null) {
-            System.out.println("Sala nula");
-        }
         System.out.print(GlobalClient.user.getId());
-        Message msg = new Message(GlobalClient.user.getId(), this.room.getID(), time.substring(time.length() - 8, time.length()), str, GlobalClient.user.getNickname());
+        Message msg = new Message(GlobalClient.user.getId(), this.room.getID(), "", str, GlobalClient.user.getNickname());
         Core.sendMessage(msg);
 //        addMensagem(msg);
         this.tATexto.setText("");
