@@ -35,6 +35,14 @@ public class RoomFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     public RoomFrame(Room room) {
         initComponents();
         this.room = room;

@@ -32,15 +32,17 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private RoomsListPanel roomsPanel;
 //    private User user;
     private List<RoomFrame> roomFrameList;
+    private LoginPanel l;
+    private CabecalhoPanel cb;
 
     /**
      * Creates new form GuiPrincipalFrame
      */
     public GuiPrincipalFrame() {
         initComponents();
-        LoginPanel l = new LoginPanel();
-        l.setVisible(true);
-        principalPanel.add(l);
+        this.l = new LoginPanel();
+        this.l.setVisible(true);
+        this.principalPanel.add(l);
         roomFrameList = new ArrayList<RoomFrame>();
     }
 
@@ -86,9 +88,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
 
         principalPanel.setFocusable(false);
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
-        flowLayout1.setAlignOnBaseline(true);
-        principalPanel.setLayout(flowLayout1);
+        principalPanel.setLayout(new javax.swing.BoxLayout(principalPanel, javax.swing.BoxLayout.Y_AXIS));
 
         javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
         BigContainer.setLayout(BigContainerLayout);
@@ -96,14 +96,14 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BigContainerLayout.setVerticalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -276,19 +276,14 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void logInOk() {
         this.principalPanel.removeAll();
-        //loagind window
-        LoadingPanel lp = new LoadingPanel("Loading Rooms");
-        this.principalPanel.add(lp);
-
-        //loading window
+        this.cb = new CabecalhoPanel(GlobalClient.user);
+        cb.setVisible(true);
+        this.principalPanel.add(cb);
+        this.roomsPanel = new RoomsListPanel();
+        this.roomsPanel.setVisible(true);
+        this.principalPanel.add(roomsPanel);
         GlobalClient.core.refreshRooms();
 
-//        this.roomsPanel = new RoomsListPanel();
-//        this.roomsPanel.refreshExistingRooms(actualRooms);
-//        this.roomsPanel.setVisible(true);
-//        this.principalPanel.removeAll();
-//        this.principalPanel.add(roomsPanel);
-//        this.principalPanel.revalidate();
     }
 
     public void addRoomFrame(RoomFrame rf) {
@@ -299,7 +294,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         for (int i = 0; i < roomFrameList.size(); i++) {
             //System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
             if (roomFrameList.get(i).getID() == m.getSala_ID()) {
-            	System.out.println(m.getMessage());
+                System.out.println(m.getMessage());
                 roomFrameList.get(i).addMensagem(m);
             }
         }
@@ -307,26 +302,22 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void showExistingRooms(ArrayList<Room> existingRooms) {
         System.out.println("Etrou aqui, rooms qnt: " + existingRooms.size());
-        this.principalPanel.removeAll();
-        if (existingRooms.size() != 0) {
-            this.roomsPanel = new RoomsListPanel();
-            this.roomsPanel.refreshExistingRooms(existingRooms);
-            this.roomsPanel.setVisible(true);
-            this.principalPanel.add(roomsPanel);
-        } else {
-            NaoExistemRooms teste = new NaoExistemRooms();
-            this.principalPanel.add(teste);
-        }
+        this.roomsPanel.refreshExistingRooms(existingRooms);
         this.principalPanel.revalidate();
     }
 
     public void showOpenedRoom(long id) {
-        // TODO Auto-generated method stub
+        for (int i = 0; i < roomFrameList.size(); i++) {
+            if(id==roomFrameList.get(i).getRoom().getID()){
+                roomFrameList.get(i).toFront();
+                i= roomFrameList.size()+10;
+            }
+        }
         System.out.println("chamou showOpenRoom");
     }
 
     public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
-        //for(int i  = 0;i<GlobalClient.gui.)
+        
         System.out.println("chamou shownewUSer");
     }
 
@@ -344,31 +335,44 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         GlobalClient.core.createRoom(roomName);
     }
 
-	public void refreshActualRooms(Room room) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void refreshActualRooms(Room room) {
+        // TODO Auto-generated method stub
 
-    void sendFile(String caminhoArquivo, long sala_id) {
-      GlobalClient.core.sendFile(caminhoArquivo, sala_id);
-      
     }
 
-	public void showNewFile(String name, String sender_nickname, long sala_ID,
-			long fileLink) {
-		System.out.println("entrou no show new file (gui principal)");
-		Message msg = new Message(00, sala_ID, "", "Novo arquivo chegou: link" + fileLink, sender_nickname);
-	
-		receiveMessage(msg);
-		
-	}
+    void sendFile(String caminhoArquivo, long sala_id) {
+        GlobalClient.core.sendFile(caminhoArquivo, sala_id);
+
+    }
+
+    public void showNewFile(String name, String sender_nickname, long sala_ID,
+            long fileLink) {
+        System.out.println("entrou no show new file (gui principal)");
+        Message msg = new Message(00, sala_ID, "", "Novo arquivo chegou: link" + fileLink, sender_nickname);
+
+        receiveMessage(msg);
+
+    }
 
     void logIn(String nickname, int i, String ip, int status) {
         try {
-            GlobalClient.core.logIn(nickname, i, ip, status);
+            GlobalClient.core.logIn(nickname, 0, ip, status);
         } catch (IOException ex) {
             Logger.getLogger(GuiPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    void requestEnterRoom(Room room) {
+        try {
+            GlobalClient.core.requestEnterRoom(room);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    void changeStatus(int newStatus) {
+        GlobalClient.core.mudarStatus(newStatus);
     }
 
 }

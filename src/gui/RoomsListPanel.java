@@ -6,6 +6,7 @@
 package gui;
 
 import atomics.Room;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,8 +18,12 @@ public class RoomsListPanel extends javax.swing.JPanel {
     /**
      * Creates new form ListRooms
      */
+    private ArrayList<RoomListItemPanel> roomsItens;
+
     public RoomsListPanel() {
         initComponents();
+        LoadingPanel l = new LoadingPanel("Loading Rooms");
+        roomsItens = new ArrayList<RoomListItemPanel>();
     }
 
     /**
@@ -31,9 +36,16 @@ public class RoomsListPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        roomsListPanelContainer = new javax.swing.JScrollPane();
+        listContainer = new javax.swing.JPanel();
         btAdicionarSala = new javax.swing.JButton();
+        lbSalas = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+        roomsListPanelContainer.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        listContainer.setLayout(new javax.swing.BoxLayout(listContainer, javax.swing.BoxLayout.Y_AXIS));
+        roomsListPanelContainer.setViewportView(listContainer);
 
         btAdicionarSala.setText("AdicionarSala");
         btAdicionarSala.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -47,25 +59,59 @@ public class RoomsListPanel extends javax.swing.JPanel {
             }
         });
 
+        lbSalas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbSalas.setText("Rooms");
+
+        jTextField1.setToolTipText("Search...");
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField1CaretUpdate(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roomsListPanelContainer)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbSalas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btAdicionarSala)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbSalas)
+                    .addComponent(btAdicionarSala)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(roomsListPanelContainer)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btAdicionarSala, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btAdicionarSala)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -78,18 +124,55 @@ public class RoomsListPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btAdicionarSalaMouseClicked
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        for (int i = 0; i < roomsItens.size(); i++) {
+            if (roomsItens.get(i).getRoom().getName().contains(this.jTextField1.getText())) {
+                roomsItens.get(i).setVisible(true);
+            }else{
+                roomsItens.get(i).setVisible(false);
+            }
+            this.revalidate();
+        }
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+for (int i = 0; i < roomsItens.size(); i++) {
+            if (roomsItens.get(i).getRoom().getName().toLowerCase().contains(this.jTextField1.getText().toLowerCase())) {
+                roomsItens.get(i).setVisible(true);
+            }else{
+                roomsItens.get(i).setVisible(false);
+            }
+            this.revalidate();
+        }
+    }//GEN-LAST:event_jTextField1CaretUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionarSala;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lbSalas;
+    private javax.swing.JPanel listContainer;
+    private javax.swing.JScrollPane roomsListPanelContainer;
     // End of variables declaration//GEN-END:variables
 
     void refreshExistingRooms(List<Room> rooms) {
-        for (int i = 0; i < rooms.size(); i++) {
-            Room r = rooms.get(i);
-            RoomListItemPanel r1 = new RoomListItemPanel(r);
-            r1.setVisible(true);
-            this.jPanel1.add(r1);
+        System.out.println("QntRooms" + rooms.size());
+        this.listContainer.removeAll();
+        if (rooms.size() == 0) {
+            NaoExistemRooms nExiste = new NaoExistemRooms();
+            nExiste.setVisible(true);
+            this.listContainer.add(nExiste);
+        } else {
+            for (int i = 0; i < rooms.size(); i++) {
+                Room r = rooms.get(i);
+                RoomListItemPanel r1 = new RoomListItemPanel(r);
+                roomsItens.add(r1);
+                r1.setVisible(true);
+                this.listContainer.add(r1);
+                this.listContainer.revalidate();
+            }
         }
+        revalidate();
     }
 }

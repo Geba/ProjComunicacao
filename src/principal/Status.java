@@ -13,9 +13,9 @@ public class Status {
 
     public static int nStatus = 8;
     //public static final int
-    public static final int ONLINE = 0;
+    public static final int ONLINE = 2;
     public static final int HUNGRY = 1;
-    public static final int SEXY = 2;
+    public static final int SEXY = 0;
     public static final int SLEEPY = 3;
     public static final int IMPATIENT = 4;
     public static final int HAPPY = 5;

@@ -207,12 +207,10 @@ public class Core implements Runnable {
     public void logIn(String nickname, long userId, String ipServer, int status)
             throws IOException {// para testes
         System.out.println("Try to login");
-
         GlobalClient.setClient(new Cliente(ipServer, 8080));
         GlobalClient.cliente.executa(); // cria a conexao
-
-        Request newuserrequest = new Request(Constantes.LOGIN, nickname, status);
-        GlobalClient.cliente.send(newuserrequest);
+        Request newUserRequest = new Request(Constantes.LOGIN, nickname, status);
+        GlobalClient.cliente.send(newUserRequest);
         System.out.println("mandou o request de login");
 
     }
