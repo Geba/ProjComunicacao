@@ -221,7 +221,7 @@ public class Core implements Runnable {
         System.out.println("pode comemorar \\o");
         GlobalClient.user = user;
         GlobalClient.oppenedRooms = new ArrayList<Room>();
-        GlobalClient.gui.logIn();
+        GlobalClient.gui.logInOk();
     }
 
     public boolean cancelDownload() {

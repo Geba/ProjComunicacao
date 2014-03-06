@@ -18,6 +18,9 @@ import java.util.List;
 import javax.swing.JProgressBar;
 
 import corecliente.GlobalClient;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -271,7 +274,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void logIn() {
+    public void logInOk() {
         this.principalPanel.removeAll();
         //loagind window
         LoadingPanel lp = new LoadingPanel("Loading Rooms");
@@ -359,5 +362,13 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 		receiveMessage(msg);
 		
 	}
+
+    void logIn(String nickname, int i, String ip, int status) {
+        try {
+            GlobalClient.core.logIn(nickname, i, ip, status);
+        } catch (IOException ex) {
+            Logger.getLogger(GuiPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
