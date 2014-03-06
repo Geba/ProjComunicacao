@@ -84,7 +84,7 @@ public class Constantes {
 			s = "FILE_SENT";
 			break;
 		default:
-			s = "não existe nas constantes";
+			s = "nao existe nas constantes";
 		}
 		return s;
 	}
