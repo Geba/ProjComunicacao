@@ -56,8 +56,6 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         BigContainer = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        userShow1 = new gui.UserShow();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -74,7 +72,8 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(310, 310));
+        setMinimumSize(new java.awt.Dimension(350, 520));
+        setPreferredSize(new java.awt.Dimension(350, 520));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -88,35 +87,20 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         flowLayout1.setAlignOnBaseline(true);
         principalPanel.setLayout(flowLayout1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(userShow1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(userShow1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
         BigContainer.setLayout(BigContainerLayout);
         BigContainerLayout.setHorizontalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BigContainerLayout.setVerticalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(principalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -257,14 +241,12 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
     private javax.swing.JPanel principalPanel;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
-    private gui.UserShow userShow1;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -291,7 +273,6 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void logIn() {
         this.principalPanel.removeAll();
-        this.userShow1.getLbUserNickname().setText(GlobalClient.user.getNickname());
         //loagind window
         LoadingPanel lp = new LoadingPanel("Loading Rooms");
         this.principalPanel.add(lp);

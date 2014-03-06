@@ -17,12 +17,14 @@ import java.awt.Container;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Geeo
  */
-public class AplicacaoPrincipal {
+public class AplicacaoPrincipal implements Runnable {
 
     //private static GuiPrincipalFrame gui;
     //  private static Core core;
@@ -64,6 +66,15 @@ public class AplicacaoPrincipal {
         int componentWidth = container.getWidth();
         int componentHeight = container.getHeight();
         container.setBounds((screenSize.width - componentWidth) / 2, (screenSize.height - componentHeight) / 2, componentWidth, componentHeight);
+    }
+
+    @Override
+    public void run() {
+        try {
+            main(null);
+        } catch (IOException ex) {
+            Logger.getLogger(AplicacaoPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

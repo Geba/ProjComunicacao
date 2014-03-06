@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import gui.ServidorFrame;
 
-public class MainServer {
+public class MainServer implements Runnable{
 
 	public static void main(String[] args) {
 		// TODO\\ Auto-generated method stub
@@ -47,5 +47,10 @@ public class MainServer {
 		}
 
 	}
+
+    @Override
+    public void run() {
+        main(null);
+    }
 
 }
