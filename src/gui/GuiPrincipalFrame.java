@@ -406,6 +406,6 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     private void alertfileSent() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

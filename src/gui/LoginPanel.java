@@ -12,10 +12,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import corecliente.GlobalClient;
+import java.awt.Font;
+import java.awt.FontFormatException;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -31,12 +36,15 @@ public class LoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form Login
      */
-    public LoginPanel() {
+    public LoginPanel() throws FileNotFoundException, FontFormatException, IOException {
         initComponents();
         for (int i = 0; i < Status.getNumberOfStatus(); i++) {
             this.cBStatus.addItem(Status.whichStatus(i));
         }
         paintComponent(null);
+        InputStream is = new FileInputStream("\resources\textos.ttf");
+        Font ours = Font.createFont(Font.TRUETYPE_FONT, is);
+        this.lbHermes.setFont(ours);
     }
 
     private Image im = new ImageIcon(getClass().getResource("/fundo.png")).getImage();
@@ -61,8 +69,8 @@ public class LoginPanel extends javax.swing.JPanel {
         tFServidorIp = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbHermes = new javax.swing.JLabel();
+        lbMensageiro = new javax.swing.JLabel();
         lbHowYouFeeling = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         cBStatus = new javax.swing.JComboBox();
@@ -100,27 +108,27 @@ public class LoginPanel extends javax.swing.JPanel {
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Hermes");
+        lbHermes.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lbHermes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbHermes.setText("Hermes");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("O Mensageiro dos Deuses");
+        lbMensageiro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lbMensageiro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMensageiro.setText("O Mensageiro dos Deuses");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbHermes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbMensageiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(lbHermes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lbMensageiro)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -213,13 +221,13 @@ public class LoginPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
     private javax.swing.JComboBox cBStatus;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbHermes;
     private javax.swing.JLabel lbHowYouFeeling;
     private javax.swing.JLabel lbLogin;
+    private javax.swing.JLabel lbMensageiro;
     private javax.swing.JLabel lbServidorIp;
     private javax.swing.JTextField tFLogin;
     private javax.swing.JTextField tFServidorIp;

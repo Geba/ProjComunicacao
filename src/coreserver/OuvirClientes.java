@@ -31,6 +31,8 @@ public class OuvirClientes extends Thread {
 			while (true) {
 				System.out.println("esperando chegar algo");
 				Request m = (Request) ois.readObject();
+				System.out.println("----PACOTE RECEBIDO-----");
+				System.out.println("------------------------");
 				if(m.existingRooms!=null)
 					System.out.println("chegaram qtd de salas "+m.existingRooms.size());
                 System.out.println("chegou "+m.tipo);       
