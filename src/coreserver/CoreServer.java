@@ -338,7 +338,17 @@ public class CoreServer implements Runnable {
 
     private long downloadFile(Request rq) { //////
         long id = GlobalServer.files.size() + 1;
+        String path = rq.file_path;
+        for (int i=0; i < rq.file_path.length(); i++){
+            System.out.print(rq.file_path.charAt(i)+" ");
+            if(rq.file_path.charAt(i)==92 || rq.file_path.charAt(i) == '/'){
+                path = rq.file_path.substring(i, rq.file_path.length());
+            }
+        }
+        rq.file_path = path;
+        
         GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
+        
         return id;
     }
 

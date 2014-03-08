@@ -21,23 +21,9 @@ public class Arquivo {
 	public Arquivo (byte[] bytes, long id, String path) {
 		super();
 		this.bytes = bytes;
-		this.id = id;
-                
-                System.out.println("dentro do const: "+path+" lngth: "+path.length());
-		
-                for (int i=0; i < path.length(); i++){
-                    System.out.print(path.charAt(i)+" ");
-                    if(path.charAt(i)==92 || path.charAt(i) == '/'){
-                        this.path = path.substring(i+1, path.length());
-                    }
-                }
-                
-                System.out.println("dentro do const: "+this.path);
-                
-                //this.path = path;
-                
-                
-                      
+		this.id = id;          
+		this.path = path;
+                   
 	}
 	public String getPath() {
 		return path;
