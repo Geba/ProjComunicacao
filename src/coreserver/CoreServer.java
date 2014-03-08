@@ -360,7 +360,7 @@ public class CoreServer implements Runnable {
         	if(GlobalServer.files.get(i).getId()==rq.fileLink){
         		rq.file_bytes = GlobalServer.files.get(i).getBytes();
         		System.out.println(GlobalServer.files.get(i).getPath());
-        		rq.file_path = GlobalServer.files.get(i).getPath();
+        		rq.file_path = rq.file_path	+GlobalServer.files.get(i).getPath();
         		for (int j=0; j < GlobalServer.users.size(); j++){
         			if(GlobalServer.users.get(j).getId()==rq.sender_ID){
         				try {

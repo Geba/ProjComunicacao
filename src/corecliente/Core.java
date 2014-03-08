@@ -126,13 +126,13 @@ public class Core implements Runnable {
         }
     }
 
-    private void receiveFile(Request rq, String path_out) {
-        try {
-        	System.out.println("====RECEIVING====");
-        	System.out.println(rq);
-        	System.out.println(rq.file_bytes.length);
-                path_out = "C:/Users/Geeo/Documents/testechat/"+rq.file_path;
-              
+    private void receiveFile(Request rq) {
+         try {
+            System.out.println("====RECEIVING====");
+            System.out.println(rq);
+            System.out.println(rq.file_bytes.length);
+            String path_out = rq.file_path;
+
             byte[] bytes = rq.file_bytes;
             FileOutputStream fos = new FileOutputStream(path_out);
             fos.write(bytes);
@@ -185,14 +185,19 @@ public class Core implements Runnable {
 
     public void startDownload(long fileId) {
         Request rq = new Request(Constantes.DOWNLOAD_FILE);
-        rq.fileLink = fileId;
-        rq.sender_ID = GlobalClient.user.getId();
-        try {
-            GlobalClient.cliente.send(rq);
-        } catch (IOException ex) {
-            Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
+        String caminhoArquivo = GlobalClient.gui.getPathForFile();
+        if (caminhoArquivo != null) {
+            rq.file_path = caminhoArquivo;
+
+            rq.fileLink = fileId;
+            rq.sender_ID = GlobalClient.user.getId();
+            try {
+                GlobalClient.cliente.send(rq);
+            } catch (IOException ex) {
+                Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("mandou pro servidor um download com o link " + fileId);
         }
-        System.out.println("mandou pro servidor um download com o link "+fileId);
     }
 
     public void logOut() {
@@ -284,13 +289,13 @@ public class Core implements Runnable {
         int tipo = rq.tipo;
 
         switch (tipo) {
-            case Constantes.LOGIN_OK:
+            case Constantes.LOGIN_OK://ok
                 logInOk(new User(rq.sender_ID, rq.sender_nickname, rq.newStatus));
                 break;
-            case Constantes.RECEIVE_MESSAGE:
+            case Constantes.RECEIVE_MESSAGE://ok
                 receiveMessage(rq.getMessage());
                 break;
-            case Constantes.GET_EXISTING_ROOMS:
+            case Constantes.GET_EXISTING_ROOMS://ok
                 showExistingRooms(rq);
                 break;
             case Constantes.ENTER_ROOM:// acabei de entrar em uma sala especifica
@@ -308,11 +313,11 @@ public class Core implements Runnable {
             case Constantes.CREATED_ROOM:
                 handleCreatedRoom(rq);
                 break;
-            case Constantes.FILE_SENT:
+            case Constantes.FILE_SENT://ok
                 handleFileSent(rq);
                 break;
-            case Constantes.DOWNLOAD_FILE:
-                receiveFile(rq, "");
+            case Constantes.DOWNLOAD_FILE://ok
+                receiveFile(rq);
                 break;
             //case Constantes.
         }
@@ -418,7 +423,7 @@ public class Core implements Runnable {
         } else {
             GlobalClient.gui.refreshActualRooms(rq.existingRooms.get(0));
         }
-        
+
     }
 
 }

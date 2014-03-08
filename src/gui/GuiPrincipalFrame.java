@@ -21,6 +21,7 @@ import corecliente.GlobalClient;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -346,7 +347,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     }
 
-    public void showNewFile(String fileName, String sender_nickname, long sala_ID,String hora, 
+    public void showNewFile(String fileName, String sender_nickname, long sala_ID, String hora,
             long fileLink) {
         System.out.println("entrou no show new file (gui principal)");
         for (int i = 0; i < roomFrameList.size(); i++) {
@@ -387,5 +388,19 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private void showNewRoomWithoutOpen(Room room) {
         this.roomsPanel.showNewRoomWithoutOpen(room);
         this.roomsPanel.revalidate();
+    }
+
+    public String getPathForFile() {
+        String caminhoArquivo = "";
+        JFileChooser arquivo = new JFileChooser();
+        arquivo.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int retorno = arquivo.showOpenDialog(null);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
+            return caminhoArquivo;
+        } else {
+            return null;
+        }
+
     }
 }
