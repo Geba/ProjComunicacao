@@ -257,6 +257,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         RoomFrame conversa = new RoomFrame(room);
         roomFrameList.add(conversa);
         conversa.setVisible(true);
+        this.roomsPanel.refreshUsersCount(room.getID(), 1);
     }
 
     @Override
@@ -317,7 +318,6 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
-        
         System.out.println("chamou shownewUSer");
     }
 

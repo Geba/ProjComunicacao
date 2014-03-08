@@ -31,6 +31,7 @@ public class RoomListItemPanel extends javax.swing.JPanel {
      * Creates new form RoomListItemPanel
      */
     private Room room;
+    private int userCount;
 
     public RoomListItemPanel() {
         initComponents();
@@ -39,19 +40,10 @@ public class RoomListItemPanel extends javax.swing.JPanel {
     public RoomListItemPanel(Room room) {
         initComponents();
         this.room = room;
+        this.userCount=room.getUsers_ID().size();
         this.lbRoomName.setText(room.getName());
-        String qntUsers = "";
-        switch (this.room.getUsers_ID().size()) {
-            case 0:
-                this.lbUsersQnt.setText("Nobody is Here");
-                break;
-            case 1:
-                this.lbUsersQnt.setText("1 user online");
-                break;
-            default:
-                this.lbUsersQnt.setText(this.room.getUsers_ID().size()+ " users online");
-                break;
-        }
+        refreshUsersCount(0);
+       
     }
 
     /**
@@ -124,4 +116,19 @@ public class RoomListItemPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lbRoomName;
     private javax.swing.JLabel lbUsersQnt;
     // End of variables declaration//GEN-END:variables
+
+    void refreshUsersCount(int add) {
+        this.userCount += add;
+         switch (userCount) {
+            case 0:
+                this.lbUsersQnt.setText("Nobody is Here");
+                break;
+            case 1:
+                this.lbUsersQnt.setText("1 user online");
+                break;
+            default:
+                this.lbUsersQnt.setText(userCount + " users online");
+                break;
+        }
+    }
 }

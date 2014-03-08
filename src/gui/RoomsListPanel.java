@@ -128,7 +128,7 @@ public class RoomsListPanel extends javax.swing.JPanel {
         for (int i = 0; i < roomsItens.size(); i++) {
             if (roomsItens.get(i).getRoom().getName().contains(this.jTextField1.getText())) {
                 roomsItens.get(i).setVisible(true);
-            }else{
+            } else {
                 roomsItens.get(i).setVisible(false);
             }
             this.revalidate();
@@ -136,10 +136,10 @@ public class RoomsListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
-for (int i = 0; i < roomsItens.size(); i++) {
+        for (int i = 0; i < roomsItens.size(); i++) {
             if (roomsItens.get(i).getRoom().getName().toLowerCase().contains(this.jTextField1.getText().toLowerCase())) {
                 roomsItens.get(i).setVisible(true);
-            }else{
+            } else {
                 roomsItens.get(i).setVisible(false);
             }
             this.revalidate();
@@ -156,7 +156,7 @@ for (int i = 0; i < roomsItens.size(); i++) {
     private javax.swing.JScrollPane roomsListPanelContainer;
     // End of variables declaration//GEN-END:variables
 
-    void refreshExistingRooms(List<Room> rooms) {
+    public void refreshExistingRooms(List<Room> rooms) {
         System.out.println("QntRooms" + rooms.size());
         this.listContainer.removeAll();
         if (rooms.size() == 0) {
@@ -174,5 +174,13 @@ for (int i = 0; i < roomsItens.size(); i++) {
             }
         }
         revalidate();
+    }
+
+    public void refreshUsersCount(long room_id, int add) {
+        for (int i = 0; i < roomsItens.size(); i++) {
+            if (room_id == roomsItens.get(i).getRoom().getID()) {
+                roomsItens.get(i).refreshUsersCount(add);
+            }
+        }
     }
 }
