@@ -131,7 +131,7 @@ public class Core implements Runnable {
         	System.out.println("====RECEIVING====");
         	System.out.println(rq);
         	System.out.println(rq.file_bytes.length);
-                path_out = "C:/Users/Geeo/Documents/"+rq.file_path;
+                path_out = "C:/Users/Geeo/Documents/testechat/"+rq.file_path;
               
             byte[] bytes = rq.file_bytes;
             FileOutputStream fos = new FileOutputStream(path_out);
@@ -330,10 +330,6 @@ public class Core implements Runnable {
         }
         name = rq.file_path.substring(index + 1, rq.file_path.length());
         GlobalClient.gui.showNewFile(name, rq.sender_nickname, rq.sala_ID, rq.time, rq.fileLink);
-        
-        
-        //this.receiveFile(rq, "C:/Users/Geeo/Documents/chegou.pdf");
-        //System.out.println("recebeu o arquivo");
     }
 
     private void handleMudouStatus(Request rq) {

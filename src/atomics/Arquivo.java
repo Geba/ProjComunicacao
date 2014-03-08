@@ -18,15 +18,16 @@ public class Arquivo {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Arquivo(byte[] bytes, long id, String path) {
+	public Arquivo (byte[] bytes, long id, String path) {
 		super();
 		this.bytes = bytes;
 		this.id = id;
                 
-                System.out.println("dentro do const: "+path);
+                System.out.println("dentro do const: "+path+" lngth: "+path.length());
 		
                 for (int i=0; i < path.length(); i++){
-                    if(path.charAt(i)=='\n'){
+                    System.out.print(path.charAt(i)+" ");
+                    if(path.charAt(i)==92 || path.charAt(i) == '/'){
                         this.path = path.substring(i+1, path.length());
                     }
                 }
