@@ -78,7 +78,6 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(350, 520));
-        setPreferredSize(new java.awt.Dimension(350, 520));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -96,14 +95,14 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BigContainerLayout.setVerticalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -309,9 +308,9 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void showOpenedRoom(long id) {
         for (int i = 0; i < roomFrameList.size(); i++) {
-            if(id==roomFrameList.get(i).getRoom().getID()){
+            if (id == roomFrameList.get(i).getRoom().getID()) {
                 roomFrameList.get(i).toFront();
-                i= roomFrameList.size()+10;
+                i = roomFrameList.size() + 10;
             }
         }
         System.out.println("chamou showOpenRoom");
@@ -319,9 +318,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
         System.out.println("chamou shownewUSer");
+        this.roomsPanel.refreshUsersCount(sala_ID, 1);
     }
 
     public void alertSaiuSala(long sala_ID, String sender_nickname) {
+        this.roomsPanel.refreshUsersCount(sala_ID, -1);
         System.out.println("AlertSaiuSala: alertar ao usuario a saida de alguem e atualizar a lista de usuarios visiveis na conversa");
     }
 
@@ -336,7 +337,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void refreshActualRooms(Room room) {
-        // TODO Auto-generated method stub
+    GlobalClient.gui.showNewRoomWithoutOpen(room);
 
     }
 
@@ -375,4 +376,12 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         GlobalClient.core.mudarStatus(newStatus);
     }
 
+    public void refreshUserCountGui(long sala_id, int add) {
+        this.roomsPanel.refreshUsersCount(sala_id, add);
+    }
+
+    private void showNewRoomWithoutOpen(Room room) {
+       this.roomsPanel.showNewRoomWithoutOpen(room);
+       this.roomsPanel.revalidate();
+    }
 }

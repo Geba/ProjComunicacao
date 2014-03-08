@@ -156,16 +156,15 @@ public class CoreServer implements Runnable {
                     if (rq.sender_ID == GlobalServer.rooms.get(i).getUsers_ID()
                             .get(j)) {
                         GlobalServer.rooms.get(i).getUsers_ID().remove(j);
-                    } else {
-                        try {
-                            GlobalServer.servidor.send(rq, GlobalServer.rooms
-                                    .get(i).getUsers_ID().get(j));
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
                     }
                 }
+            }
+        }
+        for (int i = 0; i < GlobalServer.users.size(); i++) {
+            try {
+                GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
+            } catch (IOException ex) {
+                Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -277,6 +276,12 @@ public class CoreServer implements Runnable {
                         j = GlobalServer.users.size() + 2;
                         i = GlobalServer.rooms.size() + 2;
 
+                    } else {
+                        try {
+                            GlobalServer.servidor.send(rq, GlobalServer.users.get(j));
+                        } catch (IOException ex) {
+                            Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
 
@@ -290,6 +295,7 @@ public class CoreServer implements Runnable {
         System.out.println("Request nova sala no servidor");
         long id = new Random().nextInt(999999);
         Room r = new Room(id, rq.roomName, rq.sender_ID);
+        r.addUser(rq.sender_ID);
         GlobalServer.rooms.add(r);
         rq.tipo = Constantes.CREATED_ROOM;
         rq.existingRooms = new ArrayList<Room>();
@@ -315,20 +321,20 @@ public class CoreServer implements Runnable {
             if (GlobalServer.rooms.get(i).getID() == rq.sala_ID) {
                 for (int j = 0; j < GlobalServer.rooms.get(i).getUsers_ID()
                         .size(); j++) { // tem que percorrer todo
-                        try {
-                            GlobalServer.servidor.send(rq2, GlobalServer.rooms.get(i).getUsers_ID().get(j));
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+                    try {
+                        GlobalServer.servidor.send(rq2, GlobalServer.rooms.get(i).getUsers_ID().get(j));
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
             }
         }
     }
 
-	private long downloadFile(Request rq) { //////
-		long id = GlobalServer.files.size()+1;
-		GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
-		return id;
-	}
+    private long downloadFile(Request rq) { //////
+        long id = GlobalServer.files.size() + 1;
+        GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
+        return id;
+    }
 }

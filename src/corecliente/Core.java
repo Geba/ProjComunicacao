@@ -99,44 +99,44 @@ public class Core implements Runnable {
     }
 
     public void sendFile(String path, long sala_id) {
-    	File file = new File(path);
-    	byte[] bytes = new byte[(int) file.length()];
-    	//FileInputStream fis = new FileInputStream(file);
-    	try {
-        	FileInputStream fis = new FileInputStream(file);
-			fis.read(bytes);
-	    	fis.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+        File file = new File(path);
+        byte[] bytes = new byte[(int) file.length()];
+        //FileInputStream fis = new FileInputStream(file);
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            fis.read(bytes);
+            fis.close();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
-    	Request rq = new Request(Constantes.SEND_FILE);
-    	rq.file_bytes = bytes;
-    	rq.file_path = path;
-    	rq.sender_ID = GlobalClient.user.getId();
-    	rq.sender_nickname = GlobalClient.user.getNickname();
-    	rq.sala_ID = sala_id;
-    	
-    	try {
-			GlobalClient.cliente.send(rq);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Request rq = new Request(Constantes.SEND_FILE);
+        rq.file_bytes = bytes;
+        rq.file_path = path;
+        rq.sender_ID = GlobalClient.user.getId();
+        rq.sender_nickname = GlobalClient.user.getNickname();
+        rq.sala_ID = sala_id;
+
+        try {
+            GlobalClient.cliente.send(rq);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
-    
+
     private void receiveFile(Request rq, String path_out) {
-    	try {
-        	byte[] bytes = rq.file_bytes;
-        	FileOutputStream fos = new FileOutputStream(path_out);
-        	fos.write(bytes);
-        	fos.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+        try {
+            byte[] bytes = rq.file_bytes;
+            FileOutputStream fos = new FileOutputStream(path_out);
+            fos.write(bytes);
+            fos.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     public void refreshStatus(int UserId, int status) {
@@ -305,27 +305,27 @@ public class Core implements Runnable {
                 handleCreatedRoom(rq);
                 break;
             case Constantes.FILE_SENT:
-            	handleFileSent(rq);
-            	break;
+                handleFileSent(rq);
+                break;
             //case Constantes.
         }
 
     }
 
     private void handleFileSent(Request rq) {
-    	//System.out.println("Chegou aqui");
-    	String name = "";
-    	int index = 0;
-    	for (int i=0; i < rq.file_path.length(); i++){
-    		if(rq.file_path.charAt(i)=='/'){
-    			index = i;
-    		}
-    	}
-    	name = rq.file_path.substring(index+1, rq.file_path.length());
-		GlobalClient.gui.showNewFile(name, rq.sender_nickname, rq.sala_ID, rq.fileLink);
-	}
+        //System.out.println("Chegou aqui");
+        String name = "";
+        int index = 0;
+        for (int i = 0; i < rq.file_path.length(); i++) {
+            if (rq.file_path.charAt(i) == '/') {
+                index = i;
+            }
+        }
+        name = rq.file_path.substring(index + 1, rq.file_path.length());
+        GlobalClient.gui.showNewFile(name, rq.sender_nickname, rq.sala_ID, rq.fileLink);
+    }
 
-	private void handleMudouStatus(Request rq) {
+    private void handleMudouStatus(Request rq) {
         //someone in some room changed the status
         GlobalClient.gui.alertMudouStatus(rq.sala_ID, rq.sender_ID, rq.sender_nickname);
 
@@ -344,7 +344,7 @@ public class Core implements Runnable {
             }
             i = GlobalClient.oppenedRooms.size() + 5;
         }
-
+        GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
     }
 
     private void handleNewUser(Request rq) {
@@ -375,6 +375,7 @@ public class Core implements Runnable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
     }
 
     public void mudarStatus(int status) {
@@ -404,12 +405,13 @@ public class Core implements Runnable {
     }
 
     private void handleCreatedRoom(Request rq) {
-        if(rq.sender_ID==GlobalClient.user.getId()){
-        	showNewRoom(rq);
-        	GlobalClient.gui.refreshActualRooms(rq.existingRooms.get(0));
-        }else{
-        	GlobalClient.gui.refreshActualRooms(rq.existingRooms.get(0));
+        if (rq.sender_ID == GlobalClient.user.getId()) {
+            showNewRoom(rq);
+            GlobalClient.gui.refreshActualRooms(rq.existingRooms.get(0));
+        } else {
+            GlobalClient.gui.refreshActualRooms(rq.existingRooms.get(0));
         }
+        
     }
 
 }

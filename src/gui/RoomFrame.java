@@ -278,7 +278,9 @@ public class RoomFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_closeWindowGeba
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //GlobalClient.gui.refreshUserCountGui(this.room.getID(), -1);
         GlobalClient.core.exitRoom(this.room.getID());
+        
     }//GEN-LAST:event_formWindowClosing
 
     /**

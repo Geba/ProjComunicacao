@@ -6,10 +6,20 @@
 package gui;
 
 import corecliente.Core;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import corecliente.GlobalClient;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import principal.Status;
 
 /**
@@ -26,6 +36,13 @@ public class LoginPanel extends javax.swing.JPanel {
         for (int i = 0; i < Status.getNumberOfStatus(); i++) {
             this.cBStatus.addItem(Status.whichStatus(i));
         }
+        paintComponent(null);
+    }
+
+    private Image im = new ImageIcon(getClass().getResource("/fundo.png")).getImage();
+
+    public void paintComponent(Graphics g) {
+    	
     }
 
     /**

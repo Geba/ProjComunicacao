@@ -183,4 +183,15 @@ public class RoomsListPanel extends javax.swing.JPanel {
             }
         }
     }
+
+    void showNewRoomWithoutOpen(Room room) {
+        RoomListItemPanel rlp = new RoomListItemPanel(room);
+        this.roomsItens.add(rlp);
+        rlp.setVisible(true);
+        this.roomsListPanelContainer.add(rlp);
+        this.roomsListPanelContainer.revalidate();;
+        System.out.println("0ioie");
+        
+        
+    }
 }

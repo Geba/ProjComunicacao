@@ -34,7 +34,7 @@ public class AddRoom extends javax.swing.JFrame {
         btCriarSala = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tfRoomName.setText("NovaSala");
         tfRoomName.addActionListener(new java.awt.event.ActionListener() {
@@ -51,8 +51,18 @@ public class AddRoom extends javax.swing.JFrame {
                 btCriarSalaMouseClicked(evt);
             }
         });
+        btCriarSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCriarSalaActionPerformed(evt);
+            }
+        });
 
         btCancel.setText("Cancelar");
+        btCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btCancelMouseClicked(evt);
+            }
+        });
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelActionPerformed(evt);
@@ -104,7 +114,16 @@ public class AddRoom extends javax.swing.JFrame {
 
     private void btCriarSalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCriarSalaMouseClicked
         GlobalClient.gui.createRoom(this.tfRoomName.getText());
+        this.dispose();
     }//GEN-LAST:event_btCriarSalaMouseClicked
+
+    private void btCriarSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriarSalaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCriarSalaActionPerformed
+
+    private void btCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCancelMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btCancelMouseClicked
 
     /**
      * @param args the command line arguments
