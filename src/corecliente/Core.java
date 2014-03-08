@@ -99,6 +99,7 @@ public class Core implements Runnable {
     }
 
     public void sendFile(String path, long sala_id) {
+        
         File file = new File(path);
         byte[] bytes = new byte[(int) file.length()];
         //FileInputStream fis = new FileInputStream(file);
@@ -127,7 +128,8 @@ public class Core implements Runnable {
     }
 
     private void receiveFile(Request rq) {
-         try {
+        
+        try {
             System.out.println("====RECEIVING====");
             System.out.println(rq);
             System.out.println(rq.file_bytes.length);
@@ -141,7 +143,7 @@ public class Core implements Runnable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        
     }
 
     public void refreshStatus(int UserId, int status) {
@@ -268,6 +270,7 @@ public class Core implements Runnable {
                 System.out.println("Ja existe a sala");
                 achou = true;
                 GlobalClient.gui.showOpenedRoom(room.getID());
+                
             }
         }
         if (!achou) {
@@ -396,6 +399,7 @@ public class Core implements Runnable {
         rq.sender_ID = GlobalClient.user.getId();
         rq.sender_nickname = GlobalClient.user.getNickname();
         rq.existingRooms = GlobalClient.oppenedRooms;
+        System.out.println("numero de rooms que o cliente mandou: " + rq.existingRooms.size());
         try {
             GlobalClient.cliente.send(rq);
         } catch (IOException e) {

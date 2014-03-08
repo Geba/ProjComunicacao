@@ -342,9 +342,10 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     }
 
-    void sendFile(String caminhoArquivo, long sala_id) {
-        GlobalClient.core.sendFile(caminhoArquivo, sala_id);
-
+    void sendFile(String caminhoArquivo, RoomFrame rf) {
+        rf.alertsendingFile();
+        GlobalClient.core.sendFile(caminhoArquivo, rf.getRoom().getID());
+        this.alertfileSent();
     }
 
     public void showNewFile(String fileName, String sender_nickname, long sala_ID, String hora,
@@ -402,5 +403,9 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
             return null;
         }
 
+    }
+
+    private void alertfileSent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

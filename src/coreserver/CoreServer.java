@@ -72,6 +72,7 @@ public class CoreServer implements Runnable {
                 handleExitRoom(rq);
                 break;
             case Constantes.MUDAR_STATUS:
+            	System.out.println("recebeu mudar status e vai entrar na funcao");
                 handleMudarStatus(rq);
                 break;
             case Constantes.LOGOUT:
@@ -127,7 +128,9 @@ public class CoreServer implements Runnable {
     }
 
     private void handleMudarStatus(Request rq) {
+    	System.out.println("handle mudar status");
         rq.tipo = Constantes.MUDOU_STATUS;
+        System.out.println("nmero de rooms no request: " + rq.existingRooms.size());
         for (int i = 0; i < GlobalServer.rooms.size(); i++) {
             for (int j = 0; j < rq.existingRooms.size(); j++) {
                 if (GlobalServer.rooms.get(i).getID() == rq.existingRooms
@@ -339,46 +342,43 @@ public class CoreServer implements Runnable {
     private long downloadFile(Request rq) { //////
         long id = GlobalServer.files.size() + 1;
         String path = rq.file_path;
-        for (int i=0; i < rq.file_path.length(); i++){
-            System.out.print(rq.file_path.charAt(i)+" ");
-            if(rq.file_path.charAt(i)==92 || rq.file_path.charAt(i) == '/'){
+        for (int i = 0; i < rq.file_path.length(); i++) {
+            System.out.print(rq.file_path.charAt(i) + " ");
+            if (rq.file_path.charAt(i) == 92 || rq.file_path.charAt(i) == '/') {
                 path = rq.file_path.substring(i, rq.file_path.length());
             }
         }
         rq.file_path = path;
-        
+
         GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
-        
+
         return id;
     }
 
     private void handleSendFileToDownload(Request rq) {
-        System.out.println("vai amndar de volta o arquivo com file " +rq.fileLink+ "pro servidor um download");
+        System.out.println("vai amndar de volta o arquivo com file " + rq.fileLink + "pro servidor um download");
         //Request rq2 = new Request(Constantes.DOWNLOAD_FILE);
         rq.tipo = Constantes.DOWNLOAD_FILE;
-        for (int i=0; i<GlobalServer.files.size(); i++){
-        	if(GlobalServer.files.get(i).getId()==rq.fileLink){
-        		rq.file_bytes = GlobalServer.files.get(i).getBytes();
-        		System.out.println(GlobalServer.files.get(i).getPath());
-        		rq.file_path = rq.file_path	+GlobalServer.files.get(i).getPath();
-        		for (int j=0; j < GlobalServer.users.size(); j++){
-        			if(GlobalServer.users.get(j).getId()==rq.sender_ID){
-        				try {
-							GlobalServer.servidor.send(rq, GlobalServer.users.get(j));
-							j = GlobalServer.users.size()+10;
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-        			}
-        		}
-        		i = GlobalServer.files.size()+10;
-        	}
+        for (int i = 0; i < GlobalServer.files.size(); i++) {
+            if (GlobalServer.files.get(i).getId() == rq.fileLink) {
+                rq.file_bytes = GlobalServer.files.get(i).getBytes();
+                System.out.println(GlobalServer.files.get(i).getPath());
+                rq.file_path = rq.file_path + GlobalServer.files.get(i).getPath();
+                for (int j = 0; j < GlobalServer.users.size(); j++) {
+                    if (GlobalServer.users.get(j).getId() == rq.sender_ID) {
+                        try {
+                            GlobalServer.servidor.send(rq, GlobalServer.users.get(j));
+                            j = GlobalServer.users.size() + 10;
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                i = GlobalServer.files.size() + 10;
+            }
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
+
 }

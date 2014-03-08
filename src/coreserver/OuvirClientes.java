@@ -31,9 +31,9 @@ public class OuvirClientes extends Thread {
 			while (true) {
 				System.out.println("esperando chegar algo");
 				Request m = (Request) ois.readObject();
+				if(m.existingRooms!=null)
+					System.out.println("chegaram qtd de salas "+m.existingRooms.size());
                 System.out.println("chegou "+m.tipo);       
-				//servidor.print(m.getSender_nickname() + " says: " + m.getMessage());
-				//servidor.distribuiMensagem(m);
                 GlobalServer.core.handleRequest(m, id);
 			}
 
