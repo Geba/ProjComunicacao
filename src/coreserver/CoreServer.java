@@ -278,6 +278,7 @@ public class CoreServer implements Runnable {
 
                     } else {
                         try {
+                            rq.tipo = Constantes.NEW_USER;
                             GlobalServer.servidor.send(rq, GlobalServer.users.get(j));
                         } catch (IOException ex) {
                             Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE, null, ex);
