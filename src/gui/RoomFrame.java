@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import corecliente.GlobalClient;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import principal.Constantes;
 
 /**
  *
@@ -275,7 +276,7 @@ public class RoomFrame extends javax.swing.JFrame {
         } else {
 //não abriu
         }
-        GlobalClient.gui.sendFile(caminhoArquivo, this.room.getID());
+        GlobalClient.gui.sendFile(caminhoArquivo, this);
     }//GEN-LAST:event_btAnexarMouseClicked
 
     private void closeWindowGeba(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeWindowGeba
@@ -296,7 +297,7 @@ public class RoomFrame extends javax.swing.JFrame {
             caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
         } else {
         }
-        GlobalClient.gui.sendFile(caminhoArquivo, this.room.getID());
+        GlobalClient.gui.sendFile(caminhoArquivo, this);
     }//GEN-LAST:event_btAnexarActionPerformed
 
     /**
@@ -406,6 +407,10 @@ public class RoomFrame extends javax.swing.JFrame {
     private int closeWindow() {
         System.out.println("closeWindow");
         return 0;
+    }
+
+    void alertsendingFile() {
+     //   this.pnConversa.add(new Alert(Constantes.SEND_FILE))
     }
 
 }

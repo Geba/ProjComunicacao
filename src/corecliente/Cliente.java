@@ -35,14 +35,12 @@ public class Cliente {
 
 		// le msgs do teclado e manda pro servidor
 		dos = new ObjectOutputStream(cliente.getOutputStream());
-//		while (true) {
-//			String s = new Scanner(System.in).nextLine();
-//			Message msgobj = new Message(1029383, 432483, "ano passado", s, "cliente1");			
-//			dos.writeObject(msgobj);	
-//		}
+
 	}
 	
 	public void send(Request m) throws IOException {
+		if(m.existingRooms!=null)
+			System.out.println("enviando (qtd de salas) "+m.existingRooms.size());
 		System.out.println(Constantes.gettipo(m.tipo) +" < cliente mandando");
 		this.dos.writeObject(m);
 	}

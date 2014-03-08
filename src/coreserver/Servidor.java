@@ -84,11 +84,7 @@ public class Servidor {
             boolean sair = false;
             for(int i=0; !sair & i<GlobalServer.users.size(); i++){
                 if(GlobalServer.users.get(i).getId()==id) {
-                	//System.out.println("achou o cara pra mandar");
-                	//System.out.println("imprimindo socket: "+GlobalServer.users.get(i).getSocket());
-                	//System.out.println("request: "+rq);
                 	GlobalServer.users.get(i).getSocket().writeObject(rq);
-                    //System.out.println("escreveu o objeto");
                     sair = true;
                 }
             }
