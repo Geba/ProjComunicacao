@@ -337,7 +337,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void refreshActualRooms(Room room) {
-    GlobalClient.gui.showNewRoomWithoutOpen(room);
+        GlobalClient.gui.showNewRoomWithoutOpen(room);
 
     }
 
@@ -346,20 +346,24 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     }
 
-    public void showNewFile(String name, String sender_nickname, long sala_ID,
+    public void showNewFile(String fileName, String sender_nickname, long sala_ID,String hora, 
             long fileLink) {
         System.out.println("entrou no show new file (gui principal)");
-        Message msg = new Message(00, sala_ID, "", "Novo arquivo chegou: link" + fileLink, sender_nickname);
-
-        receiveMessage(msg);
-
+        for (int i = 0; i < roomFrameList.size(); i++) {
+            //System.out.println(roomFrameList.get(i).getID() + " " + m.getSala_ID());
+            if (roomFrameList.get(i).getID() == sala_ID) {
+                roomFrameList.get(i).addFile(fileName, sender_nickname, hora, fileLink);
+            }
+        }
     }
 
     void logIn(String nickname, int i, String ip, int status) {
         try {
             GlobalClient.core.logIn(nickname, 0, ip, status);
+
         } catch (IOException ex) {
-            Logger.getLogger(GuiPrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GuiPrincipalFrame.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -381,7 +385,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     private void showNewRoomWithoutOpen(Room room) {
-       this.roomsPanel.showNewRoomWithoutOpen(room);
-       this.roomsPanel.revalidate();
+        this.roomsPanel.showNewRoomWithoutOpen(room);
+        this.roomsPanel.revalidate();
     }
 }

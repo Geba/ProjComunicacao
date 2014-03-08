@@ -83,6 +83,9 @@ public class CoreServer implements Runnable {
             case Constantes.SEND_FILE:
                 handleSendFile(rq);
                 break;
+            case Constantes.DOWNLOAD_FILE:
+                handleSendFileToDownload(rq);
+                break;
             default:
                 throw new UnsupportedOperationException("Not supported yet.");
 
@@ -338,4 +341,34 @@ public class CoreServer implements Runnable {
         GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
         return id;
     }
+
+    private void handleSendFileToDownload(Request rq) {
+        System.out.println("vai amndar de volta o arquivo com file " +rq.fileLink+ "pro servidor um download");
+        //Request rq2 = new Request(Constantes.DOWNLOAD_FILE);
+        rq.tipo = Constantes.DOWNLOAD_FILE;
+        for (int i=0; i<GlobalServer.files.size(); i++){
+        	if(GlobalServer.files.get(i).getId()==rq.fileLink){
+        		rq.file_bytes = GlobalServer.files.get(i).getBytes();
+        		System.out.println(GlobalServer.files.get(i).getPath());
+        		rq.file_path = GlobalServer.files.get(i).getPath();
+        		for (int j=0; j < GlobalServer.users.size(); j++){
+        			if(GlobalServer.users.get(j).getId()==rq.sender_ID){
+        				try {
+							GlobalServer.servidor.send(rq, GlobalServer.users.get(j));
+							j = GlobalServer.users.size()+10;
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+        			}
+        		}
+        		i = GlobalServer.files.size()+10;
+        	}
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+    
 }

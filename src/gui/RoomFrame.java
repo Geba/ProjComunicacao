@@ -116,6 +116,11 @@ public class RoomFrame extends javax.swing.JFrame {
                 btAnexarMouseClicked(evt);
             }
         });
+        btAnexar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnexarActionPerformed(evt);
+            }
+        });
 
         btEnviar.setText("Enviar");
         btEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -280,8 +285,19 @@ public class RoomFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //GlobalClient.gui.refreshUserCountGui(this.room.getID(), -1);
         GlobalClient.core.exitRoom(this.room.getID());
-        
+
     }//GEN-LAST:event_formWindowClosing
+
+    private void btAnexarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnexarActionPerformed
+        String caminhoArquivo = "";
+        JFileChooser arquivo = new JFileChooser();
+        int retorno = arquivo.showOpenDialog(null);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
+        } else {
+        }
+        GlobalClient.gui.sendFile(caminhoArquivo, this.room.getID());
+    }//GEN-LAST:event_btAnexarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,12 +358,20 @@ public class RoomFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
-    	System.out.println("addMensagem:" + message.getMessage() + " "+this);
+        System.out.println("addMensagem:" + message.getMessage() + " " + this);
         MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says: ", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();
         scrollPaneToBottom();
+    }
+
+    public void addFile(String name, String sender_nickname,  String hora,long fileLink) {
+           MessageFilePanel mfp = new MessageFilePanel(name, sender_nickname, hora, fileLink);
+           mfp.setVisible(true);
+           this.pnConversa.add(mfp);
+           this.pnConversa.revalidate();
+           scrollPaneToBottom();
     }
 
     public void sendMessage(int code) {

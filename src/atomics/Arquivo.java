@@ -22,7 +22,21 @@ public class Arquivo {
 		super();
 		this.bytes = bytes;
 		this.id = id;
-		this.setPath(path);
+                
+                System.out.println("dentro do const: "+path);
+		
+                for (int i=0; i < path.length(); i++){
+                    if(path.charAt(i)=='\n'){
+                        this.path = path.substring(i+1, path.length());
+                    }
+                }
+                
+                System.out.println("dentro do const: "+this.path);
+                
+                //this.path = path;
+                
+                
+                      
 	}
 	public String getPath() {
 		return path;

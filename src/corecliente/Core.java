@@ -128,6 +128,11 @@ public class Core implements Runnable {
 
     private void receiveFile(Request rq, String path_out) {
         try {
+        	System.out.println("====RECEIVING====");
+        	System.out.println(rq);
+        	System.out.println(rq.file_bytes.length);
+                path_out = "C:/Users/Geeo/Documents/"+rq.file_path;
+              
             byte[] bytes = rq.file_bytes;
             FileOutputStream fos = new FileOutputStream(path_out);
             fos.write(bytes);
@@ -178,17 +183,16 @@ public class Core implements Runnable {
         // Templates.
     }
 
-    public Object startDownload(long fileId) {
-        throw new UnsupportedOperationException("Not supported yet."); // To
-        // change
-        // body
-        // of
-        // generated
-        // methods,
-        // choose
-        // Tools
-        // |
-        // Templates.
+    public void startDownload(long fileId) {
+        Request rq = new Request(Constantes.DOWNLOAD_FILE);
+        rq.fileLink = fileId;
+        rq.sender_ID = GlobalClient.user.getId();
+        try {
+            GlobalClient.cliente.send(rq);
+        } catch (IOException ex) {
+            Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("mandou pro servidor um download com o link "+fileId);
     }
 
     public void logOut() {
@@ -307,6 +311,9 @@ public class Core implements Runnable {
             case Constantes.FILE_SENT:
                 handleFileSent(rq);
                 break;
+            case Constantes.DOWNLOAD_FILE:
+                receiveFile(rq, "");
+                break;
             //case Constantes.
         }
 
@@ -322,7 +329,11 @@ public class Core implements Runnable {
             }
         }
         name = rq.file_path.substring(index + 1, rq.file_path.length());
-        GlobalClient.gui.showNewFile(name, rq.sender_nickname, rq.sala_ID, rq.fileLink);
+        GlobalClient.gui.showNewFile(name, rq.sender_nickname, rq.sala_ID, rq.time, rq.fileLink);
+        
+        
+        //this.receiveFile(rq, "C:/Users/Geeo/Documents/chegou.pdf");
+        //System.out.println("recebeu o arquivo");
     }
 
     private void handleMudouStatus(Request rq) {
