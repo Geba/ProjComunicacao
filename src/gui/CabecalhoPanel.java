@@ -46,6 +46,10 @@ public class CabecalhoPanel extends javax.swing.JPanel {
         cBStatus = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
+        setOpaque(false);
+
+        jPanel3.setOpaque(false);
+
         lbHi.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lbHi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbHi.setText("Hi <user>,");

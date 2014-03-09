@@ -6,7 +6,7 @@
 package gui;
 
 import java.io.IOException;
-
+import principal.OurFonts;
 import atomics.Room;
 import erros.UsuarioNaoEncontradoException;
 import corecliente.GlobalClient;
@@ -59,45 +59,36 @@ public class RoomListItemPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         lbRoomName = new javax.swing.JLabel();
         lbUsersQnt = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setOpaque(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 255, 204)));
-        jPanel1.setMinimumSize(new java.awt.Dimension(10, 10));
+        jPanel1.setOpaque(false);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbRoomName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbRoomName.setFont(OurFonts.getTextFont(18f)
+        );
         lbRoomName.setText("roomName");
+        jPanel1.add(lbRoomName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 2, 330, 30));
 
-        lbUsersQnt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbUsersQnt.setText(" n Users online");
+        lbUsersQnt.setFont(OurFonts.getTextFont(18f));
+        lbUsersQnt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbUsersQnt.setText("n");
+        jPanel1.add(lbUsersQnt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 50, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lbRoomName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(36, 36, 36)
-                .addComponent(lbUsersQnt))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbRoomName)
-                    .addComponent(lbUsersQnt))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lista_salas.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +103,7 @@ public class RoomListItemPanel extends javax.swing.JPanel {
     }// GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbRoomName;
     private javax.swing.JLabel lbUsersQnt;

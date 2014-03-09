@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package gui;
-
+import principal.OurFonts;
 import atomics.Room;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,8 @@ public class RoomsListPanel extends javax.swing.JPanel {
         initComponents();
         LoadingPanel l = new LoadingPanel("Loading Rooms");
         roomsItens = new ArrayList<RoomListItemPanel>();
+        this.roomsListPanelContainer.getViewport().setOpaque(false);
+        this.roomsListPanelContainer.setOpaque(false);
     }
 
     /**
@@ -42,8 +44,15 @@ public class RoomsListPanel extends javax.swing.JPanel {
         lbSalas = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
-        roomsListPanelContainer.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        setOpaque(false);
 
+        jPanel1.setOpaque(false);
+
+        roomsListPanelContainer.setBorder(null);
+        roomsListPanelContainer.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        roomsListPanelContainer.setOpaque(false);
+
+        listContainer.setOpaque(false);
         listContainer.setLayout(new javax.swing.BoxLayout(listContainer, javax.swing.BoxLayout.Y_AXIS));
         roomsListPanelContainer.setViewportView(listContainer);
 
@@ -59,7 +68,8 @@ public class RoomsListPanel extends javax.swing.JPanel {
             }
         });
 
-        lbSalas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbSalas.setFont(OurFonts.getTitleFont(20f)
+        );
         lbSalas.setText("Rooms");
 
         jTextField1.setToolTipText("Search...");
@@ -83,11 +93,13 @@ public class RoomsListPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roomsListPanelContainer)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addComponent(lbSalas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(109, 109, 109)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btAdicionarSala)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -96,10 +108,11 @@ public class RoomsListPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbSalas)
-                    .addComponent(btAdicionarSala)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(roomsListPanelContainer)
+                .addComponent(roomsListPanelContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btAdicionarSala)
                 .addContainerGap())
         );
 
