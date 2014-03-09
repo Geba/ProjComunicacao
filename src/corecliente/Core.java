@@ -446,5 +446,20 @@ public class Core implements Runnable {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void getHistorico(long sala_id){
+    	Request rq = new Request(Constantes.GET_HISTORICO);
+    	rq.sala_ID = sala_id;
+    	rq.sender_ID = GlobalClient.user.getId();
+    	rq.sender_nickname = GlobalClient.user.getNickname();
+    	rq.file_path = GlobalClient.gui.getPathForFile();
+    	
+    	try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 }

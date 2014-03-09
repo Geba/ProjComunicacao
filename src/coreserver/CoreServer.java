@@ -15,6 +15,8 @@ import atomics.UserInfo;
 import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -35,7 +37,7 @@ import principal.Constantes;
  */
 public class CoreServer implements Runnable {
 
-    DateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
+    //DateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
 
     public CoreServer() {
     }
@@ -91,6 +93,9 @@ public class CoreServer implements Runnable {
             case Constantes.GET_USERS:
                 handleGetUsers(rq);
                 break;
+            case Constantes.GET_HISTORICO:
+            	handleGetHistorico(rq);
+            	break;
             default:
                 throw new UnsupportedOperationException("Not supported yet.");
 
@@ -98,7 +103,35 @@ public class CoreServer implements Runnable {
 
     }
 
-    private void handleGetUsers(Request rq) {
+    private void handleGetHistorico(Request rq) {
+		
+    	rq.tipo = Constantes.DOWNLOAD_FILE;
+        rq.file_path = rq.file_path+"log_romm_"+rq.roomName+"_"+rq.sala_ID+".txt";
+        
+        File file = new File("database/salas/"+rq.sala_ID+".hermes");
+        byte[] bytes = new byte[(int) file.length()];
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            fis.read(bytes);
+            fis.close();
+        } catch (IOException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        rq.file_bytes = bytes;
+        rq.sender_ID = GlobalClient.user.getId();
+        rq.sender_nickname = GlobalClient.user.getNickname();	
+		
+        try {
+			GlobalServer.servidor.send(rq, rq.sender_ID);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+	}
+
+	private void handleGetUsers(Request rq) {
         // TODO Auto-generated method stub
 
     }
@@ -229,7 +262,7 @@ public class CoreServer implements Runnable {
     private void sendMessage(Request rq) {
         // System.out.println("sending message start");
 
-        rq.time = dataFormat.format(new Date());
+        //rq.time = dataFormat.format(new Date());
         rq.tipo = Constantes.RECEIVE_MESSAGE;
         long salaid = rq.sala_ID;
         boolean sair = false;

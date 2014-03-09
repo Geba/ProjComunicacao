@@ -14,7 +14,7 @@ public class Constantes {
     public static final int LOGIN = 0;
     public static final int LOGOUT = 1;
     public static final int GET_EXISTING_ROOMS = 2;//requisita todas as salas criadas
-    public static final int CREATE_ROOM = 3;//requisita a criação de uma sala
+    public static final int CREATE_ROOM = 3;//requisita a cria����o de uma sala
     public static final int CREATED_ROOM = 4;//sala criada com sucesso
     public static final int EXIT_ROOM = 5;//sai da sala
     public static final int SEND_MESSAGE = 6;//envia mensagem para sala especifica
@@ -29,6 +29,7 @@ public class Constantes {
     public static final int LOGIN_OK = 15; //um ack mandado do servidor pra o cliente
     public static final int RECEIVE_MESSAGE = 16; //quando o cliente receber uma msg
     public static final int GET_USERS = 17;//para pedir os usuarios da sala
+    public static final int GET_HISTORICO = 18; //o cliente pede o historico da sala para o servidor
 
     public static String gettipo(int i) {
         String s = "";
