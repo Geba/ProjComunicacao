@@ -17,9 +17,11 @@ import principal.MainServer;
 public class TesteGui {
     public static void main(String[] args) throws IOException{
         AplicacaoPrincipal clientApp = new AplicacaoPrincipal();
+     
         MainServer serverApp = new MainServer();
         
         clientApp.run();
+            
         serverApp.run();
     }
 }

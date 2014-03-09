@@ -94,7 +94,7 @@ public class Core implements Runnable {
     }
 
     public void sendFile(String path, long sala_id) {
-        
+
         File file = new File(path);
         byte[] bytes = new byte[(int) file.length()];
         //FileInputStream fis = new FileInputStream(file);
@@ -123,24 +123,24 @@ public class Core implements Runnable {
     }
 
     private void receiveFile(Request rq) {
-        
+
         try {
             System.out.println("====RECEIVING===="); //downloading
-            
+
             String path_out = rq.file_path;
 
             byte[] bytes = rq.file_bytes;
             FileOutputStream fos = new FileOutputStream(path_out);
             fos.write(bytes);
             fos.close();
-            
+
             System.out.println("====RECEIVED===="); //download concluído
-            
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
     }
 
     public void refreshStatus(int UserId, int status) {
@@ -267,7 +267,7 @@ public class Core implements Runnable {
                 System.out.println("Ja existe a sala");
                 achou = true;
                 GlobalClient.gui.showOpenedRoom(room.getID());
-                
+
             }
         }
         if (!achou) {
@@ -339,7 +339,7 @@ public class Core implements Runnable {
 
     private void handleMudouStatus(Request rq) {
         //someone in some room changed the status
-        GlobalClient.gui.alertMudouStatus(rq.sala_ID, rq.sender_ID, rq.sender_nickname);
+        GlobalClient.gui.alertMudouStatus(rq.existingRooms, rq.sender_ID, rq.sender_nickname, rq.newStatus);
 
     }
 
@@ -356,7 +356,7 @@ public class Core implements Runnable {
             }
             i = GlobalClient.oppenedRooms.size() + 5;
         }
-        GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
+       GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
     }
 
     private void handleNewUser(Request rq) {
@@ -398,7 +398,7 @@ public class Core implements Runnable {
         //rq.existingRooms = GlobalClient.oppenedRooms;
         //System.out.println("numero de rooms que o cliente mandou: " + rq.existingRooms.size());
         try {
-        	System.out.println("*************mandou mudar status com novo status "+rq.newStatus);
+            System.out.println("*************mandou mudar status com novo status " + rq.newStatus);
             GlobalClient.cliente.send(rq, GlobalClient.oppenedRooms);
         } catch (IOException e) {
             // TODO Auto-generated catch block

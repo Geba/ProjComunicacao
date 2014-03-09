@@ -361,20 +361,25 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void alertSaiuSala(long sala_id, String sender_nickname) {
-        this.roomsPanel.refreshUsersCount(sala_id, -1);
+      //  this.roomsPanel.refreshUsersCount(sala_id, -1);
         for (int i = 0; i < this.roomFrameList.size(); i++) {
             if (sala_id == this.roomFrameList.get(i).getID()) {
                 this.roomFrameList.get(i).addAlert(Alerts.ENTEREXIT, sender_nickname, Alerts.EXIT);
             }
         }
-        
+
         System.out.println("atualizar a lista de usuarios visiveis na conversa");
     }
 
-    public void alertMudouStatus(long sala_ID, long sender_ID,
-            String sender_nickname) {
+    public void alertMudouStatus(ArrayList<Room> existingRooms, long sender_ID, String sender_nickname, int newStatus) {
         System.out.println("AlertMudouStatus: alertar ao usuario a mudanca de status e atualizar a lista de usuarios visiveis na conversa");
-
+        for (int i = 0; i < existingRooms.size(); i++) {
+            for (int j = 0; j < roomFrameList.size(); j++) {
+                if (roomFrameList.get(j).getID()==existingRooms.get(i).getID()){
+                    roomFrameList.get(j).addAlert(Alerts.STATUS, sender_nickname, newStatus);
+                }
+            }
+        }
     }
 
     void createRoom(String roomName) {
@@ -423,7 +428,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     void changeStatus(int newStatus) {
-    	System.out.println("change status na gui");
+        System.out.println("change status na gui");
         GlobalClient.core.mudarStatus(newStatus);
     }
 
