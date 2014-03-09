@@ -32,6 +32,11 @@ public class OuvirClientes extends Thread {
 				System.out.println("esperando chegar algo");
 				Request m = (Request) ois.readObject();
 				System.out.println("----PACOTE RECEBIDO-----");
+				try{
+					System.out.println(m.toString());
+				}catch(NullPointerException e){
+					System.out.println("NULL POINTER");
+				}
 				System.out.println("------------------------");
 				if(m.existingRooms!=null)
 					System.out.println("chegaram qtd de salas "+m.existingRooms.size());

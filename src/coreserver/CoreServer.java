@@ -182,8 +182,8 @@ public class CoreServer implements Runnable {
 		r.existingRooms = GlobalServer.rooms;
 		// r.existingRooms = null;
 
-		System.out.println(r);
-		System.out.println(r.existingRooms);
+		//System.out.println(r);
+		//System.out.println(r.existingRooms);
 
 		try {
 			System.out
@@ -335,7 +335,13 @@ public class CoreServer implements Runnable {
 	}
 
 	private void handleSendFile(Request rq) {
+		
+		// coloca um "enviando arquivo"
+		
 		long file_id = downloadFile(rq);
+		
+		// coloca "arquivo enviado"
+		
 		Request rq2 = new Request(Constantes.FILE_SENT);
 		rq2.sala_ID = rq.sala_ID;
 		rq2.sender_nickname = rq.sender_nickname;

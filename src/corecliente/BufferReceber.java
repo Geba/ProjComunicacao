@@ -18,16 +18,19 @@ public class BufferReceber extends Thread {
 	public void run() {
 		// recebe msgs do servidor e imprime na tela
 		ObjectInputStream ois;
+		boolean deupau = false;
 		try {
 			ois = new ObjectInputStream(this.servidor); ////
 			
-			while (true) {
+			while (!deupau) {
 				try {
 					Request m = (Request) ois.readObject();
 					System.out.println("recebeu "+Constantes.gettipo(m.tipo));
 					GlobalClient.core.handleRequest(m);
 				} catch (IOException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					System.out.println("entrou no io excep");
+					deupau = true;
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}

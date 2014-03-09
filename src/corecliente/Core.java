@@ -31,14 +31,9 @@ import principal.Constantes;
  * @author Geeo
  */
 public class Core implements Runnable {
-	// public class Core implements CoreInterface, Runnable {
 
-    // static GuiPrincipalFrame gui;
-    // static User user;
-    // static List<Room> rooms;
     public Core() {
-        // this.user = null;
-        // this.rooms = new ArrayList<Room>();
+
     }
 
     public void run() {
@@ -130,15 +125,17 @@ public class Core implements Runnable {
     private void receiveFile(Request rq) {
         
         try {
-            System.out.println("====RECEIVING====");
-            System.out.println(rq);
-            System.out.println(rq.file_bytes.length);
+            System.out.println("====RECEIVING===="); //downloading
+            
             String path_out = rq.file_path;
 
             byte[] bytes = rq.file_bytes;
             FileOutputStream fos = new FileOutputStream(path_out);
             fos.write(bytes);
             fos.close();
+            
+            System.out.println("====RECEIVED===="); //download concluído
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -401,6 +398,7 @@ public class Core implements Runnable {
         rq.existingRooms = GlobalClient.oppenedRooms;
         System.out.println("numero de rooms que o cliente mandou: " + rq.existingRooms.size());
         try {
+        	System.out.println("*************mandou mudar status com novo status "+rq.newStatus);
             GlobalClient.cliente.send(rq);
         } catch (IOException e) {
             // TODO Auto-generated catch block

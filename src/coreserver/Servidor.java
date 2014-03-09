@@ -17,12 +17,6 @@ import gui.ServidorFrame;
 
 public class Servidor {
 
-	// public static void main(String[] args) throws IOException {
-	// // inicia o servidor
-	// System.out.println("SERVIDOR RUNNING...");
-	// new Servidor(8080).executa();
-	// }
-
 	private String ip;
 	private ServerSocket servidor;
 	private int porta;
@@ -39,7 +33,7 @@ public class Servidor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// this.print("Porta " + this.porta + " aberta!");
+		
 		System.out.println("Porta " + this.porta + " aberta!");
 
 		try {
@@ -52,6 +46,9 @@ public class Servidor {
 	}
 
 	public void executa() throws IOException {
+		
+		this.print("SERVER RUNNING...");
+		this.print("Porta " + this.porta + " aberta!");
 
 		while (!reset) {			
 			//System.out.println("imprimindo o socket serv w(1) "+servidor);

@@ -276,7 +276,7 @@ public class RoomFrame extends javax.swing.JFrame {
             caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
             JOptionPane.showMessageDialog(null, caminhoArquivo);
         } else {
-//não abriu
+//n��o abriu
         }
         GlobalClient.gui.sendFile(caminhoArquivo, this);
     }//GEN-LAST:event_btAnexarMouseClicked
@@ -361,7 +361,7 @@ public class RoomFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addMensagem(Message message) {
-        System.out.println("addMensagem:" + message.getMessage() + " " + this);
+        //System.out.println("addMensagem:" + message.getMessage() + " " + this);
         MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says: ", message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);

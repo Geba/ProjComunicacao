@@ -423,6 +423,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     void changeStatus(int newStatus) {
+    	System.out.println("change status na gui");
         GlobalClient.core.mudarStatus(newStatus);
     }
 

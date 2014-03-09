@@ -101,6 +101,11 @@ public class CabecalhoPanel extends javax.swing.JPanel {
 
     private void cBStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cBStatusItemStateChanged
         GlobalClient.gui.changeStatus(this.cBStatus.getSelectedIndex());
+        
+        ////////////////////////
+        System.out.println("entrou nessa funcao de trocar o item (cabecalho panel)");
+        
+        
     }//GEN-LAST:event_cBStatusItemStateChanged
 
 
