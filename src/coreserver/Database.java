@@ -67,7 +67,7 @@ public class Database {
 			PrintWriter pw = new PrintWriter(fw, true);
 			//PrintWriter pw = new PrintWriter(file);
 			pw.print(msg.getTime() + " ");
-			pw.print(msg.getSender_nickname() + " says: ");
+			pw.print(msg.getSender_nickname() + " disse: ");
 			pw.println(msg.getMessage());
 			pw.close();
 		} catch (IOException e) {
