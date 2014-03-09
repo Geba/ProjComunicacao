@@ -86,7 +86,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 544, 576));
+        setMaximumSize(new java.awt.Dimension(440, 670));
         setMinimumSize(new java.awt.Dimension(350, 520));
+        setPreferredSize(new java.awt.Dimension(440, 670));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -95,12 +99,21 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         principalPanel.setFocusable(false);
         principalPanel.setOpaque(false);
         principalPanel.setLayout(new javax.swing.BoxLayout(principalPanel, javax.swing.BoxLayout.Y_AXIS));
-        jPanel1.add(principalPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 550, 800));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(principalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(principalPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         principalPanel.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
@@ -187,11 +200,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BigContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BigContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BigContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BigContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

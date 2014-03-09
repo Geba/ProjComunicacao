@@ -89,11 +89,11 @@ public class LoginPanel extends javax.swing.JPanel {
                 tFLoginActionPerformed(evt);
             }
         });
-        add(tFLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 210, 30));
+        add(tFLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 210, 20));
 
         lbHowYouFeeling.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHowYouFeeling.setText("How are your feeling today?");
-        add(lbHowYouFeeling, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, 15));
+        add(lbHowYouFeeling, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, 15));
 
         cBStatus.setMinimumSize(new java.awt.Dimension(100, 22));
         cBStatus.setPreferredSize(new java.awt.Dimension(150, 22));
@@ -107,8 +107,11 @@ public class LoginPanel extends javax.swing.JPanel {
         lbServidorIp.setText("ServidorIp");
         add(lbServidorIp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
 
-        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar.png"))); // NOI18N
-        btEntrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar_clicado.png"))); // NOI18N
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar.png"))); // NOI18N
+        btEntrar.setBorder(null);
+        btEntrar.setBorderPainted(false);
+        btEntrar.setContentAreaFilled(false);
+        btEntrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar_clicked.png"))); // NOI18N
         btEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btEntrarMouseClicked(evt);
@@ -157,11 +160,11 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tFServidorIpActionPerformed
 
     private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
-this.btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar_clicado.png")));
+    this.btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar_clicked.png")));
     }//GEN-LAST:event_btEntrarMouseClicked
 
     private void btEntrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMousePressed
-     this.btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar_clicado.png")));
+     this.btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar_clicked.png")));
     }//GEN-LAST:event_btEntrarMousePressed
 
 
