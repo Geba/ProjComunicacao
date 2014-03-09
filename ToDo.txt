@@ -1,0 +1,2 @@
+1. aumentar o contraste entre a cor do botao bentrar e bentrar_clicked. >>Salvar com os mesmos nomes, e mesmo tamanho
+o servidor tem que por a hora em mensagens de requisicao: File Sent

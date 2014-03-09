@@ -17,10 +17,12 @@ public class OurFonts {
             InputStream is = new FileInputStream("outros/fonts/texto.ttf");
             try {
                 font = Font.createFont(Font.TRUETYPE_FONT, is);
+                System.out.println("a funcao fonte ta funfando");
             } catch (FontFormatException ex) {
-                Logger.getLogger(OurFonts.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(OurFonts.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("font format Exception");
             } catch (IOException ex) {
-                Logger.getLogger(OurFonts.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("IO exception");
             }
 
         } catch (FileNotFoundException e) {
