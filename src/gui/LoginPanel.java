@@ -180,4 +180,5 @@ public class LoginPanel extends javax.swing.JPanel {
     private javax.swing.JTextField tFLogin;
     private javax.swing.JTextField tFServidorIp;
     // End of variables declaration//GEN-END:variables
+    //huhu
 }
