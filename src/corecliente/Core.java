@@ -274,6 +274,7 @@ public class Core implements Runnable {
             Request rq = new Request(Constantes.ENTER_ROOM);
             rq.sender_ID = GlobalClient.user.getId();
             rq.sala_ID = room.getID();
+            rq.sender_nickname = GlobalClient.user.getNickname();
             GlobalClient.cliente.send(rq);
         }
     }
