@@ -6,6 +6,8 @@
 package gui;
 
 import atomics.User;
+import atomics.UserInfo;
+import javax.swing.JLabel;
 import principal.Status;
 
 /**
@@ -13,6 +15,15 @@ import principal.Status;
  * @author Geeo
  */
 public class UserPanel extends javax.swing.JPanel {
+    private long userId;
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
     /**
      * Creates new form ContatoPanel
@@ -21,10 +32,27 @@ public class UserPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public UserPanel(User user) {
+    public JLabel getLbName() {
+        return lbName;
+    }
+
+    public void setLbName(JLabel lbName) {
+        this.lbName = lbName;
+    }
+
+    public JLabel getLbStatus() {
+        return lbStatus;
+    }
+
+    public void setLbStatus(JLabel lbStatus) {
+        this.lbStatus = lbStatus;
+    }
+
+    public UserPanel(UserInfo ui) {
         initComponents();
-        this.lbName.setText(user.getNickname());
-        this.lbStatus.setText(Status.whichStatus(user.getStatus()));
+        this.userId = ui.getUserId();
+        this.lbName.setText(ui.getNickname());
+        this.lbStatus.setText(Status.whichStatus(ui.getStatus()));
     }
 
     /**
@@ -36,38 +64,53 @@ public class UserPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbName = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lbStatus = new javax.swing.JLabel();
+        lbName = new javax.swing.JLabel();
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 102));
+
+        lbStatus.setText("jLabel1");
 
         lbName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbName.setText("jLabel1");
 
-        lbStatus.setText("jLabel1");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                .addGap(7, 7, 7))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbStatus)
+                    .addComponent(lbName))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbName)
-                    .addComponent(lbStatus))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbName;
     private javax.swing.JLabel lbStatus;
     // End of variables declaration//GEN-END:variables

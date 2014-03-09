@@ -44,7 +44,7 @@ public class Core implements Runnable {
         // this.gui = gui;
     }
 
-    public List<User> refreshUsers(long idConversa) {
+    public List<User> refreshUsers(Request rq) {
         throw new UnsupportedOperationException("Not supported yet."); // To
         // change
         // body
@@ -281,7 +281,8 @@ public class Core implements Runnable {
     private void showNewRoom(Request rq) {
         Room newRoom = rq.existingRooms.get(0);
         GlobalClient.oppenedRooms.add(newRoom);
-        GlobalClient.gui.showNewRoom(newRoom);
+        GlobalClient.gui.showNewRoom(newRoom, rq.usersinfo);
+        
     }
 
     public void handleRequest(Request rq) {
@@ -319,6 +320,9 @@ public class Core implements Runnable {
             case Constantes.DOWNLOAD_FILE://ok
                 receiveFile(rq);
                 break;
+            case Constantes.GET_USERS:
+                refreshUsers(rq);
+                break;
             //case Constantes.
         }
 
@@ -349,19 +353,19 @@ public class Core implements Runnable {
                 for (int j = 0; j < GlobalClient.oppenedRooms.get(i).getUsers_ID().size(); j++) {
                     if (GlobalClient.oppenedRooms.get(i).getUsers_ID().get(j) == rq.sender_ID) {
                         GlobalClient.oppenedRooms.get(i).getUsers_ID().remove(j);
-                    }
+                        }
                     j = GlobalClient.oppenedRooms.get(i).getUsers_ID().size() + 20;
                 }
-                GlobalClient.gui.alertSaiuSala(rq.sala_ID, rq.sender_nickname);
+                GlobalClient.gui.alertSaiuSala(rq.sala_ID, rq.sender_nickname, rq.sender_ID);
             }
             i = GlobalClient.oppenedRooms.size() + 5;
         }
-       GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
+        GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
     }
 
     private void handleNewUser(Request rq) {
         GlobalClient.gui.showNewUser(rq.sala_ID, rq.sender_nickname,
-                rq.newStatus);
+                rq.newStatus, rq.sender_ID);
 
     }
 
@@ -426,6 +430,17 @@ public class Core implements Runnable {
             GlobalClient.gui.refreshActualRooms(rq.existingRooms.get(0));
         }
 
+    }
+
+    public void requestUsersFromRoom(long sala_id) {
+        Request rq = new Request(Constantes.GET_USERS);
+        rq.sender_ID = GlobalClient.user.getId();
+        rq.sala_ID = sala_id;
+        try {
+            GlobalClient.cliente.send(rq);
+        } catch (IOException ex) {
+            Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

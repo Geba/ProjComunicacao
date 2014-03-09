@@ -11,6 +11,7 @@ import atomics.Room;
 import atomics.Message;
 import atomics.Request;
 import atomics.User;
+import atomics.UserInfo;
 import gui.GuiPrincipalFrame;
 import interfaces.CoreInterface;
 
@@ -87,10 +88,18 @@ public class CoreServer implements Runnable {
             case Constantes.DOWNLOAD_FILE:
                 handleSendFileToDownload(rq);
                 break;
+            case Constantes.GET_USERS:
+                handleGetUsers(rq);
+                break;
             default:
                 throw new UnsupportedOperationException("Not supported yet.");
 
         }
+
+    }
+
+    private void handleGetUsers(Request rq) {
+        // TODO Auto-generated method stub
 
     }
 
@@ -168,22 +177,22 @@ public class CoreServer implements Runnable {
          * GlobalServer.rooms.get(i).getUsers_ID() .get(j)) {
          * GlobalServer.rooms.get(i).getUsers_ID().remove(j); } } } }
          */
-        for(int i  = 0; i<GlobalServer.rooms.size();i++){//para todas as salas do servidor
-        	for (int j = 0; j<GlobalServer.rooms.get(i).getUsers_ID().size();j++){//procure em todos os presentes nessa sala
-        		if(rq.sender_ID==GlobalServer.rooms.get(i).getUsers_ID().get(j)){
-        			GlobalServer.rooms.get(i).getUsers_ID().remove(j);
-        		}
-        	}
+        for (int i = 0; i < GlobalServer.rooms.size(); i++) {//para todas as salas do servidor
+            for (int j = 0; j < GlobalServer.rooms.get(i).getUsers_ID().size(); j++) {//procure em todos os presentes nessa sala
+                if (rq.sender_ID == GlobalServer.rooms.get(i).getUsers_ID().get(j)) {
+                    GlobalServer.rooms.get(i).getUsers_ID().remove(j);
+                }
+            }
         }
         for (int i = 0; i < GlobalServer.users.size(); i++) {
-           //if (GlobalServer.users.get(i).getId() != rq.sender_ID) {
-                try {
-                    GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
-                } catch (IOException ex) {
-                    Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE,
-                            null, ex);
-                }
-           }
+            //if (GlobalServer.users.get(i).getId() != rq.sender_ID) {
+            try {
+                GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
+            } catch (IOException ex) {
+                Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE,
+                        null, ex);
+            }
+        }
         //}
 
     }
@@ -193,7 +202,7 @@ public class CoreServer implements Runnable {
         r.existingRooms = GlobalServer.rooms;
 		// r.existingRooms = null;
 
-		// System.out.println(r);
+        // System.out.println(r);
         // System.out.println(r.existingRooms);
         try {
             System.out
@@ -237,7 +246,7 @@ public class CoreServer implements Runnable {
     public void handleLogin(Request rq, long id) {
         boolean sair = false;
         for (int i = 0; i < GlobalServer.users.size() && !sair; i++) {
-			// System.out.println(GlobalServer.users.get(i).getId() + " ? " +
+            // System.out.println(GlobalServer.users.get(i).getId() + " ? " +
             // id);
             if (GlobalServer.users.get(i).getId() == id) {
                 GlobalServer.users.get(i).setNickname(rq.sender_nickname);
@@ -251,7 +260,7 @@ public class CoreServer implements Runnable {
                     GlobalServer.servidor.send(ok, GlobalServer.users.get(i));
                 } catch (IOException ex) {
                     System.out.println("ERRO NO ESCREVER DO LOGIN");
-					// Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE,
+                    // Logger.getLogger(CoreServer.class.getName()).log(Level.SEVERE,
                     // null, ex);
                 }
                 sair = true;
@@ -297,15 +306,25 @@ public class CoreServer implements Runnable {
                             rq.tipo = Constantes.ENTER_ROOM;
                             rq.existingRooms = new ArrayList<Room>();
                             rq.existingRooms.add(GlobalServer.rooms.get(i));
+                            rq.usersinfo = new ArrayList<UserInfo>();
+                            for (int k = 0; k < GlobalServer.rooms.get(i).getUsers_ID().size(); k++) {
+                                for (int l = 0; l < GlobalServer.users.size(); l++) {
+                                    if (GlobalServer.users.get(l).getId() == GlobalServer.rooms.get(i).getUsers_ID().get(k)) {
+                                        User u2 = GlobalServer.users.get(l);
+                                        rq.usersinfo.add(new UserInfo(u2.getNickname(), u2.getStatus(), u2.getId()));
+                                    }
+                                }
+                            }
+
                             GlobalServer.servidor.send(rq, u);
                         } catch (IOException ex) {
                             Logger.getLogger(CoreServer.class.getName()).log(
                                     Level.SEVERE, null, ex);
                         }
 
-						// j = GlobalServer.users.size() + 2;
+                        // j = GlobalServer.users.size() + 2;
                         // i = GlobalServer.rooms.size() + 2;
-                    } else {
+                    } else {//avise aos outros que o cara entrou na sala
                         try {
                             rq.tipo = Constantes.NEW_USER;
                             GlobalServer.servidor.send(rq,
@@ -345,10 +364,10 @@ public class CoreServer implements Runnable {
 
     private void handleSendFile(Request rq) {
 
-		// coloca um "enviando arquivo"
+        // coloca um "enviando arquivo"
         long file_id = downloadFile(rq);
 
-		// coloca "arquivo enviado"
+        // coloca "arquivo enviado"
         Request rq2 = new Request(Constantes.FILE_SENT);
         rq2.sala_ID = rq.sala_ID;
         rq2.sender_nickname = rq.sender_nickname;
@@ -412,7 +431,7 @@ public class CoreServer implements Runnable {
                 i = GlobalServer.files.size() + 10;
             }
         }
-		// throw new UnsupportedOperationException("Not supported yet."); //To
+        // throw new UnsupportedOperationException("Not supported yet."); //To
         // change body of generated methods, choose Tools | Templates.
     }
 

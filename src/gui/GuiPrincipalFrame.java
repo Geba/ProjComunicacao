@@ -8,6 +8,7 @@ package gui;
 import atomics.Message;
 import atomics.Room;
 import atomics.User;
+import atomics.UserInfo;
 import corecliente.Core;
 import interfaces.GuiInterface;
 
@@ -290,11 +291,14 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void showNewRoom(Room room) {
+    public void showNewRoom(Room room, ArrayList<UserInfo> usersinfo) {
         RoomFrame conversa = new RoomFrame(room);
         roomFrameList.add(conversa);
+        for (int i = 0; i < usersinfo.size(); i++) {
+            conversa.addUser(usersinfo.get(i));
+        }
         conversa.setVisible(true);
+
         this.roomsPanel.refreshUsersCount(room.getID(), 1);
     }
 
@@ -355,16 +359,23 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         System.out.println("chamou showOpenRoom");
     }
 
-    public void showNewUser(long sala_ID, String sender_nickname, int newStatus) {
+    public void showNewUser(long sala_ID, String sender_nickname, int newStatus, long sender_id) {
         System.out.println("chamou shownewUSer");
         this.roomsPanel.refreshUsersCount(sala_ID, 1);
+        for (int i = 0; i < this.roomFrameList.size(); i++) {
+            if (sala_ID == this.roomFrameList.get(i).getID()) {
+                this.roomFrameList.get(i).addAlert(Alerts.ENTEREXIT, sender_nickname, Alerts.EXIT);
+                this.roomFrameList.get(i).removeUser(sender_id);
+            }
+        }
     }
 
-    public void alertSaiuSala(long sala_id, String sender_nickname) {
-      //  this.roomsPanel.refreshUsersCount(sala_id, -1);
+    public void alertSaiuSala(long sala_id, String sender_nickname, long sender_id) {
+        //  this.roomsPanel.refreshUsersCount(sala_id, -1);
         for (int i = 0; i < this.roomFrameList.size(); i++) {
             if (sala_id == this.roomFrameList.get(i).getID()) {
                 this.roomFrameList.get(i).addAlert(Alerts.ENTEREXIT, sender_nickname, Alerts.EXIT);
+                this.roomFrameList.get(i).removeUser(sender_id);
             }
         }
 
@@ -375,7 +386,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         System.out.println("AlertMudouStatus: alertar ao usuario a mudanca de status e atualizar a lista de usuarios visiveis na conversa");
         for (int i = 0; i < existingRooms.size(); i++) {
             for (int j = 0; j < roomFrameList.size(); j++) {
-                if (roomFrameList.get(j).getID()==existingRooms.get(i).getID()){
+                if (roomFrameList.get(j).getID() == existingRooms.get(i).getID()) {
                     roomFrameList.get(j).addAlert(Alerts.STATUS, sender_nickname, newStatus);
                 }
             }
@@ -457,5 +468,10 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     private void alertfileSent() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void showNewRoom(Room room) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

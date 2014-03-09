@@ -13,6 +13,7 @@ import java.util.Date;
 import atomics.Message;
 import atomics.Room;
 import atomics.User;
+import atomics.UserInfo;
 import corecliente.Core;
 
 import javax.swing.SwingUtilities;
@@ -72,6 +73,7 @@ public class RoomFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tATexto = new javax.swing.JTextArea();
         sPUsers = new javax.swing.JScrollPane();
+        pnUsersOnline = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         sPConversa = new javax.swing.JScrollPane();
         pnConversa = new javax.swing.JPanel();
@@ -164,6 +166,10 @@ public class RoomFrame extends javax.swing.JFrame {
         );
 
         sPUsers.setPreferredSize(new java.awt.Dimension(2, 8));
+
+        pnUsersOnline.setAutoscrolls(true);
+        pnUsersOnline.setLayout(new javax.swing.BoxLayout(pnUsersOnline, javax.swing.BoxLayout.Y_AXIS));
+        sPUsers.setViewportView(pnUsersOnline);
 
         jPanel3.setBackground(new java.awt.Color(244, 193, 58));
 
@@ -355,6 +361,7 @@ public class RoomFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel lbRoomName;
     private javax.swing.JPanel pnConversa;
+    private javax.swing.JPanel pnUsersOnline;
     private javax.swing.JScrollPane sPConversa;
     private javax.swing.JScrollPane sPUsers;
     private javax.swing.JTextArea tATexto;
@@ -394,7 +401,9 @@ public class RoomFrame extends javax.swing.JFrame {
             public void run() {
 
                 sPConversa.getVerticalScrollBar().setValue(
-                        sPConversa.getVerticalScrollBar().getMaximum());
+                        sPConversa.getVerticalScrollBar().getMaximum()); 
+                sPUsers.getVerticalScrollBar().setValue(
+                        sPUsers.getVerticalScrollBar().getMaximum());
 
             }
 
@@ -442,6 +451,23 @@ public class RoomFrame extends javax.swing.JFrame {
         this.pnConversa.revalidate();
         scrollPaneToBottom();
 
+    }
+
+    void addUser(UserInfo get) {
+        UserPanel up = new UserPanel(get);
+        up.setVisible(true);
+        this.pnUsersOnline.add(up);
+        this.pnUsersOnline.revalidate();
+    }
+
+    void removeUser(long sender_id) {
+        for(int i  =0; i<this.pnUsersOnline.getComponents().length;i++){
+            UserPanel up = ((UserPanel)this.pnUsersOnline.getComponent(i));
+            if(up.getUserId()==sender_id){
+                this.pnUsersOnline.remove(i);
+                this.pnUsersOnline.revalidate();
+            }
+        }
     }
 
 }
