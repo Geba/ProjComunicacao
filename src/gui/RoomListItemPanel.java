@@ -119,16 +119,6 @@ public class RoomListItemPanel extends javax.swing.JPanel {
 
     void refreshUsersCount(int add) {
         this.userCount += add;
-         switch (userCount) {
-            case 0:
-                this.lbUsersQnt.setText("Nobody is Here");
-                break;
-            case 1:
-                this.lbUsersQnt.setText("1 user online");
-                break;
-            default:
-                this.lbUsersQnt.setText(userCount + " users online");
-                break;
-        }
+        this.lbUsersQnt.setText(userCount+"");
     }
 }
