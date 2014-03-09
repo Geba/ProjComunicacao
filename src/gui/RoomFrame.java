@@ -425,11 +425,11 @@ public class RoomFrame extends javax.swing.JFrame {
             case Alerts.ENTEREXIT://entrou ou  saiu
                 switch (enterexit) {
                     case Alerts.ENTER://entrou sala
-                        string = sender_nickname + "entered the room";
+                        string = sender_nickname + " entered the room :)";
                         break;
 
                     case Alerts.EXIT://saiu sala
-                        string = sender_nickname + "had gone";
+                        string = sender_nickname + " had gone :/";
                         break;
                 }
 

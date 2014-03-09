@@ -58,6 +58,16 @@ public class CabecalhoPanel extends javax.swing.JPanel {
                 cBStatusItemStateChanged(evt);
             }
         });
+        cBStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBStatusActionPerformed(evt);
+            }
+        });
+        cBStatus.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cBStatusFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -100,13 +110,20 @@ public class CabecalhoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cBStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cBStatusItemStateChanged
-        GlobalClient.gui.changeStatus(this.cBStatus.getSelectedIndex());
-        
-        ////////////////////////
-        System.out.println("entrou nessa funcao de trocar o item (cabecalho panel)");
+      
         
         
     }//GEN-LAST:event_cBStatusItemStateChanged
+
+    private void cBStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBStatusActionPerformed
+
+    private void cBStatusFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cBStatusFocusLost
+        GlobalClient.gui.changeStatus(this.cBStatus.getSelectedIndex());
+               ////////////////////////
+        System.out.println("entrou nessa funcao de trocar o item (cabecalho panel)");
+    }//GEN-LAST:event_cBStatusFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
