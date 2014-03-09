@@ -14,7 +14,7 @@ public class OurFonts {
     public static Font getTitleFont(float tamanho) {
         Font font = null;
         try {
-            InputStream is = new FileInputStream("outros/fonts/texto.ttf");
+            InputStream is = new FileInputStream("/src/resources/texto.ttf");
             try {
                 font = Font.createFont(Font.TRUETYPE_FONT, is);
                 System.out.println("a funcao fonte ta funfando");

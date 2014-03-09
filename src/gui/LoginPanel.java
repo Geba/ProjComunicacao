@@ -80,7 +80,6 @@ public class LoginPanel extends javax.swing.JPanel {
         jPanel2.setLayout(flowLayout1);
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 940, 919, -1));
 
-        tFLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tFLogin.setText("user");
         tFLogin.setBorder(null);
         tFLogin.setOpaque(false);

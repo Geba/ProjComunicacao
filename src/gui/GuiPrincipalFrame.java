@@ -26,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
+import principal.Alerts;
 
 /**
  *
@@ -42,9 +43,10 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     /**
      * Creates new form GuiPrincipalFrame
-     * @throws IOException 
-     * @throws FontFormatException 
-     * @throws FileNotFoundException 
+     *
+     * @throws IOException
+     * @throws FontFormatException
+     * @throws FileNotFoundException
      */
     public GuiPrincipalFrame() throws FileNotFoundException, FontFormatException, IOException {
         initComponents();
@@ -252,17 +254,17 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-					new GuiPrincipalFrame().setVisible(true);
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (FontFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                    new GuiPrincipalFrame().setVisible(true);
+                } catch (FileNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (FontFormatException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
 
             }
         });
@@ -358,9 +360,15 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         this.roomsPanel.refreshUsersCount(sala_ID, 1);
     }
 
-    public void alertSaiuSala(long sala_ID, String sender_nickname) {
-        this.roomsPanel.refreshUsersCount(sala_ID, -1);
-        System.out.println("AlertSaiuSala: alertar ao usuario a saida de alguem e atualizar a lista de usuarios visiveis na conversa");
+    public void alertSaiuSala(long sala_id, String sender_nickname) {
+        this.roomsPanel.refreshUsersCount(sala_id, -1);
+        for (int i = 0; i < this.roomFrameList.size(); i++) {
+            if (sala_id == this.roomFrameList.get(i).getID()) {
+                this.roomFrameList.get(i).addAlert(Alerts.ENTEREXIT, sender_nickname, Alerts.EXIT);
+            }
+        }
+        
+        System.out.println("atualizar a lista de usuarios visiveis na conversa");
     }
 
     public void alertMudouStatus(long sala_ID, long sender_ID,

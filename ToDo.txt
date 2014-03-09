@@ -1,2 +1,4 @@
 1. aumentar o contraste entre a cor do botao bentrar e bentrar_clicked. >>Salvar com os mesmos nomes, e mesmo tamanho
 o servidor tem que por a hora em mensagens de requisicao: File Sent
+o metodo da OurFonts nao ta localizando o arquivo
+falta adiconar os users no painel de conversa, e remover quando um sai, e adicionar quando um entra, e atualizar quando um muda o status

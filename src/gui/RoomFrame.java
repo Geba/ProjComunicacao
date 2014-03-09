@@ -19,7 +19,9 @@ import javax.swing.SwingUtilities;
 import corecliente.GlobalClient;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import principal.Alerts;
 import principal.Constantes;
+import principal.Status;
 
 /**
  *
@@ -367,12 +369,12 @@ public class RoomFrame extends javax.swing.JFrame {
         scrollPaneToBottom();
     }
 
-    public void addFile(String name, String sender_nickname,  String hora,long fileLink) {
-           MessageFilePanel mfp = new MessageFilePanel(name, sender_nickname, hora, fileLink);
-           mfp.setVisible(true);
-           this.pnConversa.add(mfp);
-           this.pnConversa.revalidate();
-           scrollPaneToBottom();
+    public void addFile(String name, String sender_nickname, String hora, long fileLink) {
+        MessageFilePanel mfp = new MessageFilePanel(name, sender_nickname, hora, fileLink);
+        mfp.setVisible(true);
+        this.pnConversa.add(mfp);
+        this.pnConversa.revalidate();
+        scrollPaneToBottom();
     }
 
     public void sendMessage(int code) {
@@ -409,8 +411,37 @@ public class RoomFrame extends javax.swing.JFrame {
         return 0;
     }
 
-    void alertsendingFile() {
-     //   this.pnConversa.add(new Alert(Constantes.SEND_FILE))
+    public void alertsendingFile() {
+        //   this.pnConversa.add(new Alert(Constantes.SEND_FILE))
+    }
+
+    public void addAlert(int statusenter, String sender_nickname, int enterexit) {
+        //tipo2 diz para qual status
+        String string = "";
+        switch (statusenter) {
+            case Alerts.STATUS://mudou status
+                string = sender_nickname + " is feeling " + Status.whichStatus(enterexit);
+                break;
+            case Alerts.ENTEREXIT://entrou ou  saiu
+                switch (enterexit) {
+                    case Alerts.ENTER://entrou sala
+                        string = sender_nickname + "entered the room";
+                        break;
+
+                    case Alerts.EXIT://saiu sala
+                        string = sender_nickname + "had gone";
+                        break;
+                }
+
+                break;
+
+        }
+        SystemAlertPanel sap = new SystemAlertPanel(string);
+        sap.setVisible(true);
+        this.pnConversa.add(sap);
+        this.pnConversa.revalidate();
+        scrollPaneToBottom();
+
     }
 
 }
