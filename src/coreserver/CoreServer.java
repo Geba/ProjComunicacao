@@ -193,6 +193,12 @@ public class CoreServer implements Runnable {
                 }
             }else{
             	GlobalServer.users.get(i).setStatus(rq.newStatus);
+                try {
+                    GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         }
         /*
