@@ -136,7 +136,7 @@ public class CoreServer implements Runnable {
 		for (int i = 0; i < GlobalServer.rooms.size(); i++) {
 			for (int j = 0; j < rq.existingRooms.size(); j++) {
 				if (GlobalServer.rooms.get(i).getID() == rq.existingRooms
-						.get(i).getID()) { // achei uma sala
+						.get(j).getID()) { // achei uma sala
 					for (int k = 0; k < GlobalServer.rooms.get(i).getUsers_ID()
 							.size(); k++) {
 						if (GlobalServer.rooms.get(i).getUsers_ID().get(k) != rq.sender_ID) {

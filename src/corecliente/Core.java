@@ -395,11 +395,11 @@ public class Core implements Runnable {
         rq.newStatus = status;
         rq.sender_ID = GlobalClient.user.getId();
         rq.sender_nickname = GlobalClient.user.getNickname();
-        rq.existingRooms = GlobalClient.oppenedRooms;
-        System.out.println("numero de rooms que o cliente mandou: " + rq.existingRooms.size());
+        //rq.existingRooms = GlobalClient.oppenedRooms;
+        //System.out.println("numero de rooms que o cliente mandou: " + rq.existingRooms.size());
         try {
         	System.out.println("*************mandou mudar status com novo status "+rq.newStatus);
-            GlobalClient.cliente.send(rq);
+            GlobalClient.cliente.send(rq, GlobalClient.oppenedRooms);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

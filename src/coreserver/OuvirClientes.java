@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import principal.Constantes;
 import atomics.Message;
 import atomics.Request;
 
@@ -33,14 +34,14 @@ public class OuvirClientes extends Thread {
 				Request m = (Request) ois.readObject();
 				System.out.println("----PACOTE RECEBIDO-----");
 				try{
+					if(m.existingRooms!=null)
+						System.out.println("chegaram qtd de salas "+m.existingRooms.size());
 					System.out.println(m.toString());
 				}catch(NullPointerException e){
 					System.out.println("NULL POINTER");
 				}
 				System.out.println("------------------------");
-				if(m.existingRooms!=null)
-					System.out.println("chegaram qtd de salas "+m.existingRooms.size());
-                System.out.println("chegou "+m.tipo);       
+                System.out.println("chegou "+Constantes.gettipo(m.tipo));       
                 GlobalServer.core.handleRequest(m, id);
 			}
 

@@ -64,6 +64,25 @@ public class Cliente {
 		System.out.println("---CLIENT FINISHED SENDIND---\n");
 		
 	}
+	
+	public void send(Request m, ArrayList<Room> r) throws IOException {
+		System.out.println("\n---CLIENT SEND OTHER CONSTRUCTOR---");
+		
+		if (m.existingRooms==null)
+			m.existingRooms = new ArrayList<Room>();
+		
+		for (int i=0; i<r.size(); i++){
+			m.existingRooms.add(r.get(i));
+		}
+		
+		if(m.existingRooms!=null)
+			System.out.println("cliente enviando (qtd de salas) "+m.existingRooms.size());
+		System.out.println(Constantes.gettipo(m.tipo) +" < cliente mandando");
+		this.dos.writeObject(m);
+		
+		System.out.println("---CLIENT FINISHED SENDIND---\n");
+		
+	}
         
 	
 }
