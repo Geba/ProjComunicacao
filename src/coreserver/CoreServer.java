@@ -105,11 +105,19 @@ public class CoreServer implements Runnable {
 
     private void handleLogOut(Request rq) {
         // User u = null;
+    	rq.tipo = Constantes.SAIU_SALA;
         for (int i = 0; i < GlobalServer.users.size(); i++) {
             if (GlobalServer.users.get(i).getId() == rq.sender_ID) {
                 // u = GlobalServer.users.get(i);
                 GlobalServer.users.remove(i);
                 i = GlobalServer.users.size() + 10;
+            } else {
+            	try {
+					GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         }
 

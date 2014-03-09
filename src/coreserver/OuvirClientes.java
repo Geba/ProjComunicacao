@@ -16,13 +16,13 @@ public class OuvirClientes extends Thread {
 	private String ip;
 	private InputStream cliente;
 	private Servidor servidor;
-        private long id;
+    private long id;
 
 	public OuvirClientes(long id, InputStream cliente, Servidor servidor, String ip) {
 		this.cliente = cliente;
 		this.servidor = servidor;
 		this.ip = ip;
-                this.id = id;
+        this.id = id;
 	}
 
 	public void run() {

@@ -202,10 +202,11 @@ public class Core implements Runnable {
     public void logOut() {
         Request rq = new Request(Constantes.LOGOUT);
         rq.sender_ID = GlobalClient.user.getId();
-        rq.existingRooms = GlobalClient.oppenedRooms;
+        //rq.existingRooms = GlobalClient.oppenedRooms;
         rq.sender_nickname = GlobalClient.user.getNickname();
+        //rq.
         try {
-            GlobalClient.cliente.send(rq);
+            GlobalClient.cliente.send(rq, GlobalClient.oppenedRooms);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
