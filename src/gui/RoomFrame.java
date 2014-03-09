@@ -470,4 +470,14 @@ public class RoomFrame extends javax.swing.JFrame {
         }
     }
 
+	public void refreshStatus(long sender_ID, int newStatus) {
+		 for(int i  =0; i<this.pnUsersOnline.getComponents().length;i++){
+	            UserPanel up = ((UserPanel)this.pnUsersOnline.getComponent(i));
+	            if(up.getUserId()==sender_ID){
+	               up.getLbStatus().setText(Status.whichStatus(newStatus));
+	                this.pnUsersOnline.revalidate();
+	            }
+	        }		
+	}
+
 }

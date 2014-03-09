@@ -150,6 +150,8 @@ public class CoreServer implements Runnable {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+            }else{
+            	GlobalServer.users.get(i).setStatus(rq.newStatus);
             }
         }
         /*
