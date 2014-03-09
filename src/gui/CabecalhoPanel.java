@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
 
 import atomics.User;
@@ -22,10 +21,11 @@ public class CabecalhoPanel extends javax.swing.JPanel {
     public CabecalhoPanel() {
         initComponents();
     }
-    public CabecalhoPanel(User user){
+
+    public CabecalhoPanel(User user) {
         initComponents();
-        this.lbHi.setText("Hi "+user.getNickname()+",");
-         for (int i = 0; i < Status.getNumberOfStatus(); i++) {
+        this.lbHi.setText("Hi " + user.getNickname() + ",");
+        for (int i = 0; i < Status.getNumberOfStatus(); i++) {
             this.cBStatus.addItem(Status.whichStatus(i));
         }
         this.cBStatus.setSelectedIndex(user.getStatus());
@@ -44,6 +44,7 @@ public class CabecalhoPanel extends javax.swing.JPanel {
         lbHi = new javax.swing.JLabel();
         lbHowYouRFeeling = new javax.swing.JLabel();
         cBStatus = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         lbHi.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         lbHi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -69,6 +70,18 @@ public class CabecalhoPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -77,12 +90,14 @@ public class CabecalhoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lbHi, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                        .addComponent(lbHi, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                         .addGap(45, 45, 45))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lbHowYouRFeeling, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cBStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cBStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -93,7 +108,9 @@ public class CabecalhoPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbHowYouRFeeling)
-                    .addComponent(cBStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cBStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -110,9 +127,8 @@ public class CabecalhoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cBStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cBStatusItemStateChanged
-      
-        
-        
+
+
     }//GEN-LAST:event_cBStatusItemStateChanged
 
     private void cBStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBStatusActionPerformed
@@ -120,14 +136,23 @@ public class CabecalhoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cBStatusActionPerformed
 
     private void cBStatusFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cBStatusFocusLost
-        GlobalClient.gui.changeStatus(this.cBStatus.getSelectedIndex());
-               ////////////////////////
-        System.out.println("entrou nessa funcao de trocar o item (cabecalho panel)");
+    //    GlobalClient.gui.changeStatus(this.cBStatus.getSelectedIndex());
+        ////////////////////////
+
     }//GEN-LAST:event_cBStatusFocusLost
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        GlobalClient.gui.changeStatus(this.cBStatus.getSelectedIndex());        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cBStatus;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbHi;
     private javax.swing.JLabel lbHowYouRFeeling;
