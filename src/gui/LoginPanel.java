@@ -43,7 +43,7 @@ public class LoginPanel extends javax.swing.JPanel {
         }
         paintComponent(null);
      
-      //  this.lbHermes.setFont(OurFonts.getTitleFont(72f));
+       
     }
 
     private Image im = new ImageIcon(getClass().getResource("/fundo.png")).getImage();
@@ -80,6 +80,9 @@ public class LoginPanel extends javax.swing.JPanel {
         jPanel2.setLayout(flowLayout1);
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 940, 919, -1));
 
+        tFLogin.setFont(OurFonts.getTextFont(20f)
+        );
+        tFLogin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tFLogin.setText("user");
         tFLogin.setBorder(null);
         tFLogin.setOpaque(false);

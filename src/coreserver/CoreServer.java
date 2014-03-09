@@ -168,8 +168,15 @@ public class CoreServer implements Runnable {
          * GlobalServer.rooms.get(i).getUsers_ID() .get(j)) {
          * GlobalServer.rooms.get(i).getUsers_ID().remove(j); } } } }
          */
+        for(int i  = 0; i<GlobalServer.rooms.size();i++){//para todas as salas do servidor
+        	for (int j = 0; j<GlobalServer.rooms.get(i).getUsers_ID().size();j++){//procure em todos os presentes nessa sala
+        		if(rq.sender_ID==GlobalServer.rooms.get(i).getUsers_ID().get(j)){
+        			GlobalServer.rooms.get(i).getUsers_ID().remove(j);
+        		}
+        	}
+        }
         for (int i = 0; i < GlobalServer.users.size(); i++) {
-           if (GlobalServer.users.get(i).getId() != rq.sender_ID) {
+           //if (GlobalServer.users.get(i).getId() != rq.sender_ID) {
                 try {
                     GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
                 } catch (IOException ex) {
@@ -177,7 +184,7 @@ public class CoreServer implements Runnable {
                             null, ex);
                 }
            }
-        }
+        //}
 
     }
 
