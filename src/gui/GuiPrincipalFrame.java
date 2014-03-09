@@ -11,6 +11,7 @@ import atomics.User;
 import corecliente.Core;
 import interfaces.GuiInterface;
 
+import java.awt.FontFormatException;
 import java.awt.Label;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +19,12 @@ import java.util.List;
 import javax.swing.JProgressBar;
 
 import corecliente.GlobalClient;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
 
 /**
@@ -38,8 +42,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
     /**
      * Creates new form GuiPrincipalFrame
+     * @throws IOException 
+     * @throws FontFormatException 
+     * @throws FileNotFoundException 
      */
-    public GuiPrincipalFrame() {
+    public GuiPrincipalFrame() throws FileNotFoundException, FontFormatException, IOException {
         initComponents();
         this.l = new LoginPanel();
         this.l.setVisible(true);
@@ -61,6 +68,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private void initComponents() {
 
         BigContainer = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -87,27 +95,30 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         principalPanel.setFocusable(false);
+        principalPanel.setOpaque(false);
         principalPanel.setLayout(new javax.swing.BoxLayout(principalPanel, javax.swing.BoxLayout.Y_AXIS));
+        jPanel1.add(principalPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 550, 800));
+        principalPanel.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
         BigContainer.setLayout(BigContainerLayout);
         BigContainerLayout.setHorizontalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BigContainerLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BigContainerLayout.setVerticalGroup(
             BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
+            .addGroup(BigContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(principalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        principalPanel.getAccessibleContext().setAccessibleName("");
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -227,7 +238,18 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiPrincipalFrame().setVisible(true);
+                try {
+					new GuiPrincipalFrame().setVisible(true);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FontFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
             }
         });
@@ -244,6 +266,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;

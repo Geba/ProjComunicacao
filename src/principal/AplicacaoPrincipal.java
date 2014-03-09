@@ -14,6 +14,7 @@ import gui.GuiPrincipalFrame;
 import gui.RoomFrame;
 
 import java.awt.Container;
+import java.awt.FontFormatException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class AplicacaoPrincipal implements Runnable {
     public AplicacaoPrincipal() {
     }
 
-    public static void main(String[] args) throws UnknownHostException, IOException {
+    public static void main(String[] args) throws UnknownHostException, IOException, FontFormatException {
         //gui.run();
         GlobalClient.core = new Core();
         //core.run();
@@ -71,7 +72,12 @@ public class AplicacaoPrincipal implements Runnable {
     @Override
     public void run() {
         try {
-            main(null);
+            try {
+				main(null);
+			} catch (FontFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         } catch (IOException ex) {
             Logger.getLogger(AplicacaoPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import principal.Status;
-
+import principal.OurFonts;
 /**
  *
  * @author Geeo
@@ -42,9 +42,8 @@ public class LoginPanel extends javax.swing.JPanel {
             this.cBStatus.addItem(Status.whichStatus(i));
         }
         paintComponent(null);
-        InputStream is = new FileInputStream("\resources\textos.ttf");
-        Font ours = Font.createFont(Font.TRUETYPE_FONT, is);
-        this.lbHermes.setFont(ours);
+     
+      //  this.lbHermes.setFont(OurFonts.getTitleFont(72f));
     }
 
     private Image im = new ImageIcon(getClass().getResource("/fundo.png")).getImage();
@@ -62,84 +61,39 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbLogin = new javax.swing.JLabel();
-        tFLogin = new javax.swing.JTextField();
-        btEntrar = new javax.swing.JButton();
-        lbServidorIp = new javax.swing.JLabel();
-        tFServidorIp = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        lbHermes = new javax.swing.JLabel();
-        lbMensageiro = new javax.swing.JLabel();
-        lbHowYouFeeling = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        tFLogin = new javax.swing.JTextField();
+        lbHowYouFeeling = new javax.swing.JLabel();
         cBStatus = new javax.swing.JComboBox();
+        lbServidorIp = new javax.swing.JLabel();
+        btEntrar = new javax.swing.JButton();
+        tFServidorIp = new javax.swing.JTextField();
+        newJPanel1 = new gui.NewJPanel();
 
         setMinimumSize(new java.awt.Dimension(300, 400));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(300, 400));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lbLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lbLogin.setText("NickName:");
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel2.setLayout(flowLayout1);
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 940, 919, -1));
 
         tFLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tFLogin.setText("user");
+        tFLogin.setBorder(null);
+        tFLogin.setOpaque(false);
         tFLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tFLoginActionPerformed(evt);
             }
         });
-
-        btEntrar.setText("Entrar");
-        btEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEntrarActionPerformed(evt);
-            }
-        });
-
-        lbServidorIp.setText("ServidorIp");
-
-        tFServidorIp.setText("localHost");
-        tFServidorIp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tFServidorIpActionPerformed(evt);
-            }
-        });
-
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
-
-        lbHermes.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        lbHermes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbHermes.setText("Hermes");
-
-        lbMensageiro.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbMensageiro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbMensageiro.setText("O Mensageiro dos Deuses");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbHermes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lbMensageiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(lbHermes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbMensageiro)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel3);
+        add(tFLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 210, 30));
 
         lbHowYouFeeling.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbHowYouFeeling.setText("How are your feeling today?");
-
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
-        flowLayout1.setAlignOnBaseline(true);
-        jPanel2.setLayout(flowLayout1);
+        add(lbHowYouFeeling, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, -1, 15));
 
         cBStatus.setMinimumSize(new java.awt.Dimension(100, 22));
         cBStatus.setPreferredSize(new java.awt.Dimension(150, 22));
@@ -148,55 +102,37 @@ public class LoginPanel extends javax.swing.JPanel {
                 cBStatusActionPerformed(evt);
             }
         });
-        jPanel2.add(cBStatus);
+        add(cBStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbHowYouFeeling, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btEntrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbLogin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tFLogin))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(lbServidorIp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tFServidorIp))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tFLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(lbLogin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbHowYouFeeling, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tFServidorIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbServidorIp))
-                .addContainerGap())
-        );
+        lbServidorIp.setText("ServidorIp");
+        add(lbServidorIp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, -1, -1));
+
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar.png"))); // NOI18N
+        btEntrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar_clicado.png"))); // NOI18N
+        btEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btEntrarMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btEntrarMousePressed(evt);
+            }
+        });
+        btEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEntrarActionPerformed(evt);
+            }
+        });
+        add(btEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 47));
+
+        tFServidorIp.setText("localhost");
+        tFServidorIp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tFServidorIpActionPerformed(evt);
+            }
+        });
+        add(tFServidorIp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 560, 90, -1));
+        add(newJPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tFLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tFLoginActionPerformed
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         String nickname = this.tFLogin.getText();
@@ -206,29 +142,36 @@ public class LoginPanel extends javax.swing.JPanel {
 
         GlobalClient.gui.logIn(nickname, 0, ip, status);
 
-
     }//GEN-LAST:event_btEntrarActionPerformed
-
-    private void tFServidorIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFServidorIpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tFServidorIpActionPerformed
 
     private void cBStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBStatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cBStatusActionPerformed
 
+    private void tFLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tFLoginActionPerformed
+
+    private void tFServidorIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFServidorIpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tFServidorIpActionPerformed
+
+    private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
+this.btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar_clicado.png")));
+    }//GEN-LAST:event_btEntrarMouseClicked
+
+    private void btEntrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMousePressed
+     this.btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/botao_entrar_clicado.png")));
+    }//GEN-LAST:event_btEntrarMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
     private javax.swing.JComboBox cBStatus;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lbHermes;
     private javax.swing.JLabel lbHowYouFeeling;
-    private javax.swing.JLabel lbLogin;
-    private javax.swing.JLabel lbMensageiro;
     private javax.swing.JLabel lbServidorIp;
+    private gui.NewJPanel newJPanel1;
     private javax.swing.JTextField tFLogin;
     private javax.swing.JTextField tFServidorIp;
     // End of variables declaration//GEN-END:variables
