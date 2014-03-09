@@ -414,6 +414,8 @@ public class Core implements Runnable {
         Request rq = new Request(Constantes.CREATE_ROOM);
         rq.sender_ID = GlobalClient.user.getId();
         rq.roomName = roomName;
+        rq.newStatus=GlobalClient.user.getStatus();
+        rq.sender_nickname=GlobalClient.user.getNickname();
         try {
             GlobalClient.cliente.send(rq);
         } catch (IOException ex) {

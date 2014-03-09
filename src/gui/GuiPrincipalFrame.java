@@ -364,8 +364,9 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         this.roomsPanel.refreshUsersCount(sala_ID, 1);
         for (int i = 0; i < this.roomFrameList.size(); i++) {
             if (sala_ID == this.roomFrameList.get(i).getID()) {
-                this.roomFrameList.get(i).addAlert(Alerts.ENTEREXIT, sender_nickname, Alerts.EXIT);
-                this.roomFrameList.get(i).removeUser(sender_id);
+                this.roomFrameList.get(i).addAlert(Alerts.ENTEREXIT, sender_nickname, Alerts.ENTER);
+                UserInfo usr = new UserInfo(sender_nickname, newStatus, sender_id);
+                this.roomFrameList.get(i).addUser(usr);
             }
         }
     }

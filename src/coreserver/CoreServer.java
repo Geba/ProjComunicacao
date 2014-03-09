@@ -351,6 +351,8 @@ public class CoreServer implements Runnable {
         rq.tipo = Constantes.CREATED_ROOM;
         rq.existingRooms = new ArrayList<Room>();
         rq.existingRooms.add(r);
+        rq.usersinfo = new ArrayList<UserInfo>();
+        rq.usersinfo.add(new UserInfo(rq.sender_nickname, rq.newStatus, rq.sender_ID));
         for (int i = 0; i < GlobalServer.users.size(); i++) {
             try {
                 GlobalServer.servidor.send(rq, GlobalServer.users.get(i));
