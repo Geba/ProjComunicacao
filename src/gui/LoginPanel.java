@@ -28,6 +28,7 @@ import javax.swing.ImageIcon;
 
 import principal.Status;
 import principal.OurFonts;
+
 /**
  *
  * @author Geeo
@@ -43,14 +44,13 @@ public class LoginPanel extends javax.swing.JPanel {
             this.cBStatus.addItem(Status.whichStatus(i));
         }
         paintComponent(null);
-     
-       
+
     }
 
     private Image im = new ImageIcon(getClass().getResource("/fundo.png")).getImage();
 
     public void paintComponent(Graphics g) {
-    	
+
     }
 
     /**
@@ -62,12 +62,20 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cBStatus = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         tFLogin = new javax.swing.JTextField();
-        cBStatus = new javax.swing.JComboBox();
         btEntrar = new javax.swing.JButton();
         tFServidorIp = new javax.swing.JTextField();
         newJPanel1 = new gui.NewJPanel();
+
+        cBStatus.setMinimumSize(new java.awt.Dimension(100, 22));
+        cBStatus.setPreferredSize(new java.awt.Dimension(150, 22));
+        cBStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBStatusActionPerformed(evt);
+            }
+        });
 
         setMinimumSize(new java.awt.Dimension(300, 400));
         setName(""); // NOI18N
@@ -92,20 +100,16 @@ public class LoginPanel extends javax.swing.JPanel {
         });
         add(tFLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 210, 30));
 
-        cBStatus.setMinimumSize(new java.awt.Dimension(100, 22));
-        cBStatus.setPreferredSize(new java.awt.Dimension(150, 22));
-        cBStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBStatusActionPerformed(evt);
-            }
-        });
-        add(cBStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
-
         btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar.png"))); // NOI18N
         btEntrar.setBorder(null);
         btEntrar.setBorderPainted(false);
         btEntrar.setContentAreaFilled(false);
         btEntrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar_clicked.png"))); // NOI18N
+        btEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btEntrarMouseClicked(evt);
+            }
+        });
         add(btEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 47));
 
         tFServidorIp.setFont(OurFonts.getTextFont(14f)
@@ -143,6 +147,11 @@ public class LoginPanel extends javax.swing.JPanel {
     private void tFServidorIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tFServidorIpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tFServidorIpActionPerformed
+
+    private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
+        GlobalClient.gui.logIn(tFLogin.getText(), 0, this.tFServidorIp.getText(), this.cBStatus.getSelectedIndex());        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btEntrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
