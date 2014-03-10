@@ -460,6 +460,8 @@ public class Core implements Runnable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
+        } else {
+            return;
         }
     }
 
