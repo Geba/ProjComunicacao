@@ -30,7 +30,9 @@ public class Constantes {
     public static final int RECEIVE_MESSAGE = 16; //quando o cliente receber uma msg
     public static final int GET_USERS = 17;//para pedir os usuarios da sala
     public static final int GET_HISTORICO = 18; //o cliente pede o historico da sala para o servidor
-
+    public static final int DESCONECTOU = 19; //alguem desconecta do programa
+    
+    
     public static String gettipo(int i) {
         String s = "";
         switch (i) {

@@ -5,7 +5,6 @@
  */
 package coreserver;
 
-import corecliente.*;
 import atomics.*;
 
 import java.io.File;
@@ -141,7 +140,7 @@ public class CoreServer implements Runnable {
 
     private void handleLogOut(Request rq) {
         // User u = null;
-    	rq.tipo = Constantes.SAIU_SALA;
+    	rq.tipo = Constantes.DESCONECTOU;
         for (int i = 0; i < GlobalServer.users.size(); i++) {
             if (GlobalServer.users.get(i).getId() == rq.sender_ID) {
                 // u = GlobalServer.users.get(i);

@@ -373,6 +373,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void refreshUserCountGui(long sala_id, int add) {
+    	System.out.println("refreshusercount "+sala_id);
         this.roomsPanel.refreshUsersCount(sala_id, add);
     }
 

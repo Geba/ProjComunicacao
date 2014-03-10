@@ -10,7 +10,6 @@ import atomics.Message;
 import atomics.Request;
 import atomics.User;
 import gui.GuiPrincipalFrame;
-import interfaces.CoreInterface;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,8 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
-
-import coreserver.GlobalServer;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -325,6 +322,9 @@ public class Core implements Runnable {
             case Constantes.GET_USERS:
                 refreshUsers(rq);
                 break;
+            case Constantes.DESCONECTOU:
+            	handleDesconectou(rq);
+            	break;
             //case Constantes.
         }
 
@@ -350,6 +350,7 @@ public class Core implements Runnable {
     }
 
     private void handleSaiuSala(Request rq) {
+    	//System.out.println("handle saiu sala");
         for (int i = 0; i < GlobalClient.oppenedRooms.size(); i++) {
             if (GlobalClient.oppenedRooms.get(i).getID() == rq.sala_ID) {
                 for (int j = 0; j < GlobalClient.oppenedRooms.get(i).getUsers_ID().size(); j++) {
@@ -363,6 +364,24 @@ public class Core implements Runnable {
             i = GlobalClient.oppenedRooms.size() + 5;
         }
         GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
+    }
+    
+    private void handleDesconectou(Request rq) {
+    	//System.out.println("handle saiu sala");
+        for (int i = 0; i < GlobalClient.oppenedRooms.size(); i++) {
+            if (GlobalClient.oppenedRooms.get(i).getID() == rq.sala_ID) {
+                for (int j = 0; j < GlobalClient.oppenedRooms.get(i).getUsers_ID().size(); j++) {
+                    if (GlobalClient.oppenedRooms.get(i).getUsers_ID().get(j) == rq.sender_ID) {
+                        GlobalClient.oppenedRooms.get(i).getUsers_ID().remove(j);
+                    }
+                    //j = GlobalClient.oppenedRooms.get(i).getUsers_ID().size() + 20;
+                }
+                GlobalClient.gui.alertSaiuSala(rq.sala_ID, rq.sender_nickname, rq.sender_ID);
+            }
+            GlobalClient.gui.refreshUserCountGui(GlobalClient.oppenedRooms.get(i).getID(), -1);
+            //i = GlobalClient.oppenedRooms.size() + 5;
+        }
+//        GlobalClient.gui.refreshUserCountGui(rq.sala_ID, -1);
     }
 
     private void handleNewUser(Request rq) {
