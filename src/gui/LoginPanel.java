@@ -109,6 +109,14 @@ public class LoginPanel extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btEntrarMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btEntrarMouseReleased(evt);
+            }
+        });
+        btEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEntrarActionPerformed(evt);
+            }
         });
         add(btEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 47));
 
@@ -116,6 +124,7 @@ public class LoginPanel extends javax.swing.JPanel {
         );
         tFServidorIp.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tFServidorIp.setText("localhost");
+        tFServidorIp.setBorder(null);
         tFServidorIp.setOpaque(false);
         tFServidorIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,12 +136,7 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        String nickname = this.tFLogin.getText();
-        String ip = this.tFServidorIp.getText();
-        int status = cBStatus.getSelectedIndex(); ///////////////////////
-        System.out.println("Status: " + Status.whichStatus(status));
 
-        GlobalClient.gui.logIn(nickname, 0, ip, status);
 
     }//GEN-LAST:event_btEntrarActionPerformed
 
@@ -149,9 +153,19 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_tFServidorIpActionPerformed
 
     private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
-        GlobalClient.gui.logIn(tFLogin.getText(), 0, this.tFServidorIp.getText(), this.cBStatus.getSelectedIndex());        // TODO add your handling code here:
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar_clicked.png")));
+        String nickname = this.tFLogin.getText();
+        String ip = this.tFServidorIp.getText();
+        int status = cBStatus.getSelectedIndex(); ///////////////////////
+        System.out.println("Status: " + Status.whichStatus(status));
+
+        GlobalClient.gui.logIn(nickname, 0, ip, status);
 
     }//GEN-LAST:event_btEntrarMouseClicked
+
+    private void btEntrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseReleased
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar_clicked.png")));
+    }//GEN-LAST:event_btEntrarMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
