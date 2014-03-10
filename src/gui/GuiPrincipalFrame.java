@@ -73,6 +73,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         BigContainer = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         principalPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -101,6 +102,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
         });
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
+        BigContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);
 
@@ -121,22 +123,11 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         principalPanel.getAccessibleContext().setAccessibleName("");
 
-        javax.swing.GroupLayout BigContainerLayout = new javax.swing.GroupLayout(BigContainer);
-        BigContainer.setLayout(BigContainerLayout);
-        BigContainerLayout.setHorizontalGroup(
-            BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BigContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        BigContainerLayout.setVerticalGroup(
-            BigContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BigContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        BigContainer.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 420, 600));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/tela_salas.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        BigContainer.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 410, 590));
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -284,6 +275,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
