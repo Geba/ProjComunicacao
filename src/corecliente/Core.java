@@ -215,17 +215,17 @@ public class Core implements Runnable {
 
     public void logIn(String nickname, long userId, String ipServer, int status)
             throws IOException {// para testes
-        System.out.println("Try to login");
+        System.out.println("Trying to login");
         GlobalClient.setClient(new Cliente(ipServer, 8080));
         GlobalClient.cliente.executa(); // cria a conexao
         Request newUserRequest = new Request(Constantes.LOGIN, nickname, status);
         GlobalClient.cliente.send(newUserRequest);
-        System.out.println("mandou o request de login");
+        //System.out.println("mandou o request de login");
 
     }
 
     public void logInOk(User user) {
-        System.out.println("pode comemorar \\o");
+        //System.out.println("pode comemorar \\o");
         GlobalClient.user = user;
         GlobalClient.oppenedRooms = new ArrayList<Room>();
         GlobalClient.gui.logInOk();
@@ -404,7 +404,7 @@ public class Core implements Runnable {
         //rq.existingRooms = GlobalClient.oppenedRooms;
         //System.out.println("numero de rooms que o cliente mandou: " + rq.existingRooms.size());
         try {
-            System.out.println("*************mandou mudar status com novo status " + rq.newStatus);
+            //System.out.println("*************mandou mudar status com novo status " + rq.newStatus);
             GlobalClient.cliente.send(rq, GlobalClient.oppenedRooms);
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -446,23 +446,28 @@ public class Core implements Runnable {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void getHistorico(long sala_id){
+    	
+    	System.out.println("chamando o getHistorico");
+    	
+    	Request rq = new Request(Constantes.GET_HISTORICO);
+    	rq.sala_ID = sala_id;
+    	rq.sender_ID = GlobalClient.user.getId();
+    	rq.sender_nickname = GlobalClient.user.getNickname();
+    	rq.file_path = GlobalClient.gui.getPathForFile();
+    	if(rq.file_path!=null){
+    	
+    	try {
+			GlobalClient.cliente.send(rq);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	} else {
+    		System.out.println("GET HISTORICO CANCELADO");
+    	}
 
-    public void getHistorico(long sala_id) {
-        Request rq = new Request(Constantes.GET_HISTORICO);
-        rq.sala_ID = sala_id;
-        rq.sender_ID = GlobalClient.user.getId();
-        rq.sender_nickname = GlobalClient.user.getNickname();
-        rq.file_path = GlobalClient.gui.getPathForFile();
-        if (rq.file_path != null) {
-            try {
-                GlobalClient.cliente.send(rq);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } else {
-            return;
-        }
     }
 
 }

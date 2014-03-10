@@ -3,14 +3,7 @@ package coreserver;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
-import atomics.Message;
 import atomics.Request;
 import atomics.User;
 import gui.ServidorFrame;
@@ -23,7 +16,6 @@ public class Servidor {
 	// private List<ObjectOutputStream> clientes;
 	ServidorFrame sf;
 	private boolean reset;
-	DateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
 
 	public Servidor(int porta) {
 		this.porta = porta;
@@ -78,15 +70,10 @@ public class Servidor {
 	}
 
 	public void send(Request rq, User user) throws IOException {
-		// ObjectOutputStream dos = new
-		// ObjectOutputStream(user.getSocket().getOutputStream());
-		rq.time = dataFormat.format(new Date());
 		user.getSocket().writeObject(rq);
 	}
 
 	public void send(Request rq, long id) throws IOException {
-		
-        rq.time = dataFormat.format(new Date());
 		
 		boolean sair = false;
 		for (int i = 0; !sair & i < GlobalServer.users.size(); i++) {

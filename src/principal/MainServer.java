@@ -1,6 +1,7 @@
 package principal;
 
 import coreserver.CoreServer;
+import coreserver.Database;
 import coreserver.GlobalServer;
 import coreserver.Servidor;
 import atomics.Arquivo;
@@ -21,6 +22,7 @@ public class MainServer implements Runnable{
 		GlobalServer.core = new CoreServer();
 		GlobalServer.rooms = new ArrayList<Room>();
 		GlobalServer.files = new ArrayList<Arquivo>();
+		GlobalServer.db = new Database();
 		//teste
 		Room r1 = new Room(01, "Animais", 00);
 		Room r2 = new Room(02, "Pokemons", 00);

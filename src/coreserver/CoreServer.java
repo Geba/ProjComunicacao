@@ -6,30 +6,22 @@
 package coreserver;
 
 import corecliente.*;
-import atomics.Arquivo;
-import atomics.Room;
-import atomics.Message;
-import atomics.Request;
-import atomics.User;
-import atomics.UserInfo;
-import gui.GuiPrincipalFrame;
-import interfaces.CoreInterface;
+import atomics.*;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import principal.Constantes;
+import principal.Status;
 
 /**
  *
@@ -37,7 +29,7 @@ import principal.Constantes;
  */
 public class CoreServer implements Runnable {
 
-    //DateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
+    DateFormat dataFormat = new SimpleDateFormat("HH:mm:ss");
 
     public CoreServer() {
     }
@@ -54,6 +46,7 @@ public class CoreServer implements Runnable {
     }
 
     public void handleRequest(Request rq, long id) {
+    	rq.time = dataFormat.format(new Date());
         // id it's only for login
         int tipo = rq.tipo;
         System.out.println("handle server, tipo: " + Constantes.gettipo(tipo));
@@ -105,10 +98,22 @@ public class CoreServer implements Runnable {
 
     private void handleGetHistorico(Request rq) {
 		
+    	System.out.println("handleGetHistorico");
+    	
+    	String nome_sala = "";
+    	for (int i=0; i<GlobalServer.rooms.size(); i++){
+    		if(GlobalServer.rooms.get(i).getID()==rq.sala_ID) {
+    			nome_sala = GlobalServer.rooms.get(i).getName();
+    			i = GlobalServer.rooms.size()+10;
+    		}
+    	}
+    	  	
     	rq.tipo = Constantes.DOWNLOAD_FILE;
-        rq.file_path = rq.file_path+"log_romm_"+rq.roomName+"_"+rq.sala_ID+".txt";
+        rq.file_path = rq.file_path + "/log_room_" + nome_sala + "_" + rq.sala_ID + ".txt";
         
-        File file = new File("database/salas/"+rq.sala_ID+".hermes");
+        System.out.println("OUT: "+rq.file_path);
+        
+        File file = new File("database/historicos/"+rq.sala_ID+".hermes");
         byte[] bytes = new byte[(int) file.length()];
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -119,8 +124,6 @@ public class CoreServer implements Runnable {
             e1.printStackTrace();
         }
         rq.file_bytes = bytes;
-        rq.sender_ID = GlobalClient.user.getId();
-        rq.sender_nickname = GlobalClient.user.getNickname();	
 		
         try {
 			GlobalServer.servidor.send(rq, rq.sender_ID);
@@ -179,10 +182,11 @@ public class CoreServer implements Runnable {
     }
 
     private void handleMudarStatus(Request rq) {
-        System.out.println("handle mudar status");
+    	
+    	GlobalServer.db.WriteAlert(rq.getMessage(), "is feeling "+Status.whichStatus(rq.newStatus));
+    	
         rq.tipo = Constantes.MUDOU_STATUS;
-        System.out.println("nmero de rooms no request: "
-                + rq.existingRooms.size());
+
         for (int i = 0; i < GlobalServer.users.size(); i++) {
             if (GlobalServer.users.get(i).getId() != rq.sender_ID) {
                 try {
@@ -216,6 +220,9 @@ public class CoreServer implements Runnable {
     }
 
     private void handleExitRoom(Request rq) {
+    	
+    	GlobalServer.db.WriteAlert(rq.getMessage(), "saiu da sala");
+    	
         rq.tipo = Constantes.SAIU_SALA;
         /*
          * for (int i = 0; i < GlobalServer.rooms.size(); i++) {
@@ -266,15 +273,13 @@ public class CoreServer implements Runnable {
     }
 
     private void sendMessage(Request rq) {
-        // System.out.println("sending message start");
+    	
+        GlobalServer.db.WriteMessage(rq.getMessage());
 
-        //rq.time = dataFormat.format(new Date());
         rq.tipo = Constantes.RECEIVE_MESSAGE;
         long salaid = rq.sala_ID;
         boolean sair = false;
         for (int i = 0; i < GlobalServer.rooms.size() && !sair; i++) {
-            System.out.println(GlobalServer.rooms.get(i).getID() + " ? "
-                    + salaid);
             if (GlobalServer.rooms.get(i).getID() == salaid) {
                 ArrayList<Long> users = GlobalServer.rooms.get(i).getUsers_ID();
                 for (int j = 0; j < users.size(); j++) {
@@ -318,6 +323,9 @@ public class CoreServer implements Runnable {
     }
 
     private void handleEnterRoom(Request rq) {
+    	
+    	GlobalServer.db.WriteAlert(rq.getMessage(), "entrou na sala");  	
+    	
         User u;
         for (int i = 0; i < GlobalServer.rooms.size(); i++) {// para todas as
             // salas
@@ -392,7 +400,7 @@ public class CoreServer implements Runnable {
     }
 
     private void handleCreateRoom(Request rq) {
-        System.out.println("Request nova sala no servidor");
+        //System.out.println("Request nova sala no servidor");
         long id = new Random().nextInt(999999);
         Room r = new Room(id, rq.roomName, rq.sender_ID);
         r.addUser(rq.sender_ID);
@@ -419,6 +427,10 @@ public class CoreServer implements Runnable {
         long file_id = downloadFile(rq);
 
         // coloca "arquivo enviado"
+        
+        GlobalServer.db.WriteAlert(rq.getMessage(), "enviou o arquivo "+rq.file_path);
+        
+        
         Request rq2 = new Request(Constantes.FILE_SENT);
         rq2.sala_ID = rq.sala_ID;
         rq2.sender_nickname = rq.sender_nickname;
@@ -443,13 +455,17 @@ public class CoreServer implements Runnable {
     private long downloadFile(Request rq) { // ////
         long id = GlobalServer.files.size() + 1;
         String path = rq.file_path;
+        
+        System.out.println(rq.file_path);
+        
         for (int i = 0; i < rq.file_path.length(); i++) {
-            System.out.print(rq.file_path.charAt(i) + " ");
             if (rq.file_path.charAt(i) == 92 || rq.file_path.charAt(i) == '/') {
                 path = rq.file_path.substring(i, rq.file_path.length());
             }
         }
         rq.file_path = path;
+        
+        System.out.println(rq.file_path);
 
         GlobalServer.files.add(new Arquivo(rq.file_bytes, id, rq.file_path));
 

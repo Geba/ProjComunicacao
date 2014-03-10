@@ -76,6 +76,33 @@ public class Database {
 		return true;	
 	}
 	
+	public boolean CreateLogFile (Message msg) {
+		File file = new File("database/historicos/" + msg.getSala_ID() + this.extensao);
+		try {
+			FileWriter fw = new FileWriter(file, true);
+			PrintWriter pw = new PrintWriter(fw, true);
+			pw.close();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;	
+	}
+	
+	public boolean WriteAlert (Message msg, String coisa) {
+		File file = new File("database/historicos/" + msg.getSala_ID() + this.extensao);
+		try {
+			FileWriter fw = new FileWriter(file, true);
+			PrintWriter pw = new PrintWriter(fw, true);
+			//PrintWriter pw = new PrintWriter(file);
+			pw.print(msg.getTime() + " ");
+			pw.println((msg.getSender_nickname() + " " + coisa).toUpperCase());
+			pw.close();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;	
+	}
+	
 	public String GetUserIP (long ID) throws UsuarioNaoEncontradoException {
 		File file = new File("database/usuarios/" + ID + this.extensao);
 		String ip="";
