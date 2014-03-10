@@ -6,6 +6,7 @@
 package gui;
 import principal.OurFonts;
 import atomics.Room;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class RoomsListPanel extends javax.swing.JPanel {
         roomsItens = new ArrayList<RoomListItemPanel>();
         this.roomsListPanelContainer.getViewport().setOpaque(false);
         this.roomsListPanelContainer.setOpaque(false);
+        this.lbSalas.setForeground(Color.WHITE);
     }
 
     /**
@@ -68,7 +70,7 @@ public class RoomsListPanel extends javax.swing.JPanel {
             }
         });
 
-        lbSalas.setFont(OurFonts.getTitleFont(20f)
+        lbSalas.setFont(OurFonts.getTitleFont(24f)
         );
         lbSalas.setText("Rooms");
 
@@ -91,16 +93,19 @@ public class RoomsListPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roomsListPanelContainer)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(roomsListPanelContainer)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btAdicionarSala)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addComponent(lbSalas)
-                        .addGap(109, 109, 109)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btAdicionarSala)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
