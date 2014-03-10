@@ -102,6 +102,8 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
 
         BigContainer.setBackground(new java.awt.Color(0, 59, 64));
 
+        jPanel1.setOpaque(false);
+
         principalPanel.setFocusable(false);
         principalPanel.setOpaque(false);
         principalPanel.setLayout(new javax.swing.BoxLayout(principalPanel, javax.swing.BoxLayout.Y_AXIS));
