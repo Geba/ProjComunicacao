@@ -284,7 +284,7 @@ public class Core implements Runnable {
         Room newRoom = rq.existingRooms.get(0);
         GlobalClient.oppenedRooms.add(newRoom);
         GlobalClient.gui.showNewRoom(newRoom, rq.usersinfo);
-        
+
     }
 
     public void handleRequest(Request rq) {
@@ -355,7 +355,7 @@ public class Core implements Runnable {
                 for (int j = 0; j < GlobalClient.oppenedRooms.get(i).getUsers_ID().size(); j++) {
                     if (GlobalClient.oppenedRooms.get(i).getUsers_ID().get(j) == rq.sender_ID) {
                         GlobalClient.oppenedRooms.get(i).getUsers_ID().remove(j);
-                        }
+                    }
                     j = GlobalClient.oppenedRooms.get(i).getUsers_ID().size() + 20;
                 }
                 GlobalClient.gui.alertSaiuSala(rq.sala_ID, rq.sender_nickname, rq.sender_ID);
@@ -416,8 +416,8 @@ public class Core implements Runnable {
         Request rq = new Request(Constantes.CREATE_ROOM);
         rq.sender_ID = GlobalClient.user.getId();
         rq.roomName = roomName;
-        rq.newStatus=GlobalClient.user.getStatus();
-        rq.sender_nickname=GlobalClient.user.getNickname();
+        rq.newStatus = GlobalClient.user.getStatus();
+        rq.sender_nickname = GlobalClient.user.getNickname();
         try {
             GlobalClient.cliente.send(rq);
         } catch (IOException ex) {
@@ -446,20 +446,21 @@ public class Core implements Runnable {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void getHistorico(long sala_id){
-    	Request rq = new Request(Constantes.GET_HISTORICO);
-    	rq.sala_ID = sala_id;
-    	rq.sender_ID = GlobalClient.user.getId();
-    	rq.sender_nickname = GlobalClient.user.getNickname();
-    	rq.file_path = GlobalClient.gui.getPathForFile();
-    	
-    	try {
-			GlobalClient.cliente.send(rq);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+    public void getHistorico(long sala_id) {
+        Request rq = new Request(Constantes.GET_HISTORICO);
+        rq.sala_ID = sala_id;
+        rq.sender_ID = GlobalClient.user.getId();
+        rq.sender_nickname = GlobalClient.user.getNickname();
+        rq.file_path = GlobalClient.gui.getPathForFile();
+        if (rq.file_path != null) {
+            try {
+                GlobalClient.cliente.send(rq);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
 }

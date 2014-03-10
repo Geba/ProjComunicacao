@@ -253,7 +253,7 @@ public class RoomFrame extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Download Historico");
         jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -263,6 +263,15 @@ public class RoomFrame extends javax.swing.JFrame {
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuItem1.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
+                jMenuItem1MenuKeyTyped(evt);
             }
         });
         jMenu1.add(jMenuItem1);
@@ -346,6 +355,10 @@ public class RoomFrame extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
          GlobalClient.core.getHistorico(this.getID());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem1MenuKeyTyped(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_jMenuItem1MenuKeyTyped
+          GlobalClient.core.getHistorico(this.getID());
+    }//GEN-LAST:event_jMenuItem1MenuKeyTyped
 
     /**
      * @param args the command line arguments
