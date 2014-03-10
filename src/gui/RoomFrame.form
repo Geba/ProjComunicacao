@@ -104,7 +104,7 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sPUsers" alignment="1" pref="526" max="32767" attributes="0"/>
+                      <Component id="sPUsers" alignment="1" pref="510" max="32767" attributes="0"/>
                       <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -149,8 +149,10 @@
                   <Connection code="OurFonts.getTitleFont(30f)&#xd;&#xa;" type="code"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="99" type="rgb"/>
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="text" type="java.lang.String" value="&lt;romName&gt;"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
           </SubComponents>
@@ -318,7 +320,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="524" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="508" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>

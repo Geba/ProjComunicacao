@@ -5,7 +5,7 @@
  */
 
 package gui;
-
+import principal.OurFonts;
 /**
  *
  * @author Geeo
@@ -43,7 +43,10 @@ public class SystemAlertPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
         jPanel1.setOpaque(false);
 
-        lbSystemAlert.setBackground(new java.awt.Color(0, 204, 204));
+        lbSystemAlert.setBackground(new java.awt.Color(0, 102, 102));
+        lbSystemAlert.setFont(OurFonts.getTextFont(14f)
+        );
+        lbSystemAlert.setForeground(new java.awt.Color(51, 255, 204));
         lbSystemAlert.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSystemAlert.setText("<System Alert>");
         lbSystemAlert.setOpaque(true);
@@ -61,7 +64,8 @@ public class SystemAlertPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbSystemAlert, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addComponent(lbSystemAlert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

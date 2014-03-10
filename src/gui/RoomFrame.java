@@ -101,7 +101,9 @@ public class RoomFrame extends javax.swing.JFrame {
 
         lbRoomName.setFont(OurFonts.getTitleFont(30f)
         );
-        lbRoomName.setForeground(new java.awt.Color(153, 255, 255));
+        lbRoomName.setForeground(new java.awt.Color(255, 255, 255));
+        lbRoomName.setText("<romName>");
+        lbRoomName.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -204,7 +206,7 @@ public class RoomFrame extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addGap(0, 508, Short.MAX_VALUE)
         );
 
         pnConversa.add(jPanel4);
@@ -244,7 +246,7 @@ public class RoomFrame extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sPUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+                    .addComponent(sPUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,7 +426,7 @@ public class RoomFrame extends javax.swing.JFrame {
 
     public void addMensagem(Message message) {
         //System.out.println("addMensagem:" + message.getMessage() + " " + this);
-        MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname() + " says: ", message.getTime());
+        MessagePanel newMessage = new MessagePanel(message.getMessage(), message.getSender_nickname(), message.getTime());
         newMessage.setVisible(true);
         this.pnConversa.add(newMessage);
         this.pnConversa.revalidate();

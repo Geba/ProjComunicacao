@@ -1,10 +1,12 @@
 package gui;
 
+import corecliente.GlobalClient;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import principal.OurFonts;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,6 +32,9 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         this.lbMensagem.setText(mensagem);
         this.lbMensagem.addComponentListener(this);
         this.lbHora.setText(hora);
+        if(!usuario.equals(GlobalClient.user.getNickname())){
+            jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 1, 1, 4, new java.awt.Color(0, 0, 0)));
+        }
     }
 
     /**
@@ -59,8 +64,10 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel1.setOpaque(false);
 
+        lbNameUser.setFont(new java.awt.Font("Lucida Console", 1, 15)); // NOI18N
         lbNameUser.setText("Name");
 
+        lbHora.setFont(new java.awt.Font("Lucida Console", 1, 15)); // NOI18N
         lbHora.setText("Hora");
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 153));
@@ -70,6 +77,8 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
         lbMensagem.setColumns(20);
+        lbMensagem.setFont(OurFonts.getTextFont(15f)
+        );
         lbMensagem.setLineWrap(true);
         lbMensagem.setText("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKLLLLLLLLLLLLLLLLLLLLLLLLLLLLLMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVVVVVVVVWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
         lbMensagem.setWrapStyleWord(true);
@@ -88,7 +97,7 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbNameUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addComponent(lbHora)))
                 .addContainerGap())
         );

@@ -98,7 +98,7 @@ public class LoginPanel extends javax.swing.JPanel {
                 tFLoginActionPerformed(evt);
             }
         });
-        add(tFLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 210, 30));
+        add(tFLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 210, 20));
 
         btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/bentrar.png"))); // NOI18N
         btEntrar.setBorder(null);
@@ -120,7 +120,7 @@ public class LoginPanel extends javax.swing.JPanel {
         });
         add(btEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 140, 47));
 
-        tFServidorIp.setFont(OurFonts.getTextFont(14f)
+        tFServidorIp.setFont(OurFonts.getTextFont(20f)
         );
         tFServidorIp.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tFServidorIp.setText("localhost");
