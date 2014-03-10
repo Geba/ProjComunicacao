@@ -25,9 +25,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 
 import javax.swing.JFileChooser;
 import principal.Alerts;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,6 +43,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     private List<RoomFrame> roomFrameList;
     private LoginPanel l;
     private CabecalhoPanel cb;
+    public JOptionPane op;
 
     /**
      * Creates new form GuiPrincipalFrame
@@ -244,7 +247,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void logInOk() {
-        this.setTitle("Hermes  - "+GlobalClient.user.getNickname());
+        this.setTitle("Hermes  - " + GlobalClient.user.getNickname());
         this.principalPanel.removeAll();
         this.cb = new CabecalhoPanel(GlobalClient.user);
         cb.setVisible(true);
@@ -332,9 +335,26 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     void sendFile(String caminhoArquivo, RoomFrame rf) {
-        rf.alertsendingFile();
+        System.out.println("Entrou no sendfile");
+        alertsendingFile();
         GlobalClient.core.sendFile(caminhoArquivo, rf.getRoom().getID());
-        this.alertfileSent();
+        alertfileSent();
+    }
+
+    public void alertsendingFile() {
+        System.out.println("Entrou no alertSendingfile");
+        LoadingPanel lp = new LoadingPanel("Sending File...\n Please wait");
+//        GlobalClient.gui.op = new JOptionPane("oojiojiojoijoiji", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);;
+        GlobalClient.gui.op = new JOptionPane();
+        GlobalClient.gui.op.showMessageDialog(this,new LoadingPanel("Uploading File"));
+        GlobalClient.gui.op.setVisible(true);
+        final JDialog dialog = new JDialog();
+        dialog.setTitle("Message");
+        dialog.setModal(true);
+        dialog.setContentPane(GlobalClient.gui.op);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.pack();
+        
     }
 
     public void showNewFile(String fileName, String sender_nickname, long sala_ID, String hora,
@@ -373,7 +393,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     public void refreshUserCountGui(long sala_id, int add) {
-    	System.out.println("refreshusercount "+sala_id);
+        System.out.println("refreshusercount " + sala_id);
         this.roomsPanel.refreshUsersCount(sala_id, add);
     }
 
@@ -397,7 +417,7 @@ public class GuiPrincipalFrame extends javax.swing.JFrame implements Runnable, G
     }
 
     private void alertfileSent() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override

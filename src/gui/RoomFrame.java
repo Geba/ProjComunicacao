@@ -18,6 +18,7 @@ import corecliente.Core;
 
 import javax.swing.SwingUtilities;
 import corecliente.GlobalClient;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import principal.Alerts;
@@ -35,19 +36,19 @@ public class RoomFrame extends javax.swing.JFrame {
      * Creates new form Conversa
      */
     private Room room;
-    
+
     public RoomFrame() {
         initComponents();
     }
-    
+
     public Room getRoom() {
         return room;
     }
-    
+
     public void setRoom(Room room) {
         this.room = room;
     }
-    
+
     public RoomFrame(Room room) {
         initComponents();
         this.room = room;
@@ -344,10 +345,10 @@ public class RoomFrame extends javax.swing.JFrame {
         if (retorno == JFileChooser.APPROVE_OPTION) {
             caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
             GlobalClient.gui.sendFile(caminhoArquivo, this);
-            
+
         } else {
         }
-        
+
     }//GEN-LAST:event_btAnexarActionPerformed
 
     private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
@@ -355,11 +356,11 @@ public class RoomFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         GlobalClient.core.getHistorico(this.getID());
+        GlobalClient.core.getHistorico(this.getID());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem1MenuKeyTyped(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_jMenuItem1MenuKeyTyped
-          GlobalClient.core.getHistorico(this.getID());
+        GlobalClient.core.getHistorico(this.getID());
     }//GEN-LAST:event_jMenuItem1MenuKeyTyped
 
     /**
@@ -376,7 +377,7 @@ public class RoomFrame extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -432,7 +433,7 @@ public class RoomFrame extends javax.swing.JFrame {
         this.pnConversa.revalidate();
         scrollPaneToBottom();
     }
-    
+
     public void addFile(String name, String sender_nickname, String hora, long fileLink) {
         MessageFilePanel mfp = new MessageFilePanel(name, sender_nickname, hora, fileLink);
         mfp.setVisible(true);
@@ -440,9 +441,9 @@ public class RoomFrame extends javax.swing.JFrame {
         this.pnConversa.revalidate();
         scrollPaneToBottom();
     }
-    
+
     public void sendMessage(int code) {
-        
+
         String str = this.tATexto.getText();
         System.out.print(GlobalClient.user.getId());
         Message msg = new Message(GlobalClient.user.getId(), this.room.getID(), "", str, GlobalClient.user.getNickname());
@@ -450,41 +451,48 @@ public class RoomFrame extends javax.swing.JFrame {
 //        addMensagem(msg);
         this.tATexto.setText("");
     }
-    
+
     private void scrollPaneToBottom() {
-        
+
         SwingUtilities.invokeLater(new Runnable() {
-            
+
             public void run() {
-                
+
                 sPConversa.getVerticalScrollBar().setValue(
-                        sPConversa.getVerticalScrollBar().getMaximum());                
+                        sPConversa.getVerticalScrollBar().getMaximum());
                 sPUsers.getVerticalScrollBar().setValue(
                         sPUsers.getVerticalScrollBar().getMaximum());
-                
+
             }
-            
+
         });
-        
+
     }
-    
+
     public long getID() {
         return this.room.getID();
     }
-    
+
     private int closeWindow() {
         System.out.println("closeWindow");
         return 0;
     }
-    
+
     public void alertsendingFile() {
+        System.out.println("Entrou no alertSendingfile");
         LoadingPanel lp = new LoadingPanel("Sending File...\n Please wait");
-        JOptionPane op = new JOptionPane();
-        lp.setVisible(true);
-        op.add(lp);
-        op.setVisible(true);
+        GlobalClient.gui.op = new JOptionPane("oojiojiojoijoiji", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);;
+        GlobalClient.gui.op.setVisible(true);
+        final JDialog dialog = new JDialog();
+        dialog.setTitle("Message");
+        dialog.setModal(true);
+
+        dialog.setContentPane(GlobalClient.gui.op);
+
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.pack();
     }
-    
+
     public void addAlert(int statusenter, String sender_nickname, int enterexit) {
         //tipo2 diz para qual status
         String string = "";
@@ -497,30 +505,30 @@ public class RoomFrame extends javax.swing.JFrame {
                     case Alerts.ENTER://entrou sala
                         string = sender_nickname + " entered the room :)";
                         break;
-                    
+
                     case Alerts.EXIT://saiu sala
                         string = sender_nickname + " had gone :/";
                         break;
                 }
-                
+
                 break;
-            
+
         }
         SystemAlertPanel sap = new SystemAlertPanel(string);
         sap.setVisible(true);
         this.pnConversa.add(sap);
         this.pnConversa.revalidate();
         scrollPaneToBottom();
-        
+
     }
-    
+
     void addUser(UserInfo get) {
         UserPanel up = new UserPanel(get);
         up.setVisible(true);
         this.pnUsersOnline.add(up);
         this.pnUsersOnline.revalidate();
     }
-    
+
     void removeUser(long sender_id) {
         for (int i = 0; i < this.pnUsersOnline.getComponents().length; i++) {
             UserPanel up = ((UserPanel) this.pnUsersOnline.getComponent(i));
@@ -530,7 +538,7 @@ public class RoomFrame extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public void refreshStatus(long sender_ID, int newStatus) {
         for (int i = 0; i < this.pnUsersOnline.getComponents().length; i++) {
             UserPanel up = ((UserPanel) this.pnUsersOnline.getComponent(i));
@@ -538,7 +546,7 @@ public class RoomFrame extends javax.swing.JFrame {
                 up.getLbStatus().setText(Status.whichStatus(newStatus));
                 this.pnUsersOnline.revalidate();
             }
-        }        
+        }
     }
-    
+
 }
