@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import principal.Alerts;
 import principal.Constantes;
 import principal.Status;
+import principal.OurFonts;
 
 /**
  *
@@ -34,6 +35,7 @@ public class RoomFrame extends javax.swing.JFrame {
      * Creates new form Conversa
      */
     private Room room;
+    
 
     public RoomFrame() {
         initComponents();
@@ -51,6 +53,7 @@ public class RoomFrame extends javax.swing.JFrame {
         initComponents();
         this.room = room;
         this.lbRoomName.setText(room.getName());
+        this.setTitle(room.getName()+ " - "+ GlobalClient.user.getNickname());
     }
 
     /**
@@ -94,7 +97,9 @@ public class RoomFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
-        lbRoomName.setForeground(new java.awt.Color(255, 0, 51));
+        lbRoomName.setFont(OurFonts.getTitleFont(30f)
+        );
+        lbRoomName.setForeground(new java.awt.Color(153, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,6 +140,8 @@ public class RoomFrame extends javax.swing.JFrame {
         });
 
         tATexto.setColumns(20);
+        tATexto.setFont(OurFonts.getTextFont(15f)
+        );
         tATexto.setLineWrap(true);
         tATexto.setRows(5);
         tATexto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -152,7 +159,7 @@ public class RoomFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btAnexar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -191,11 +198,11 @@ public class RoomFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGap(0, 563, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
         pnConversa.add(jPanel4);
@@ -225,7 +232,7 @@ public class RoomFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sPUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sPUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -303,9 +310,11 @@ public class RoomFrame extends javax.swing.JFrame {
         int retorno = arquivo.showOpenDialog(null);
         if (retorno == JFileChooser.APPROVE_OPTION) {
             caminhoArquivo = arquivo.getSelectedFile().getAbsolutePath();
+            GlobalClient.gui.sendFile(caminhoArquivo, this);
+            
         } else {
         }
-        GlobalClient.gui.sendFile(caminhoArquivo, this);
+        
     }//GEN-LAST:event_btAnexarActionPerformed
 
     /**
@@ -421,7 +430,11 @@ public class RoomFrame extends javax.swing.JFrame {
     }
 
     public void alertsendingFile() {
-        //   this.pnConversa.add(new Alert(Constantes.SEND_FILE))
+        LoadingPanel lp = new LoadingPanel("Sending File...\n Please wait");
+        JOptionPane op = new JOptionPane();
+        lp.setVisible(true);
+        op.add(lp);
+        op.setVisible(true);
     }
 
     public void addAlert(int statusenter, String sender_nickname, int enterexit) {

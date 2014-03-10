@@ -6,7 +6,7 @@
 package gui;
 
 import corecliente.GlobalClient;
-
+import principal.OurFonts;
 /**
  *
  * @author Geeo
@@ -53,10 +53,18 @@ public class MessageFilePanel extends javax.swing.JPanel {
         btFileDownload = new javax.swing.JButton();
         lbHora1 = new javax.swing.JLabel();
 
-        lbNameUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        setOpaque(false);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 1, 1, new java.awt.Color(0, 0, 0)));
+        jPanel1.setOpaque(false);
+
+        lbNameUser.setFont(OurFonts.getTextFont(14f)
+        );
         lbNameUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbNameUser.setText("<user>");
 
+        lbHora.setFont(OurFonts.getTextFont(14f)
+        );
         lbHora.setText("Hora");
 
         btFileDownload.setText("Download");
@@ -71,6 +79,7 @@ public class MessageFilePanel extends javax.swing.JPanel {
             }
         });
 
+        lbHora1.setFont(OurFonts.getTextFont(14f));
         lbHora1.setText("Sent a file:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,7 +92,7 @@ public class MessageFilePanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbHora1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btFileDownload, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                        .addComponent(btFileDownload, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbNameUser)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -108,11 +117,14 @@ public class MessageFilePanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -56,6 +56,7 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 1, 1, new java.awt.Color(0, 0, 0)));
         jPanel1.setOpaque(false);
 
         lbNameUser.setText("Name");
@@ -74,6 +75,7 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
         lbMensagem.setWrapStyleWord(true);
         lbMensagem.setFocusable(false);
         lbMensagem.setMinimumSize(new java.awt.Dimension(0, 0));
+        lbMensagem.setOpaque(false);
         jPanel2.add(lbMensagem);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,7 +88,7 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbNameUser)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                         .addComponent(lbHora)))
                 .addContainerGap())
         );
@@ -97,14 +99,17 @@ public class MessagePanel extends javax.swing.JPanel implements ComponentListene
                     .addComponent(lbNameUser)
                     .addComponent(lbHora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

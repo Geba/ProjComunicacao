@@ -65,7 +65,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jPanel3" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="sPUsers" min="-2" pref="142" max="-2" attributes="0"/>
+                          <Component id="sPUsers" min="-2" pref="186" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -120,8 +120,11 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lbRoomName">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="OurFonts.getTitleFont(30f)&#xd;&#xa;" type="code"/>
+                </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="0" red="ff" type="rgb"/>
+                  <Color blue="ff" green="ff" red="99" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
@@ -140,7 +143,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btAnexar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="584" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="589" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btEnviar" min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
@@ -185,6 +188,9 @@
                 <Component class="javax.swing.JTextArea" name="tATexto">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="OurFonts.getTextFont(15f)&#xd;&#xa;" type="code"/>
+                    </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -282,12 +288,12 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="596" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="563" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="549" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="550" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
